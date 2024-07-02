@@ -11,6 +11,8 @@ public class PlayerMoveControl : MonoBehaviour
     float maxSpeed;
     float jumpGauge;
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
+    [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
+    [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
 
     private void Start()
     {
@@ -47,8 +49,6 @@ public class PlayerMoveControl : MonoBehaviour
     {
         Move();
         RayCastControl();
-
-        
     }
     void Move()         //움직임 구현
     {
@@ -69,14 +69,49 @@ public class PlayerMoveControl : MonoBehaviour
     }
     void RayCastControl()  //레이 캐스트 구현
     {
+        //아래로 레이 쏘기
         //레이어 마스크로 Platform인 레이어에만 레이 쏘기
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, floorMaxRay, LayerMask.GetMask("Platform"));
-        Debug.DrawRay(transform.position, Vector2.down * floorMaxRay, Color.blue, 0.3f);    //레이 그리기
+        Debug.DrawRay(transform.position, Vector2.down * floorMaxRay, Color.red, 0.3f);    //레이 그리기
         //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
         if(hit.collider != null)
         {
             if (hit.collider.tag == "Platform")
             {
+                canJump = true;
+            }
+            else
+            {
+                canJump = false;
+            }
+        }
+
+        //오른쪽으로 레이 쏘기
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.right, rightMaxRay, LayerMask.GetMask("Platform"));
+        Debug.DrawRay(transform.position, Vector2.right * rightMaxRay, Color.green, 0.3f);    //레이 그리기
+        //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
+        if (hit1.collider != null)
+        {
+            if (hit1.collider.tag == "Platform")
+            {
+                Debug.Log("오른쪽벽 충돌");
+                canJump = true;
+            }
+            else
+            {
+                canJump = false;
+            }
+        }
+
+        //왼쪽으로 레이 쏘기
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.left, leftMaxRay, LayerMask.GetMask("Platform"));
+        Debug.DrawRay(transform.position, Vector2.left * leftMaxRay, Color.blue, 0.3f);    //레이 그리기
+        //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
+        if (hit2.collider != null)
+        {
+            if (hit2.collider.tag == "Platform")
+            {
+                Debug.Log("왼쪽벽 충돌");
                 canJump = true;
             }
             else
