@@ -10,6 +10,8 @@ public class PlayerMoveControl : MonoBehaviour
     float jumpPower;
     float maxSpeed;
     float jumpGauge;
+    public float angle;    //회전한 값
+    
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
     [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
@@ -44,11 +46,11 @@ public class PlayerMoveControl : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.normalized.x * moveSpeed, rb.velocity.y);
         }
+        RayCastControl();
     }
     void FixedUpdate()
     {
         Move();
-        RayCastControl();
     }
     void Move()         //움직임 구현
     {
@@ -94,7 +96,6 @@ public class PlayerMoveControl : MonoBehaviour
         {
             if (hit1.collider.tag == "Platform")
             {
-                Debug.Log("오른쪽벽 충돌");
                 canJump = true;
             }
             else
@@ -111,7 +112,6 @@ public class PlayerMoveControl : MonoBehaviour
         {
             if (hit2.collider.tag == "Platform")
             {
-                Debug.Log("왼쪽벽 충돌");
                 canJump = true;
             }
             else
@@ -119,5 +119,13 @@ public class PlayerMoveControl : MonoBehaviour
                 canJump = false;
             }
         }
+    }
+    void Rotate()
+    {
+        //경사로 보면 회전하기
+        //Ray길이 20으로
+        RaycastHit2D hit3 = Physics2D.Raycast(transform.position, Vector2.down, 20, LayerMask.GetMask("Platform"));
+        angle = Vector2.Angle(hit3.normal, Vector2.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), 0.5f);
     }
 }
