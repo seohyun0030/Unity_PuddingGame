@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMoveControl : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerMoveControl : MonoBehaviour
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
     [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
-
+    public float rotationSpeed = 10f;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,30 +28,46 @@ public class PlayerMoveControl : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Z))    //Z키를 눌러서 점프게이지 충전
+        if (Cannon.i.isAttached)
         {
-            if (canJump)    //점프 가능 상태일 때
+            float rotate = Input.GetAxis("Horizontal");
+            Vector3 rotation = new Vector3(0, 0, -rotate);
+            transform.Rotate(rotation * Cannon.i.roatationSpeed * Time.deltaTime);
+            if (Input.GetButtonUp("Horizontal"))
             {
-                PlayerManager.i.plusJumpGauge();
+                Cannon.i.fire(rb);
+                
             }
         }
+        
+            if (Input.GetKey(KeyCode.Z))    //Z키를 눌러서 점프게이지 충전
+            {
+                if (canJump)    //점프 가능 상태일 때
+                {
+                    PlayerManager.i.plusJumpGauge();
+                }
+            }
 
-        if (Input.GetKeyUp(KeyCode.Z))  //Z키를 뗄 때 점프, 점프 상태가 아닐 때
-        {
-            Debug.Log("jump");
-            Jump();
-            PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
-            PlayerManager.i.time = 0f;         //시간 초기화
-        }
-        if (Input.GetButtonUp("Horizontal"))    //좌우 이동하다가 방향키를 뗄 때의 속도
-        {
-            rb.velocity = new Vector2(rb.velocity.normalized.x * moveSpeed, rb.velocity.y);
-        }
+            if (Input.GetKeyUp(KeyCode.Z))  //Z키를 뗄 때 점프, 점프 상태가 아닐 때
+            {
+                Debug.Log("jump");
+                Jump();
+                PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
+                PlayerManager.i.time = 0f;         //시간 초기화
+            }
+            if (Input.GetButtonUp("Horizontal"))    //좌우 이동하다가 방향키를 뗄 때의 속도
+            {
+                rb.velocity = new Vector2(rb.velocity.normalized.x * moveSpeed, rb.velocity.y);
+            }
+        
         RayCastControl();
     }
     void FixedUpdate()
     {
-        Move();
+        if (!Cannon.i.isAttached)
+        {
+            Move();
+        }
     }
     void Move()         //움직임 구현
     {
@@ -81,6 +98,10 @@ public class PlayerMoveControl : MonoBehaviour
             if (hit.collider.tag == "Platform")
             {
                 canJump = true;
+                if (Cannon.i.isFire)
+                {
+                    resetRotation();
+                }
             }
             else
             {
@@ -97,6 +118,10 @@ public class PlayerMoveControl : MonoBehaviour
             if (hit1.collider.tag == "Platform")
             {
                 canJump = true;
+                if (Cannon.i.isFire)
+                {
+                    resetRotation();
+                }
             }
             else
             {
@@ -113,6 +138,10 @@ public class PlayerMoveControl : MonoBehaviour
             if (hit2.collider.tag == "Platform")
             {
                 canJump = true;
+                if (Cannon.i.isFire)
+                {
+                    resetRotation();
+                }
             }
             else
             {
@@ -127,5 +156,11 @@ public class PlayerMoveControl : MonoBehaviour
         RaycastHit2D hit3 = Physics2D.Raycast(transform.position, Vector2.down, 20, LayerMask.GetMask("Platform"));
         angle = Vector2.Angle(hit3.normal, Vector2.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), 0.5f);
+    }
+    void resetRotation()
+    {
+        rb.velocity = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+        Cannon.i.isFire = false;
     }
 }
