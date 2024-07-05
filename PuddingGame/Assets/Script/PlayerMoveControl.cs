@@ -64,7 +64,7 @@ public class PlayerMoveControl : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!Cannon.i.isAttached)
+        if (!Cannon.i.isAttached && !Cannon.i.isFire)
         {
             Move();
         }

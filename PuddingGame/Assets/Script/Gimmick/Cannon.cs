@@ -17,6 +17,7 @@ public class Cannon : MonoBehaviour
     public void Awake()
     {
         i = this;
+        cannon = GetComponent<CircleCollider2D>();
     }
     public void fire(Rigidbody2D col)
     {
@@ -31,7 +32,7 @@ public class Cannon : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && isActive)
         {
             Vector3 pos = transform.position;
             collision.transform.position = new Vector3(pos.x, pos.y + yOffset, pos.z);
@@ -43,9 +44,9 @@ public class Cannon : MonoBehaviour
     private IEnumerator Cooldown()
     {
         isActive = false;
-        //cannon.enabled = false;
+        cannon.enabled = false;
         yield return new WaitForSeconds(cooldownTime);
         isActive = true;
-        //cannon.enabled = true;
+        cannon.enabled = true;
     }
 }
