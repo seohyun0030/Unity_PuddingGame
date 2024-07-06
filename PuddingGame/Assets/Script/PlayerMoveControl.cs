@@ -12,6 +12,7 @@ public class PlayerMoveControl : MonoBehaviour
     float maxSpeed;
     float jumpGauge;
     public float angle;    //회전한 값
+    float bouncePower;
     
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
@@ -25,6 +26,7 @@ public class PlayerMoveControl : MonoBehaviour
         jumpPower = PlayerManager.i.JumpPower;
         maxSpeed = PlayerManager.i.MaxSpeed;
         jumpGauge = PlayerManager.i.JumpGauge;
+        bouncePower = PlayerManager.i.BouncePower;
     }
     private void Update()
     {
@@ -39,27 +41,27 @@ public class PlayerMoveControl : MonoBehaviour
                 
             }
         }
-        
-            if (Input.GetKey(KeyCode.Z))    //Z키를 눌러서 점프게이지 충전
-            {
-                if (canJump)    //점프 가능 상태일 때
-                {
-                    PlayerManager.i.plusJumpGauge();
-                }
-            }
 
-            if (Input.GetKeyUp(KeyCode.Z))  //Z키를 뗄 때 점프, 점프 상태가 아닐 때
+        if (Input.GetKey(KeyCode.Z))    //Z키를 눌러서 점프게이지 충전
+        {
+            if (canJump)    //점프 가능 상태일 때
             {
-                Debug.Log("jump");
-                Jump();
-                PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
-                PlayerManager.i.time = 0f;         //시간 초기화
+                PlayerManager.i.plusJumpGauge();
             }
-            if (Input.GetButtonUp("Horizontal"))    //좌우 이동하다가 방향키를 뗄 때의 속도
-            {
-                rb.velocity = new Vector2(rb.velocity.normalized.x * moveSpeed, rb.velocity.y);
-            }
-        
+        }
+
+        if (Input.GetKeyUp(KeyCode.Z))  //Z키를 뗄 때 점프, 점프 상태가 아닐 때
+        {
+            Debug.Log("jump");
+            Jump();
+            PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
+            PlayerManager.i.time = 0f;         //시간 초기화
+        }
+        if (Input.GetButtonUp("Horizontal"))    //좌우 이동하다가 방향키를 뗄 때의 속도
+        {
+            rb.velocity = new Vector2(rb.velocity.normalized.x * moveSpeed, rb.velocity.y);
+        }
+
         RayCastControl();
     }
     void FixedUpdate()
@@ -108,6 +110,10 @@ public class PlayerMoveControl : MonoBehaviour
                 canJump = false;
             }
         }
+        else
+        {
+            canJump = true;
+        }
 
         //오른쪽으로 레이 쏘기
         RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.right, rightMaxRay, LayerMask.GetMask("Platform"));
@@ -122,10 +128,12 @@ public class PlayerMoveControl : MonoBehaviour
                 {
                     resetRotation();
                 }
+                Bounce(false);
             }
             else
             {
                 canJump = false;
+                
             }
         }
 
@@ -142,6 +150,7 @@ public class PlayerMoveControl : MonoBehaviour
                 {
                     resetRotation();
                 }
+                Bounce(true);
             }
             else
             {
@@ -162,5 +171,12 @@ public class PlayerMoveControl : MonoBehaviour
         rb.velocity = Vector3.zero;
         transform.rotation = Quaternion.identity;
         Cannon.i.isFire = false;
+    }
+    void Bounce(bool isLeft)   //벽에 닿으면 튕기기
+    {
+        if(isLeft)      //만약 왼쪽 벽에 닿았다면
+            rb.AddForce(Vector3.right * bouncePower, ForceMode2D.Impulse);  //오른쪽으로 튕기기
+        else            //만약 오른쪽 벽에 닿았다면
+            rb.AddForce(Vector3.left * bouncePower, ForceMode2D.Impulse);  //왼쪽으로 튕기기
     }
 }
