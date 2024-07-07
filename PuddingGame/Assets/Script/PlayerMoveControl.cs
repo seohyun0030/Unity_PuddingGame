@@ -21,7 +21,7 @@ public class PlayerMoveControl : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        moveSpeed = PlayerManager.i.MoveSpeed;  //플레이어 매니저 스크립트에서 가져옴
+        moveSpeed = PlayerManager.i.MoveSpeed; //플레이어 매니저 스크립트에서 가져옴  
         canJump = PlayerManager.i.CanJump;
         jumpPower = PlayerManager.i.JumpPower;
         maxSpeed = PlayerManager.i.MaxSpeed;
@@ -29,7 +29,8 @@ public class PlayerMoveControl : MonoBehaviour
         bouncePower = PlayerManager.i.BouncePower;
     }
     private void Update()
-    {
+    {   
+        
         if (Cannon.i.isAttached)
         {
             float rotate = Input.GetAxis("Horizontal");
