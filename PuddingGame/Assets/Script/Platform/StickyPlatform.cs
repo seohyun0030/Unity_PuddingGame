@@ -8,7 +8,8 @@ public class StickyPlatform : MonoBehaviour
     {
         if (collision.gameObject.name.Equals("Player"))
         {
-            PlayerManager.i.MoveSpeed -= 2f;
+            //PlayerManager.i.MoveSpeed -= 2f;
+            PlayerManager.i.Friction += 0.3f;
         }
     }
 
@@ -16,7 +17,8 @@ public class StickyPlatform : MonoBehaviour
     {
         if (collision.gameObject.name.Equals("Player"))
         {
-            PlayerManager.i.MoveSpeed += 2f;
+            //PlayerManager.i.MoveSpeed += 2f;
+            PlayerManager.i.Friction -= 0.3f;
         }
     }
 }

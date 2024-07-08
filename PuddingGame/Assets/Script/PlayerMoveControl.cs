@@ -13,6 +13,8 @@ public class PlayerMoveControl : MonoBehaviour
     float jumpGauge;
     public float angle;    //회전한 값
     float bouncePower;
+    bool isSliding;        //미끄러지고 있는지 확인
+    float friction;
     
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
@@ -21,12 +23,12 @@ public class PlayerMoveControl : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        moveSpeed = PlayerManager.i.MoveSpeed; //플레이어 매니저 스크립트에서 가져옴  
         canJump = PlayerManager.i.CanJump;
         jumpPower = PlayerManager.i.JumpPower;
         maxSpeed = PlayerManager.i.MaxSpeed;
         jumpGauge = PlayerManager.i.JumpGauge;
         bouncePower = PlayerManager.i.BouncePower;
+        friction = PlayerManager.i.Friction;
     }
     private void Update()
     {   
@@ -58,10 +60,11 @@ public class PlayerMoveControl : MonoBehaviour
             PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
             PlayerManager.i.time = 0f;         //시간 초기화
         }
-        if (Input.GetButtonUp("Horizontal"))    //좌우 이동하다가 방향키를 뗄 때의 속도
+
+        /*if (Input.GetButtonUp("Horizontal"))    //좌우 이동하다가 방향키를 뗄 때의 속도
         {
             rb.velocity = new Vector2(rb.velocity.normalized.x * moveSpeed, rb.velocity.y);
-        }
+        }*/
 
         RayCastControl();
     }
@@ -71,6 +74,7 @@ public class PlayerMoveControl : MonoBehaviour
         {
             Move();
         }
+        //Slide();
     }
     void Move()         //움직임 구현
     {
@@ -180,4 +184,24 @@ public class PlayerMoveControl : MonoBehaviour
         else            //만약 오른쪽 벽에 닿았다면
             rb.AddForce(Vector3.left * bouncePower, ForceMode2D.Impulse);  //왼쪽으로 튕기기
     }
+    /*void Slide()
+    {
+        RaycastHit2D hit4 = Physics2D.Raycast(transform.position, Vector2.down, floorMaxRay, LayerMask.GetMask("Platform"));
+
+        if (Vector2.Angle(hit4.normal, Vector2.up) > 0)
+        {
+            Vector2 velocity = rb.velocity;
+
+            if (velocity.magnitude < 0.01f)
+            {
+                rb.velocity = Vector2.zero;
+                return;
+            }
+
+            //Vector2 frictionForce = Vector2.ProjectOnPlane(velocity, slopeNormal) * friction;
+            Vector2 frictionForce = new Vector2(rb.velocity.normalized.x * friction, rb.velocity.y);
+
+            rb.velocity += frictionForce * Time.fixedDeltaTime;
+        }
+    }*/
 }
