@@ -20,6 +20,7 @@ public class PlayerMoveControl : MonoBehaviour
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
     [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
     public float rotationSpeed = 10f;
+    private bool isGravityReserved = false;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -73,8 +74,19 @@ public class PlayerMoveControl : MonoBehaviour
         if (!Cannon.i.isAttached && !Cannon.i.isFire)
         {
             Move();
+            
+            if (isGravityReserved)
+            {
+                rb.gravityScale = -1f;
+            }
+            else
+            {
+                rb.gravityScale = 1f;
+            }
+            
         }
         //Slide();
+        
     }
     void Move()         //움직임 구현
     {
@@ -91,7 +103,13 @@ public class PlayerMoveControl : MonoBehaviour
     }
     void Jump()
     {
-        rb.AddForce(Vector3.up * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
+        if (rb.gravityScale > 0f)
+        {
+            rb.AddForce(Vector3.up * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
+        }
+        else {
+            rb.AddForce(Vector3.down * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
+        }
     }
     void RayCastControl()  //레이 캐스트 구현
     {
@@ -204,4 +222,8 @@ public class PlayerMoveControl : MonoBehaviour
             rb.velocity += frictionForce * Time.fixedDeltaTime;
         }
     }*/
+    public void SetGravityReversed(bool reserved)
+    {
+        isGravityReserved = reserved;
+    }
 }
