@@ -13,14 +13,14 @@ public class PlayerMoveControl : MonoBehaviour
     float jumpGauge;
     public float angle;    //회전한 값
     float bouncePower;
-    bool isSliding;        //미끄러지고 있는지 확인
-    float friction;
     
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
     [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
     public float rotationSpeed = 10f;
     private bool isGravityReserved = false;
+    bool isLeftMoving = false;      //왼쪽으로 이동하고 있는지 확인
+    public bool isJumping = false;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,7 +29,6 @@ public class PlayerMoveControl : MonoBehaviour
         maxSpeed = PlayerManager.i.MaxSpeed;
         jumpGauge = PlayerManager.i.JumpGauge;
         bouncePower = PlayerManager.i.BouncePower;
-        friction = PlayerManager.i.Friction;
     }
     private void Update()
     {   
@@ -62,18 +61,14 @@ public class PlayerMoveControl : MonoBehaviour
             PlayerManager.i.time = 0f;         //시간 초기화
         }
 
-        /*if (Input.GetButtonUp("Horizontal"))    //좌우 이동하다가 방향키를 뗄 때의 속도
-        {
-            rb.velocity = new Vector2(rb.velocity.normalized.x * moveSpeed, rb.velocity.y);
-        }*/
-
         RayCastControl();
     }
     void FixedUpdate()
     {
         if (!Cannon.i.isAttached && !Cannon.i.isFire)
         {
-            Move();
+            if(isJumping)
+                Move();
             
             if (isGravityReserved)
             {
@@ -85,13 +80,30 @@ public class PlayerMoveControl : MonoBehaviour
             }
             
         }
-        //Slide();
         
     }
-    void Move()         //움직임 구현
+    void Move()    //움직임 구현
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        rb.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+        //방향키 동시에 입력받을 때 최초로 눌려진 키에만 반응
+        if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+        {
+            rb.AddForce(Vector2.left, ForceMode2D.Impulse);
+            isLeftMoving = true;
+        }
+        else if(Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
+        {
+            rb.AddForce(Vector2.right, ForceMode2D.Impulse);
+            isLeftMoving = false;
+        }
+        else if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow))    //두 방향키가 다 눌려진 상태일 때
+        {
+            if(isLeftMoving)        //왼쪽으로 이동중인 상태였을 때
+                rb.AddForce(Vector2.left, ForceMode2D.Impulse);
+            else                    //오른쪽으로 이동중인 상태였을 때
+                rb.AddForce(Vector2.right, ForceMode2D.Impulse);
+        }
+
+        //최대 속도 넘지 않도록 설정
         if (rb.velocity.x > maxSpeed)
         {
             rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
@@ -110,6 +122,7 @@ public class PlayerMoveControl : MonoBehaviour
         else {
             rb.AddForce(Vector3.down * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
         }
+        StartCoroutine(JumpCheck());
     }
     void RayCastControl()  //레이 캐스트 구현
     {
@@ -181,14 +194,14 @@ public class PlayerMoveControl : MonoBehaviour
             }
         }
     }
-    void Rotate()
+    /*void Rotate()
     {
         //경사로 보면 회전하기
         //Ray길이 20으로
         RaycastHit2D hit3 = Physics2D.Raycast(transform.position, Vector2.down, 20, LayerMask.GetMask("Platform"));
         angle = Vector2.Angle(hit3.normal, Vector2.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), 0.5f);
-    }
+    }*/
     void resetRotation()
     {
         rb.velocity = Vector3.zero;
@@ -202,26 +215,12 @@ public class PlayerMoveControl : MonoBehaviour
         else            //만약 오른쪽 벽에 닿았다면
             rb.AddForce(Vector3.left * bouncePower, ForceMode2D.Impulse);  //왼쪽으로 튕기기
     }
-    /*void Slide()
+    IEnumerator JumpCheck()     //2초동안 점핑 상태가 되어 좌우 이동이 가능한 상태로 바꾼다
     {
-        RaycastHit2D hit4 = Physics2D.Raycast(transform.position, Vector2.down, floorMaxRay, LayerMask.GetMask("Platform"));
-
-        if (Vector2.Angle(hit4.normal, Vector2.up) > 0)
-        {
-            Vector2 velocity = rb.velocity;
-
-            if (velocity.magnitude < 0.01f)
-            {
-                rb.velocity = Vector2.zero;
-                return;
-            }
-
-            //Vector2 frictionForce = Vector2.ProjectOnPlane(velocity, slopeNormal) * friction;
-            Vector2 frictionForce = new Vector2(rb.velocity.normalized.x * friction, rb.velocity.y);
-
-            rb.velocity += frictionForce * Time.fixedDeltaTime;
-        }
-    }*/
+        isJumping = true;
+        yield return new WaitForSeconds(2);
+        isJumping = false;
+    }
     public void SetGravityReversed(bool reserved)
     {
         isGravityReserved = reserved;

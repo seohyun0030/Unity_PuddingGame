@@ -2420,6 +2420,7 @@ MonoBehaviour:
   rightMaxRay: 0.6
   leftMaxRay: 0.6
   rotationSpeed: 10
+  isJumping: 0
 --- !u!114 &977447793
 MonoBehaviour:
   m_ObjectHideFlags: 0

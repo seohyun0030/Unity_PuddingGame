@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 
     public GameObject player;
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 dir = player.transform.position - this.transform.position;
 
