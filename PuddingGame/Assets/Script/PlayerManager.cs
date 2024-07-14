@@ -17,9 +17,10 @@ public class PlayerManager : MonoBehaviour
     public PhysicsMaterial2D FrictionControl;
     public BoxCollider2D boxCollider2D;
     float currentFriction;  //현재 마찰력
-
+    public Rigidbody2D rigidbody;
     private void Awake()
     {
+        rigidbody = GetComponent<Rigidbody2D>();
         i = this;
     }
     private void Start()
