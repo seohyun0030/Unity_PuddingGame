@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerMoveControl : MonoBehaviour
 {
@@ -119,19 +120,21 @@ public class PlayerMoveControl : MonoBehaviour
         {
             rb.AddForce(Vector3.up * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
         }
-        else {
+        else 
+        {
             rb.AddForce(Vector3.down * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
         }
-        StartCoroutine(JumpCheck());
+        //StartCoroutine(JumpCheck());
     }
     void RayCastControl()  //레이 캐스트 구현
     {
         //아래로 레이 쏘기
         //레이어 마스크로 Platform인 레이어에만 레이 쏘기
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, floorMaxRay, LayerMask.GetMask("Platform"));
-        Debug.DrawRay(transform.position, Vector2.down * floorMaxRay, Color.red, 0.3f);    //레이 그리기
+        //transform.TransformDirection(Vector2.down) <-- 오브젝트 회전에 맞게 레이도 회전
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), floorMaxRay, LayerMask.GetMask("Platform"));
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.down) * floorMaxRay, Color.red, 0.3f);    //레이 그리기
         //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
             if (hit.collider.tag == "Platform")
             {
@@ -152,8 +155,8 @@ public class PlayerMoveControl : MonoBehaviour
         }
 
         //오른쪽으로 레이 쏘기
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.right, rightMaxRay, LayerMask.GetMask("Platform"));
-        Debug.DrawRay(transform.position, Vector2.right * rightMaxRay, Color.green, 0.3f);    //레이 그리기
+        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), rightMaxRay, LayerMask.GetMask("Platform"));
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.right) * rightMaxRay, Color.green, 0.3f);    //레이 그리기
         //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
         if (hit1.collider != null)
         {
@@ -174,8 +177,8 @@ public class PlayerMoveControl : MonoBehaviour
         }
 
         //왼쪽으로 레이 쏘기
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.left, leftMaxRay, LayerMask.GetMask("Platform"));
-        Debug.DrawRay(transform.position, Vector2.left * leftMaxRay, Color.blue, 0.3f);    //레이 그리기
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.left), leftMaxRay, LayerMask.GetMask("Platform"));
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.left) * leftMaxRay, Color.blue, 0.3f);    //레이 그리기
         //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
         if (hit2.collider != null)
         {
@@ -215,14 +218,22 @@ public class PlayerMoveControl : MonoBehaviour
         else            //만약 오른쪽 벽에 닿았다면
             rb.AddForce(Vector3.left * bouncePower, ForceMode2D.Impulse);  //왼쪽으로 튕기기
     }
-    IEnumerator JumpCheck()     //2초동안 점핑 상태가 되어 좌우 이동이 가능한 상태로 바꾼다
-    {
-        isJumping = true;
-        yield return new WaitForSeconds(2);
-        isJumping = false;
-    }
     public void SetGravityReversed(bool reserved)
     {
         isGravityReserved = reserved;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))        //플랫폼과 닿아있으면 점핑상태가 아니므로 움직일 수 없음
+        {
+            isJumping = false;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))        //플랫폼과 닿아있지 않으면 점핑상태 이므로 움직일 수 있음
+        {
+            isJumping = true;
+        }
     }
 }

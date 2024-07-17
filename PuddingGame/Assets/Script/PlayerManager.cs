@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] public float JumpGauge;    //점프 게이지
     [SerializeField] public float MaxSpeed;     //최고 속도
 
+    [SerializeField] public float JumpChargeTime;   //점프 차지 시간
     [HideInInspector] public bool CanJump;       //점프를 할 수 있는 상태인지
     [HideInInspector] public float time = 0f;
     public PhysicsMaterial2D FrictionControl;
@@ -34,10 +35,10 @@ public class PlayerManager : MonoBehaviour
     }
     public void plusJumpGauge()
     {
-        if (time < 2f)
+        if (time < JumpChargeTime)
         {
             time += Time.deltaTime;
-            JumpGauge = Mathf.Lerp(0.2f, 1, time / 2f);
+            JumpGauge = Mathf.Lerp(0.2f, 1, time / JumpChargeTime);
         }
     }
     void Slide()    //미끄러지기
