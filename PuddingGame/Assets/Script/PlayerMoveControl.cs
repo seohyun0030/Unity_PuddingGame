@@ -124,7 +124,7 @@ public class PlayerMoveControl : MonoBehaviour
         {
             rb.AddForce(Vector3.down * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
         }
-        //StartCoroutine(JumpCheck());
+        StartCoroutine(CheckJumping());
     }
     void RayCastControl()  //레이 캐스트 구현
     {
@@ -221,6 +221,12 @@ public class PlayerMoveControl : MonoBehaviour
     public void SetGravityReversed(bool reserved)
     {
         isGravityReserved = reserved;
+    }
+    IEnumerator CheckJumping()      //점프하고 2초후에는 falling상태로 변함
+    {
+        isJumping = true;
+        yield return new WaitForSeconds(2f);
+        isJumping = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

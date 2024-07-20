@@ -32,6 +32,10 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         Slide();
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            SlotManager.i.UseTopping();
+        }
     }
     public void plusJumpGauge()
     {
