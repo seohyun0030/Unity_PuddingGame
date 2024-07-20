@@ -4544,7 +4544,7 @@ GameObject:
   - component: {fileID: 1951889919}
   - component: {fileID: 1951889918}
   m_Layer: 5
-  m_Name: CheeryImage
+  m_Name: CherryImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5288,7 +5288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2278789502636540593, guid: a07cf4161d36d06479d93e3197bed7a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3720832
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 2278789502636540593, guid: a07cf4161d36d06479d93e3197bed7a2, type: 3}
       propertyPath: m_LocalPosition.z

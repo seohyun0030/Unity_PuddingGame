@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,7 @@ public class SlotManager : MonoBehaviour
     public GameObject[] Toppings;
     int n;      //토핑 순서 나타냄
 
-    private Queue<GameObject> slots = new Queue<GameObject>();
+    private List<GameObject> slots = new List<GameObject>();
     private void Awake()
     {
         i = this;
@@ -33,15 +34,30 @@ public class SlotManager : MonoBehaviour
 
         if (slots.Count >= ToppingCnt)      //만약 저장할 수 있는 개수보다 슬롯의 아이템 개수가 많아진다면
         {
-            Destroy(slots.Dequeue());       //가장 처음 들어간 토핑을 제거한다
+            GameObject UsedTopping = slots[0];
+            slots.RemoveAt(0);          //리스트에서 0번째 요소 삭제
+            Destroy(UsedTopping);       //Ui에서도 삭제
         }
 
-        slots.Enqueue(Toppings[n]);
+        slots.Add(Toppings[n]);
         Instantiate(Toppings[n], Slot);
         Toppings[n].SetActive(true);
     }
     public void UseTopping()
     {
-        Debug.Log(slots.Dequeue());
+        if (slots[0].name == "LemonImage")
+        {
+            //레몬 아이템을 사용했을 때
+            Debug.Log("Lemon");
+        }
+        else if(slots[0].name == "CherryImage")
+        {
+            //체리 아이템을 사용했을 때
+            Debug.Log("Cherry");
+        }
+
+        GameObject UsedTopping = slots[0];
+        slots.RemoveAt(0);          //리스트에서 0번째 요소 삭제
+        Destroy(UsedTopping);       //Ui에서도 삭제
     }
 }
