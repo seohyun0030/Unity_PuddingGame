@@ -217,7 +217,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 0.993813, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -225,7 +225,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &55509967
@@ -250,7 +250,7 @@ Transform:
   m_GameObject: {fileID: 55509964}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -2.44, z: 0}
+  m_LocalPosition: {x: -0.11, y: -2.32, z: 0}
   m_LocalScale: {x: 1.7642351, y: 1.7642351, z: 1.7642351}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2858,6 +2858,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66327c10d94a39143964e52af2bfafe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friction: 0.3
+  elasticity: 0.3
+  jump: 2
 --- !u!212 &1027591918
 SpriteRenderer:
   m_ObjectHideFlags: 0
