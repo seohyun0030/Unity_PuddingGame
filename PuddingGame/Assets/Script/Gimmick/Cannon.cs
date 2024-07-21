@@ -6,7 +6,6 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     public float yOffset = 1f;
-    public float roatationSpeed = 10f;
     public bool isAttached = false;
     public bool isActive = true;
     public float fireForce = 1f;
@@ -14,20 +13,24 @@ public class Cannon : MonoBehaviour
     public float cooldownTime = 1f;
     public static Cannon i;
     private CircleCollider2D cannon;
+    public float rayDistance = 10f;
     public void Awake()
     {
         i = this;
         cannon = GetComponent<CircleCollider2D>();
     }
+   
     public void fire(Rigidbody2D col)
     {
         if (!isActive) return;
 
-        Vector3 fireDirection = col.transform.up;
-        col.AddForce(fireDirection * fireForce);
+        //Vector3 fireDirection = transform.up;
+        
+        col.AddForce(transform.up * fireForce);
         isAttached = false;
         isFire = true;
         StartCoroutine(Cooldown());
+
         
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -48,5 +51,20 @@ public class Cannon : MonoBehaviour
         yield return new WaitForSeconds(cooldownTime);
         isActive = true;
         cannon.enabled = true;
+    }
+    public void RotateCannon(float angle)
+    {
+        transform.Rotate(0, 0, angle);
+    }
+    public bool IsWall(Vector2 direction)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, rayDistance, LayerMask.GetMask("Platform"));
+        return hit.collider != null;
+    }
+    private void OnDrawGizmos()
+    {
+        // Raycast 시각화 (디버그용)
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3)transform.up * rayDistance);
     }
 }

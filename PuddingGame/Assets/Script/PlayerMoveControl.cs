@@ -36,14 +36,8 @@ public class PlayerMoveControl : MonoBehaviour
         
         if (Cannon.i.isAttached)
         {
-            float rotate = Input.GetAxis("Horizontal");
-            Vector3 rotation = new Vector3(0, 0, -rotate);
-            transform.Rotate(rotation * Cannon.i.roatationSpeed * Time.deltaTime);
-            if (Input.GetButtonUp("Horizontal"))
-            {
-                Cannon.i.fire(rb);
-                
-            }
+            transform.rotation = Cannon.i.transform.rotation;
+            HandleCannon();
         }
 
         if (Input.GetKey(KeyCode.Z))    //Z키를 눌러서 점프게이지 충전
@@ -205,10 +199,11 @@ public class PlayerMoveControl : MonoBehaviour
         angle = Vector2.Angle(hit3.normal, Vector2.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), 0.5f);
     }*/
-    void resetRotation()
+    void resetRotation() //회전 상태 초기화
     {
         rb.velocity = Vector3.zero;
         transform.rotation = Quaternion.identity;
+        Cannon.i.transform.rotation = Quaternion.identity;
         Cannon.i.isFire = false;
     }
     void Bounce(bool isLeft)   //벽에 닿으면 튕기기
@@ -218,7 +213,7 @@ public class PlayerMoveControl : MonoBehaviour
         else            //만약 오른쪽 벽에 닿았다면
             rb.AddForce(Vector3.left * bouncePower, ForceMode2D.Impulse);  //왼쪽으로 튕기기
     }
-    public void SetGravityReversed(bool reserved)
+    public void SetGravityReversed(bool reserved) //중력 반전
     {
         isGravityReserved = reserved;
     }
@@ -242,4 +237,75 @@ public class PlayerMoveControl : MonoBehaviour
             isJumping = true;
         }
     }
-}
+    private void HandleCannon()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (!Cannon.i.IsWall(Vector2.right))
+            {
+                Cannon.i.RotateCannon(-90f);
+            }
+            else
+            {
+                Cannon.i.RotateCannon(0f); // 캐논을 원래 방향으로 회전
+                return;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (!Cannon.i.IsWall(Vector2.left))
+            {
+                Cannon.i.RotateCannon(90f);
+            }
+            else
+            {
+                Cannon.i.RotateCannon(0f); // 캐논을 원래 방향으로 회전
+                return;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (!Cannon.i.IsWall(Vector2.down))
+            {
+                Cannon.i.RotateCannon(180f); // 아래 방향으로 180도 회전
+                
+            }
+            else
+            {
+                Cannon.i.RotateCannon(0f); // 캐논을 원래 방향으로 회전
+                return;
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            if (!Cannon.i.IsWall(Vector2.down))
+            {
+                Cannon.i.fire(rb);
+            }
+            else
+            {
+                Cannon.i.RotateCannon(0f); // 캐논을 원래 방향으로 회전
+                return;
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.UpArrow)) // 위 방향 발사 추가
+        {
+            if (!Cannon.i.IsWall(Vector2.up)) // 벽 감지
+            {
+                Cannon.i.fire(rb); // 발사 메서드 호출
+            }
+            else
+            {
+                Cannon.i.RotateCannon(0f); // 캐논을 원래 방향으로 회전
+                return;
+            }
+        }
+        if (Input.GetButtonUp("Horizontal"))
+        {
+                Cannon.i.fire(rb);
+        }
+        
+    }
+
+} 
