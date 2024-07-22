@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StickyPlatform : MonoBehaviour //끈적이는 발판
 {
-    public float friction = 0.3f; //마찰력
+    public float friction = 20f; //마찰력
     public float elasticity = 0.3f; // 탄력
     public float jump = 2f; // 점프 파워
 

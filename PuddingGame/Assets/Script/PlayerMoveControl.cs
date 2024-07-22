@@ -32,8 +32,10 @@ public class PlayerMoveControl : MonoBehaviour
         bouncePower = PlayerManager.i.BouncePower;
     }
     private void Update()
-    {   
-        
+    {
+        jumpPower = PlayerManager.i.JumpPower;
+        bouncePower = PlayerManager.i.BouncePower;
+
         if (Cannon.i.isAttached)
         {
             transform.rotation = Cannon.i.transform.rotation;

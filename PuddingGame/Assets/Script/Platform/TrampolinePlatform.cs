@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class TrampolinePlatform : MonoBehaviour //트램펄린 발판
 {
-    public float speed; //플레이어 속도
+    public float bounce = 1f; // 튀어오르는 힘
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        speed = PlayerManager.i.rigidbody.velocity.magnitude;
-
+        Debug.Log(PlayerManager.i.speed);
         ContactPoint2D contactPoint = collision.contacts[0];
         Vector2 pos = contactPoint.point; // 충돌 지점
         Vector2 normal = contactPoint.normal; // 법선 벡터
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-normal.normalized * speed, ForceMode2D.Impulse);
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-normal.normalized * PlayerManager.i.speed * bounce, ForceMode2D.Impulse);
         }
     }
 }

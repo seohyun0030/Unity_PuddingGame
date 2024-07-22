@@ -19,6 +19,8 @@ public class PlayerManager : MonoBehaviour
     public BoxCollider2D boxCollider2D;
     float currentFriction;  //현재 마찰력
     public Rigidbody2D rigidbody;
+    public float speed; // 플레이어 속도
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -36,6 +38,8 @@ public class PlayerManager : MonoBehaviour
         {
             SlotManager.i.UseTopping();
         }
+
+        speed = rigidbody.velocity.magnitude; // 플레이어 속도
     }
     public void plusJumpGauge()
     {
