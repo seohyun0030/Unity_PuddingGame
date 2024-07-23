@@ -55,6 +55,11 @@ public class SlotManager : MonoBehaviour
             //체리 아이템을 사용했을 때
             Debug.Log("Cherry");
         }
+        else if (slots[0].name == "MatchaImage")
+        {
+            //녹차 아이템을 사용했을 때
+            Debug.Log("Matcha");
+        }
 
         GameObject UsedTopping = slots[0];
         slots.RemoveAt(0);          //리스트에서 0번째 요소 삭제
