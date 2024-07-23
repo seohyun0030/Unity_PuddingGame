@@ -40,9 +40,14 @@ public class VanishingDropGimmick : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
+        if (col.gameObject.name.Equals("Player"))
+        {
+            Destroy(col.gameObject);
+        }
         if (col.gameObject.CompareTag("Platform") || col.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
+
     }
 }

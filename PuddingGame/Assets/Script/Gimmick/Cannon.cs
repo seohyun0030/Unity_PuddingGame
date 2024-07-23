@@ -2,6 +2,7 @@ using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Cannon : MonoBehaviour
 {
@@ -19,19 +20,19 @@ public class Cannon : MonoBehaviour
         i = this;
         cannon = GetComponent<CircleCollider2D>();
     }
-   
+
     public void fire(Rigidbody2D col)
     {
         if (!isActive) return;
 
         //Vector3 fireDirection = transform.up;
-        
+        col.transform.SetParent(null);
         col.AddForce(transform.up * fireForce);
         isAttached = false;
         isFire = true;
         StartCoroutine(Cooldown());
 
-        
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -39,9 +40,10 @@ public class Cannon : MonoBehaviour
         {
             Vector3 pos = transform.position;
             collision.transform.position = new Vector3(pos.x, pos.y + yOffset, pos.z);
+            collision.transform.SetParent(transform);
             PlayerManager.i.CanJump = false;
-
             isAttached = true;
+
         }
     }
     private IEnumerator Cooldown()
@@ -52,9 +54,13 @@ public class Cannon : MonoBehaviour
         isActive = true;
         cannon.enabled = true;
     }
-    public void RotateCannon(float angle)
+    public void RotateCannon(float angle, Rigidbody2D col)
     {
         transform.Rotate(0, 0, angle);
+        col.transform.Rotate(0, 0, angle);
+
+
+
     }
     public bool IsWall(Vector2 direction)
     {

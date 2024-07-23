@@ -39,6 +39,7 @@ public class PlayerMoveControl : MonoBehaviour
         if (Cannon.i.isAttached)
         {
             transform.rotation = Cannon.i.transform.rotation;
+            rb.gravityScale = 0f;
             HandleCannon();
         }
 
@@ -230,6 +231,7 @@ public class PlayerMoveControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform"))        //플랫폼과 닿아있으면 점핑상태가 아니므로 움직일 수 없음
         {
             isJumping = false;
+            rb.gravityScale = 1f;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -246,11 +248,11 @@ public class PlayerMoveControl : MonoBehaviour
         {
             if (!Cannon.i.IsWall(Vector2.right))
             {
-                Cannon.i.RotateCannon(-90f);
+                Cannon.i.RotateCannon(-90f, rb);
             }
             else
             {
-                Cannon.i.RotateCannon(0f); // 캐논을 원래 방향으로 회전
+                Cannon.i.RotateCannon(0f, rb); // 캐논을 원래 방향으로 회전
                 return;
             }
         }
@@ -258,11 +260,11 @@ public class PlayerMoveControl : MonoBehaviour
         {
             if (!Cannon.i.IsWall(Vector2.left))
             {
-                Cannon.i.RotateCannon(90f);
+                Cannon.i.RotateCannon(90f, rb);
             }
             else
             {
-                Cannon.i.RotateCannon(0f); // 캐논을 원래 방향으로 회전
+                Cannon.i.RotateCannon(0f, rb); // 캐논을 원래 방향으로 회전
                 return;
             }
         }
@@ -270,12 +272,12 @@ public class PlayerMoveControl : MonoBehaviour
         {
             if (!Cannon.i.IsWall(Vector2.down))
             {
-                Cannon.i.RotateCannon(180f); // 아래 방향으로 180도 회전
+                Cannon.i.RotateCannon(180f, rb); // 아래 방향으로 180도 회전
                 
             }
             else
             {
-                Cannon.i.RotateCannon(0f); // 캐논을 원래 방향으로 회전
+                Cannon.i.RotateCannon(0f, rb); // 캐논을 원래 방향으로 회전
                 return;
             }
         }
@@ -287,7 +289,7 @@ public class PlayerMoveControl : MonoBehaviour
             }
             else
             {
-                Cannon.i.RotateCannon(0f); // 캐논을 원래 방향으로 회전
+                Cannon.i.RotateCannon(0f, rb); // 캐논을 원래 방향으로 회전
                 return;
             }
         }
@@ -299,7 +301,7 @@ public class PlayerMoveControl : MonoBehaviour
             }
             else
             {
-                Cannon.i.RotateCannon(0f); // 캐논을 원래 방향으로 회전
+                Cannon.i.RotateCannon(0f, rb); // 캐논을 원래 방향으로 회전
                 return;
             }
         }

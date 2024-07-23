@@ -38,11 +38,11 @@ public class DropGmmick : MonoBehaviour
             if (physical != null) physical.enabled = true;
         }
     }
-    //private void OnCollisionEnter2D(Collision2D col)
-    //{
-    //    if(col.gameObject.CompareTag("Platform") || col.gameObject.CompareTag("Player"))
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.name.Equals("Player"))
+        {
+            Destroy(col.gameObject);
+        }
+    }
 }
