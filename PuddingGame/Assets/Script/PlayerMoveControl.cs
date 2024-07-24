@@ -22,6 +22,8 @@ public class PlayerMoveControl : MonoBehaviour
     private bool isGravityReserved = false;
     bool isLeftMoving = false;      //왼쪽으로 이동하고 있는지 확인
     public bool isJumping = false;
+    bool isGrounded = true;     //땅에 있는지 확인
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -45,7 +47,7 @@ public class PlayerMoveControl : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Z))    //Z키를 눌러서 점프게이지 충전
         {
-            if (canJump)    //점프 가능 상태일 때
+            if (canJump && isGrounded)    //점프 가능 상태일 때, 땅에 있을 때
             {
                 PlayerManager.i.plusJumpGauge();
             }
@@ -53,10 +55,12 @@ public class PlayerMoveControl : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Z))  //Z키를 뗄 때 점프, 점프 상태가 아닐 때
         {
-            Debug.Log("jump");
-            Jump();
-            PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
-            PlayerManager.i.time = 0f;         //시간 초기화
+            if(canJump && isGrounded)     //점프 가능하고 땅에 있을 때
+            {
+                Jump();
+                PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
+                PlayerManager.i.time = 0f;         //시간 초기화
+            }
         }
 
         RayCastControl();
@@ -129,6 +133,7 @@ public class PlayerMoveControl : MonoBehaviour
         //레이어 마스크로 Platform인 레이어에만 레이 쏘기
         //transform.TransformDirection(Vector2.down) <-- 오브젝트 회전에 맞게 레이도 회전
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), floorMaxRay, LayerMask.GetMask("Platform"));
+        isGrounded = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), floorMaxRay, LayerMask.GetMask("Platform"));
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.down) * floorMaxRay, Color.red, 0.3f);    //레이 그리기
         //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
         if (hit.collider != null)
@@ -146,10 +151,10 @@ public class PlayerMoveControl : MonoBehaviour
                 canJump = false;
             }
         }
-        else
+        /*else
         {
-            canJump = true;
-        }
+            canJump = false;
+        }*/
 
         //오른쪽으로 레이 쏘기
         RaycastHit2D hit1 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), rightMaxRay, LayerMask.GetMask("Platform"));
@@ -169,7 +174,6 @@ public class PlayerMoveControl : MonoBehaviour
             else
             {
                 canJump = false;
-                
             }
         }
 
@@ -232,6 +236,7 @@ public class PlayerMoveControl : MonoBehaviour
         {
             isJumping = false;
             rb.gravityScale = 1f;
+            StartCoroutine(isStopMoving());
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -239,6 +244,20 @@ public class PlayerMoveControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform"))        //플랫폼과 닿아있지 않으면 점핑상태 이므로 움직일 수 있음
         {
             isJumping = true;
+            canJump = false;
+        }
+    }
+    IEnumerator isStopMoving()
+    {
+        float xPos = transform.position.x;
+        float yPos = transform.position.y;
+        
+        yield return new WaitForSeconds(1f);
+        
+        //1초동안 좌표가 변하지 않았으면 점프 가능
+        if (xPos == transform.position.x && (transform.position.y >= yPos - 0.1f || transform.position.y <= yPos + 0.1f))
+        {
+            canJump = true;
         }
     }
     private void HandleCannon()
