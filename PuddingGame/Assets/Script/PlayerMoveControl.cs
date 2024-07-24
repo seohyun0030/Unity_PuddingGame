@@ -6,6 +6,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerMoveControl : MonoBehaviour
 {
+    public static PlayerMoveControl i;
     Rigidbody2D rb;
     float moveSpeed;
     bool canJump;
@@ -21,9 +22,14 @@ public class PlayerMoveControl : MonoBehaviour
     public float rotationSpeed = 10f;
     private bool isGravityReserved = false;
     bool isLeftMoving = false;      //왼쪽으로 이동하고 있는지 확인
-    public bool isJumping = false;
+    public bool isJumping = false;  //jumping상태
+    public bool isFalling = false;  //falling상태
     bool isGrounded = true;     //땅에 있는지 확인
-    
+
+    private void Awake()
+    {
+        i = this;
+    }
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -229,14 +235,23 @@ public class PlayerMoveControl : MonoBehaviour
         isJumping = true;
         yield return new WaitForSeconds(2f);
         isJumping = false;
+        isFalling = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform"))        //플랫폼과 닿아있으면 점핑상태가 아니므로 움직일 수 없음
         {
             isJumping = false;
+            isFalling = false;
             rb.gravityScale = 1f;
             StartCoroutine(isStopMoving());
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            isFalling = false;      //플랫폼에 닿아있는 내내 falling상태 아님
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -330,5 +345,29 @@ public class PlayerMoveControl : MonoBehaviour
         }
         
     }
+    public void ToppingJump(int i)   //토핑을 쓰면 나타나는 점프 구현
+    {
+        if (i == 0)
+        {
+            if (rb.gravityScale > 0f)
+            {
+                rb.AddForce(Vector3.up * jumpPower, ForceMode2D.Impulse);
+            }
+            else
+            {
+                rb.AddForce(Vector3.down * jumpPower, ForceMode2D.Impulse);
+            }
+        }
+        else if (i == 1)
+        {
+            Vector3 jumpDirection;
 
+            if(isLeftMoving)
+                jumpDirection = new Vector3(-1, 1, 0).normalized;
+            else
+                jumpDirection = new Vector3(1, 1, 0).normalized;
+
+            rb.AddForce(jumpDirection * jumpPower, ForceMode2D.Impulse);
+        }
+    }
 } 

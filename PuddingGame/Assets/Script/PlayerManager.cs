@@ -36,7 +36,17 @@ public class PlayerManager : MonoBehaviour
         Slide();
         if (Input.GetKeyDown(KeyCode.X))
         {
-            SlotManager.i.UseTopping();
+            if(SlotManager.i.GetTopping()=="LemonImage" || SlotManager.i.GetTopping() == "CherryImage") //만약 토핑이 레몬이거나 체리이면
+            {
+                Debug.Log("jumping= " + PlayerMoveControl.i.isJumping);
+                Debug.Log("falling= " + PlayerMoveControl.i.isFalling);
+                if (PlayerMoveControl.i.isJumping || PlayerMoveControl.i.isFalling)      //jumping이나 falling 상태이면
+                    SlotManager.i.UseTopping();
+            }
+            else
+            {
+                SlotManager.i.UseTopping();
+            }
         }
 
         speed = rigidbody.velocity.magnitude; // 플레이어 속도
