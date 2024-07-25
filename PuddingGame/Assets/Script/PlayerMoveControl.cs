@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -16,8 +17,11 @@ public class PlayerMoveControl : MonoBehaviour
     float jumpGauge;
     public float angle;    //회전한 값
     float bouncePower;
-    bool matcha = false;
-    [SerializeField] float fallingSpeed = -5f;
+    bool matcha = false; //녹차잎 사용
+    bool rasberry = false; //라즈베리 사용
+    [SerializeField] float fallingSpeed = -5f; // 떨어지는 속도
+    [SerializeField] float flyingSpeed = 10f; // 날아가는 속도
+    [SerializeField] float limitDistance = 10f; // 떨어지기 시작하는 거리
     
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
@@ -92,6 +96,10 @@ public class PlayerMoveControl : MonoBehaviour
             if (matcha)
             {
                 rb.velocity = new Vector2(rb.velocity.x, fallingSpeed);
+            }
+            if (rasberry)
+            {
+                rb.gravityScale = 0f;
             }
         }
         
@@ -261,6 +269,10 @@ public class PlayerMoveControl : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 matcha = false;
             }
+            if (rasberry)
+            {
+                HandleFlying();
+            }
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -385,6 +397,15 @@ public class PlayerMoveControl : MonoBehaviour
 
             rb.AddForce(jumpDirection * jumpPower, ForceMode2D.Impulse);
         }
+        else if(i == 3)
+        {
+            if(isJumping || isFalling)
+            {
+                rasberry = true;
+                rb.velocity = Vector2.zero;
+                StartCoroutine(Rasberry_Co());
+            }
+        }
         else if(i == 4)
         {
             
@@ -393,6 +414,68 @@ public class PlayerMoveControl : MonoBehaviour
                 matcha = true;
             }
             
+        }
+    }
+    Vector2 flyDirection;
+    private float flyingDistance = 0f; // 날아간 거리
+
+    IEnumerator Rasberry_Co()
+    {
+        //Vector2 startPosition = transform.position;
+        float inputTime = 0f;
+
+        
+        while (rasberry && inputTime < 2f)
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                flyDirection = Vector2.up;
+                break;
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                flyDirection = Vector2.down;
+                break;
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                flyDirection = Vector2.left;
+                break;
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                flyDirection = Vector2.right;
+                break;
+            }
+            inputTime += Time.deltaTime;
+            yield return null;
+        }
+        if (flyDirection != Vector2.zero)
+        {
+            rb.velocity = flyDirection.normalized * flyingSpeed;
+            while (rasberry && flyingDistance < limitDistance)
+            {
+                flyingDistance += rb.velocity.magnitude * Time.deltaTime;
+                yield return null;
+            }
+            rasberry = false;
+            rb.gravityScale = 1f;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            rasberry = false;
+            rb.gravityScale = 1f;
+        }
+    }
+    private void HandleFlying()
+    {
+        float flyTimer = 2f;
+        flyTimer -= Time.fixedDeltaTime;
+        if(flyTimer <= 0)
+        {
+            rasberry = false;
+            rb.gravityScale = 1f;
         }
     }
 } 
