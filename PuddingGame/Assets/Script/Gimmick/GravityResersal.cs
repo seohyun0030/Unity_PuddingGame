@@ -9,6 +9,7 @@ public class GravityResersal : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerMoveControl>().SetGravityReversed(true);
+            collision.transform.rotation = Quaternion.Euler(0, 0, 180f);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -16,6 +17,7 @@ public class GravityResersal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerMoveControl>().SetGravityReversed(false);
+            other.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }

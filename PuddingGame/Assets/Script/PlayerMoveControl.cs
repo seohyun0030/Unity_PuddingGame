@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
@@ -15,6 +16,8 @@ public class PlayerMoveControl : MonoBehaviour
     float jumpGauge;
     public float angle;    //회전한 값
     float bouncePower;
+    bool matcha = false;
+    [SerializeField] float fallingSpeed = -5f;
     
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
@@ -86,7 +89,10 @@ public class PlayerMoveControl : MonoBehaviour
             {
                 rb.gravityScale = 1f;
             }
-            
+            if (matcha)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, fallingSpeed);
+            }
         }
         
     }
@@ -229,6 +235,7 @@ public class PlayerMoveControl : MonoBehaviour
     public void SetGravityReversed(bool reserved) //중력 반전
     {
         isGravityReserved = reserved;
+        rb.gravityScale = reserved ? -1f : 1f;
     }
     IEnumerator CheckJumping()      //점프하고 2초후에는 falling상태로 변함
     {
@@ -243,8 +250,17 @@ public class PlayerMoveControl : MonoBehaviour
         {
             isJumping = false;
             isFalling = false;
-            rb.gravityScale = 1f;
+            
             StartCoroutine(isStopMoving());
+            if (Cannon.i.isFire)
+            {
+                rb.gravityScale = 1f;
+            }
+            if (matcha)
+            {
+                rb.velocity = Vector3.zero;
+                matcha = false;
+            }
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -368,6 +384,15 @@ public class PlayerMoveControl : MonoBehaviour
                 jumpDirection = new Vector3(1, 1, 0).normalized;
 
             rb.AddForce(jumpDirection * jumpPower, ForceMode2D.Impulse);
+        }
+        else if(i == 4)
+        {
+            
+            if (!isFalling)
+            {
+                matcha = true;
+            }
+            
         }
     }
 } 
