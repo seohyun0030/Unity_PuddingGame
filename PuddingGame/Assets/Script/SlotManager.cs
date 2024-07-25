@@ -67,7 +67,7 @@ public class SlotManager : MonoBehaviour
         {
             //녹차 아이템을 사용했을 때
             Debug.Log("Matcha");
-            PlayerMoveControl.i.ToppingJump(1);
+            PlayerMoveControl.i.ToppingJump(4);
         }
 
         GameObject UsedTopping = slots[0];

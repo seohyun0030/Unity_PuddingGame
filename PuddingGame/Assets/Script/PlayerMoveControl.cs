@@ -269,10 +269,7 @@ public class PlayerMoveControl : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 matcha = false;
             }
-            if (rasberry)
-            {
-                HandleFlying();
-            }
+           
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
