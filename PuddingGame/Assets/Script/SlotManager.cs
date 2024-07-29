@@ -57,6 +57,12 @@ public class SlotManager : MonoBehaviour
             Debug.Log("Cherry");
             PlayerMoveControl.i.ToppingJump(1);
         }
+        else if (slots[0].name == "ChocolateImage")
+        {
+            //초콜릿 아이템을 사용했을 때
+            Debug.Log("Chocolate");
+            PlayerMoveControl.i.ToppingJump(2);
+        }
         else if (slots[0].name == "RasberryImage")
         {
             //라즈베리 아이템을 사용했을 때

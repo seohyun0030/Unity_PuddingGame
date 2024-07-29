@@ -19,10 +19,14 @@ public class PlayerMoveControl : MonoBehaviour
     float bouncePower;
     bool matcha = false; //녹차잎 사용
     bool rasberry = false; //라즈베리 사용
+    bool chocolate = false; //초콜릿 사용
     [SerializeField] float fallingSpeed = -5f; // 떨어지는 속도
     [SerializeField] float flyingSpeed = 10f; // 날아가는 속도
     [SerializeField] float limitDistance = 10f; // 떨어지기 시작하는 거리
-    
+    [SerializeField] float clingJumpForce = .5f;
+    [SerializeField] float clingRay = 1f;
+    [SerializeField] float rayOffset = .1f;
+
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
     [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
@@ -75,7 +79,13 @@ public class PlayerMoveControl : MonoBehaviour
                 PlayerManager.i.time = 0f;         //시간 초기화
             }
         }
-
+        else if (chocolate && Input.GetKeyDown(KeyCode.Z))
+        {
+            Vector2 jumpDirection = Vector2.up + (Vector2)(transform.position.x < 0 ? Vector2.right : Vector2.left).Rotate(60);
+            rb.velocity = jumpDirection.normalized * clingJumpForce;
+            rb.gravityScale = 1f;
+            chocolate = false;
+        }
         RayCastControl();
     }
     void FixedUpdate()
@@ -100,6 +110,10 @@ public class PlayerMoveControl : MonoBehaviour
             if (rasberry)
             {
                 rb.gravityScale = 0f;
+            }
+            if (chocolate)
+            {
+                Chocolate();
             }
         }
         
@@ -394,6 +408,13 @@ public class PlayerMoveControl : MonoBehaviour
 
             rb.AddForce(jumpDirection * jumpPower, ForceMode2D.Impulse);
         }
+        else if(i == 2)
+        {
+            if(isJumping || isFalling)
+            {
+                chocolate = true;
+            }
+        }
         else if(i == 3)
         {
             if(isJumping || isFalling)
@@ -412,6 +433,7 @@ public class PlayerMoveControl : MonoBehaviour
             }
             
         }
+        
     }
     Vector2 flyDirection;
     private float flyingDistance = 0f; // 날아간 거리
@@ -465,14 +487,32 @@ public class PlayerMoveControl : MonoBehaviour
             rb.gravityScale = 1f;
         }
     }
-    private void HandleFlying()
+    private void Chocolate()
     {
-        float flyTimer = 2f;
-        flyTimer -= Time.fixedDeltaTime;
-        if(flyTimer <= 0)
+        RaycastHit2D left = Physics2D.Raycast(transform.position, Vector2.left, clingRay, LayerMask.GetMask("Platform"));
+        RaycastHit2D right = Physics2D.Raycast(transform.position, Vector2.right, clingRay, LayerMask.GetMask("Platform"));
+        if (left.collider != null)
         {
-            rasberry = false;
-            rb.gravityScale = 1f;
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0f;
+            transform.position = new Vector2(left.point.x-rayOffset, transform.position.y);
         }
+        else if (right.collider != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0f;
+            transform.position = new Vector2(right.point.x+rayOffset, transform.position.y);
+        }
+       
     }
-} 
+}
+public static class Vector2Extensions
+{
+    public static Vector2 Rotate(this Vector2 v, float degrees)
+    {
+        float rad = degrees * Mathf.Deg2Rad;
+        float cos = Mathf.Cos(rad);
+        float sin = Mathf.Sin(rad);
+        return new Vector2(cos * v.x - sin * v.y, sin * v.x + cos * v.y);
+    }
+}
