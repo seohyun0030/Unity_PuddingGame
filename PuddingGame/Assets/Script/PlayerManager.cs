@@ -49,7 +49,21 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = SavePointManager.i.savePoint;
+        }
+
         speed = rigidbody.velocity.magnitude; // 플레이어 속도
+    }
+    private void OnDestroy()        //플레이어가 죽으면 세이브 포인트로 돌아감
+    {
+        transform.position = SavePointManager.i.savePoint;
+    }
+    void GoToSavePoint()
+    {
+        transform.position = SavePointManager.i.savePoint;
+        //상태 원상복귀 구현 해야함
     }
     public void plusJumpGauge()
     {
