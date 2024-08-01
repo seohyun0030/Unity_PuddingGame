@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
+using Transform = UnityEngine.Transform;
 
 public class PlayerMoveControl : MonoBehaviour
 {
@@ -298,7 +299,7 @@ public class PlayerMoveControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Platform"))        //플랫폼과 닿아있지 않으면 점핑상태 이므로 움직일 수 있음
         {
-            isJumping = true;
+            //isJumping = true;
             canJump = false;
             isGrounded = false;
         }
