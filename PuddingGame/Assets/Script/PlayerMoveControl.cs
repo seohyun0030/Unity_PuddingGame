@@ -293,13 +293,17 @@ public class PlayerMoveControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform"))
         {
             isFalling = false;      //플랫폼에 닿아있는 내내 falling상태 아님
+
+            //Test용     움직이는 플랫폼으로 이동하다가 다른 플랫폼에 닿으면 점프안됨
+            canJump = true;
+            isGrounded = true;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform"))        //플랫폼과 닿아있지 않으면 점핑상태 이므로 움직일 수 있음
         {
-            //isJumping = true;
+            //isJumping = true;         한번 충돌하고 나서 움직이지 못하도록
             canJump = false;
             isGrounded = false;
         }
@@ -397,7 +401,7 @@ public class PlayerMoveControl : MonoBehaviour
     }
     public void ToppingJump(int i)   //토핑을 쓰면 나타나는 점프 구현
     {
-        if (i == 0)
+        if (i == 0) //레몬
         {
             if (rb.gravityScale > 0f)
             {
@@ -410,7 +414,7 @@ public class PlayerMoveControl : MonoBehaviour
                 rb.AddForce(Vector3.down * jumpPower, ForceMode2D.Impulse);
             }
         }
-        else if (i == 1)
+        else if (i == 1)    //체리
         {
             Vector3 jumpDirection;
 
