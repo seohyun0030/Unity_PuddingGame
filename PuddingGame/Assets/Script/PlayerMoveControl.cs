@@ -167,7 +167,7 @@ public class PlayerMoveControl : MonoBehaviour
         //레이어 마스크로 Platform인 레이어에만 레이 쏘기
         //transform.TransformDirection(Vector2.down) <-- 오브젝트 회전에 맞게 레이도 회전
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), floorMaxRay, LayerMask.GetMask("Platform"));
-        isGrounded = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), floorMaxRay, LayerMask.GetMask("Platform"));
+        //isGrounded = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), floorMaxRay, LayerMask.GetMask("Platform"));
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.down) * floorMaxRay, Color.red, 0.3f);    //레이 그리기
         //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
         if (hit.collider != null)
@@ -203,7 +203,7 @@ public class PlayerMoveControl : MonoBehaviour
                 {
                     resetRotation();
                 }
-                Bounce(false);
+                //Bounce(false);
             }
             else
             {
@@ -224,7 +224,7 @@ public class PlayerMoveControl : MonoBehaviour
                 {
                     resetRotation();
                 }
-                Bounce(true);
+                //Bounce(true);
             }
             else
             {
@@ -247,13 +247,13 @@ public class PlayerMoveControl : MonoBehaviour
         Cannon.i.transform.rotation = Quaternion.identity;
         Cannon.i.isFire = false;
     }
-    void Bounce(bool isLeft)   //벽에 닿으면 튕기기
+    /*void Bounce(bool isLeft)   //벽에 닿으면 튕기기
     {
         if(isLeft)      //만약 왼쪽 벽에 닿았다면
             rb.AddForce(Vector3.right * bouncePower, ForceMode2D.Impulse);  //오른쪽으로 튕기기
         else            //만약 오른쪽 벽에 닿았다면
             rb.AddForce(Vector3.left * bouncePower, ForceMode2D.Impulse);  //왼쪽으로 튕기기
-    }
+    }*/
     public void SetGravityReversed(bool reserved) //중력 반전
     {
         isGravityReserved = reserved;
@@ -272,7 +272,8 @@ public class PlayerMoveControl : MonoBehaviour
         {
             isJumping = false;
             isFalling = false;
-            
+            isGrounded = true;
+
             StartCoroutine(isStopMoving());
             if (Cannon.i.isFire)
             {
@@ -299,20 +300,29 @@ public class PlayerMoveControl : MonoBehaviour
         {
             isJumping = true;
             canJump = false;
+            isGrounded = false;
         }
     }
     IEnumerator isStopMoving()
     {
-        float xPos = transform.position.x;
+        /*float xPos = transform.position.x;
         float yPos = transform.position.y;
         
         yield return new WaitForSeconds(1f);
-        
+
+        Debug.Log(xPos+" "+yPos);
+        Debug.Log(transform.position.x + " " + transform.position.y);
         //1초동안 좌표가 변하지 않았으면 점프 가능
         if (xPos == transform.position.x && (transform.position.y >= yPos - 0.1f || transform.position.y <= yPos + 0.1f))
         {
             canJump = true;
-        }
+        }*/
+
+        yield return new WaitForSeconds(1f);        //1초 기다리기
+
+        float threshold = 0.01f;
+        //임계치보다 속도가 낮으면 점프 가능
+        canJump = rb.velocity.magnitude < threshold && Mathf.Abs(rb.angularVelocity) < threshold;
     }
     private void HandleCannon()
     {
