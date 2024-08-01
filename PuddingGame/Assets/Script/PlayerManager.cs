@@ -59,10 +59,6 @@ public class PlayerManager : MonoBehaviour
 
         speed = rigidbody.velocity.magnitude; // 플레이어 속도
     }
-    private void OnDestroy()        //플레이어가 죽으면 세이브 포인트로 돌아감
-    {
-        transform.position = SavePointManager.i.savePoint;
-    }
     void GoToSavePoint()
     {
         transform.position = SavePointManager.i.savePoint;

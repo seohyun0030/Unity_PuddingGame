@@ -401,10 +401,12 @@ public class PlayerMoveControl : MonoBehaviour
         {
             if (rb.gravityScale > 0f)
             {
+                rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
                 rb.AddForce(Vector3.up * jumpPower, ForceMode2D.Impulse);
             }
             else
             {
+                rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
                 rb.AddForce(Vector3.down * jumpPower, ForceMode2D.Impulse);
             }
         }
@@ -417,6 +419,7 @@ public class PlayerMoveControl : MonoBehaviour
             else
                 jumpDirection = new Vector3(1, 1, 0).normalized;
 
+            rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
             rb.AddForce(jumpDirection * jumpPower, ForceMode2D.Impulse);
         }
         else if(i == 2)
