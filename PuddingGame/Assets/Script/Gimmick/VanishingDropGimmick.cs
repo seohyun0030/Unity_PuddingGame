@@ -42,7 +42,8 @@ public class VanishingDropGimmick : MonoBehaviour
     {
         if (col.gameObject.name.Equals("Player"))
         {
-            Destroy(col.gameObject);
+            //Destroy(col.gameObject);
+            col.gameObject.SetActive(false);
         }
         if (col.gameObject.CompareTag("Platform") || col.gameObject.CompareTag("Player"))
         {

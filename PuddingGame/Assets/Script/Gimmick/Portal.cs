@@ -9,6 +9,7 @@ public class Portal : MonoBehaviour
     public float cooldownTime = 1f;
     public GameObject outPortal;
     private CircleCollider2D col;
+    public float pauseDuration = .05f;
 
     private void Start()
     {
@@ -18,8 +19,8 @@ public class Portal : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && isActive)
         {
-            collision.transform.position = outPortal.transform.position;
-            StartCoroutine(Cooldown());
+            
+            StartCoroutine(PortalPause(collision));
         }
     }
     private IEnumerator Cooldown()
@@ -29,5 +30,26 @@ public class Portal : MonoBehaviour
         yield return new WaitForSeconds(cooldownTime);
         isActive = true;
         col.enabled = true;
+    }
+    private IEnumerator PortalPause(Collision2D col)
+    {
+        Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
+        if(rb != null)
+        {
+            
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+        }
+
+        yield return new WaitForSeconds(pauseDuration);
+
+        rb.transform.position = outPortal.transform.position;
+        if(rb != null)
+        {
+            rb.isKinematic = false;
+        }
+
+        StartCoroutine(Cooldown());
+
     }
 }

@@ -7,6 +7,7 @@ public class DropGmmick : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D trigger;
     private Collider2D physical;
+    public bool isDropped = false;
 
     private void Start()
     {
@@ -36,13 +37,24 @@ public class DropGmmick : MonoBehaviour
             rb.gravityScale = 1f;
             if (trigger != null) trigger.enabled = false;
             if (physical != null) physical.enabled = true;
+            
         }
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name.Equals("Player"))
+        if (!isDropped)
         {
-            Destroy(col.gameObject);
+            if (col.gameObject.name.Equals("Player"))
+            {
+               
+                col.gameObject.SetActive(false);
+            }
+            else
+            {
+                
+                isDropped = true;
+            }
         }
+
     }
 }

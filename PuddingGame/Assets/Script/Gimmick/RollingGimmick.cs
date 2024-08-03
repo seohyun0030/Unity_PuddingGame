@@ -54,7 +54,8 @@ public class RollingGimmick : MonoBehaviour
     {
         if (collision.gameObject.name.Equals("Player"))
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 
