@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] public float JumpGauge;    //점프 게이지
     [SerializeField] public float MaxSpeed;     //최고 속도
 
+    [SerializeField] public float firstJumpGauge;   //점프게이지를 인스펙터창에서 조절하기 위해
+
     [SerializeField] public float JumpChargeTime;   //점프 차지 시간
     [HideInInspector] public bool CanJump;       //점프를 할 수 있는 상태인지
     [HideInInspector] public float time = 0f;
@@ -69,7 +71,8 @@ public class PlayerManager : MonoBehaviour
         if (time < JumpChargeTime)
         {
             time += Time.deltaTime;
-            JumpGauge = Mathf.Lerp(0.2f, 1, time / JumpChargeTime);
+            //JumpGauge = Mathf.Lerp(0.2f, 1, time / JumpChargeTime);
+            JumpGauge = Mathf.Lerp(firstJumpGauge, 1, time / JumpChargeTime);
         }
     }
     void Slide_Bounce()    //마찰력, 탄력 시험 용 --> 나중에 삭제
