@@ -1470,7 +1470,7 @@ Transform:
   m_GameObject: {fileID: 977447787}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.4, y: -0.5, z: 0}
+  m_LocalPosition: {x: 16.8, y: -0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Friction: 0.2
   BouncePower: 0.5
-  JumpPower: 10
+  JumpPower: 4
   JumpGauge: 0.2
   MaxSpeed: 5
   firstJumpGauge: 0.3
@@ -1791,6 +1791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   savePoint: {x: 0, y: 0, z: 0}
+  Player: {fileID: 977447787}
 --- !u!1 &1118367217
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,6 +2982,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &2041821460
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 49587846757990999, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 49587846757990999, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 49587846757990999, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 49587846757990999, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 49587846757990999, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 49587846757990999, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 49587846757990999, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 49587846757990999, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 49587846757990999, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 49587846757990999, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307817036680504262, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
+      propertyPath: m_Name
+      value: vanishingDropGimmick (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 64950c2319410d94c8a119edfacfae84, type: 3}
 --- !u!1 &2091356473
 GameObject:
   m_ObjectHideFlags: 0
@@ -4207,6 +4265,8 @@ SceneRoots:
   - {fileID: 808413433}
   - {fileID: 1624473748}
   - {fileID: 1019526875}
+  - {fileID: 514525004}
+  - {fileID: 1065089144}
   - {fileID: 7071458209369632167}
   - {fileID: 1614321127}
   - {fileID: 1516205492888673976}
@@ -4215,6 +4275,7 @@ SceneRoots:
   - {fileID: 5896154538997503964}
   - {fileID: 7535982333013869882}
   - {fileID: 3088936024912732562}
+  - {fileID: 2041821460}
   - {fileID: 6210556997461431496}
   - {fileID: 802129922285866000}
   - {fileID: 1548095767560923155}
@@ -4227,7 +4288,5 @@ SceneRoots:
   - {fileID: 2636278822970963895}
   - {fileID: 276040523}
   - {fileID: 9171246445990539992}
-  - {fileID: 514525004}
   - {fileID: 8008243428657538665}
   - {fileID: 7003078736516647204}
-  - {fileID: 1065089144}

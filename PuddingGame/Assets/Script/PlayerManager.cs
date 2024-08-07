@@ -54,16 +54,17 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        /*if(Input.GetKeyDown(KeyCode.R))
         {
-            transform.position = SavePointManager.i.savePoint;
-        }
+            GoToSavePoint();
+        }*/
 
         speed = rigidbody.velocity.magnitude; // 플레이어 속도
     }
-    void GoToSavePoint()
+    public void GoToSavePoint()
     {
         transform.position = SavePointManager.i.savePoint;
+        rigidbody.velocity = new Vector2(0, 0);
         //상태 원상복귀 구현 해야함
     }
     public void plusJumpGauge()

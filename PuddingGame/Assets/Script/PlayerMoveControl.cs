@@ -152,13 +152,15 @@ public class PlayerMoveControl : MonoBehaviour
     }
     void Jump()
     {
+        float jumpForce = Mathf.Sqrt(2 * rb.mass * Physics2D.gravity.magnitude * jumpPower * PlayerManager.i.JumpGauge);
+
         if (rb.gravityScale > 0f)
         {
-            rb.AddForce(Vector3.up * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
         }
         else 
         {
-            rb.AddForce(Vector3.down * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
+            rb.AddForce(Vector3.down * jumpForce, ForceMode2D.Impulse);
         }
         StartCoroutine(CheckJumping());
     }
