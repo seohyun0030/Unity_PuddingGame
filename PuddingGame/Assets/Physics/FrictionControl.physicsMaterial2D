@@ -7,5 +7,10 @@ PhysicsMaterial2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FrictionControl
+<<<<<<< HEAD:PuddingGame/Assets/FrictionControl.physicsMaterial2D
   friction: 0.19999999
   bounciness: 0.5
+=======
+  friction: 0.4
+  bounciness: 0.4
+>>>>>>> a5def9f37d852e93a3882967104e628a999dec45:PuddingGame/Assets/Physics/FrictionControl.physicsMaterial2D

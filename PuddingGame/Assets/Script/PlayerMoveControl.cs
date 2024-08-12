@@ -152,13 +152,15 @@ public class PlayerMoveControl : MonoBehaviour
     }
     void Jump()
     {
+        float jumpForce = Mathf.Sqrt(2 * rb.mass * Physics2D.gravity.magnitude * jumpPower * PlayerManager.i.JumpGauge);
+
         if (rb.gravityScale > 0f)
         {
-            rb.AddForce(Vector3.up * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
         }
         else 
         {
-            rb.AddForce(Vector3.down * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
+            rb.AddForce(Vector3.down * jumpForce, ForceMode2D.Impulse);
         }
         StartCoroutine(CheckJumping());
     }
@@ -401,17 +403,21 @@ public class PlayerMoveControl : MonoBehaviour
     }
     public void ToppingJump(int i)   //토핑을 쓰면 나타나는 점프 구현
     {
+        StopCoroutine(CheckJumping());
+        StartCoroutine(CheckJumping());
+        float jumpForce = Mathf.Sqrt(2 * rb.mass * Physics2D.gravity.magnitude * jumpPower);
+
         if (i == 0) //레몬
         {
             if (rb.gravityScale > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
-                rb.AddForce(Vector3.up * jumpPower, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             }
             else
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
-                rb.AddForce(Vector3.down * jumpPower, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.down * jumpForce, ForceMode2D.Impulse);
             }
         }
         else if (i == 1)    //체리
@@ -424,7 +430,7 @@ public class PlayerMoveControl : MonoBehaviour
                 jumpDirection = new Vector3(1, 1, 0).normalized;
 
             rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
-            rb.AddForce(jumpDirection * jumpPower, ForceMode2D.Impulse);
+            rb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
         }
         else if(i == 2)
         {

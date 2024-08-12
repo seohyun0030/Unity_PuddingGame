@@ -7,6 +7,7 @@ public class SavePointManager : MonoBehaviour
     public static SavePointManager i;
     public Vector3 savePoint;
     BoxCollider2D cd;
+    public GameObject Player;
 
     private void Awake()
     {
@@ -15,6 +16,16 @@ public class SavePointManager : MonoBehaviour
     private void Start()
     {
         cd = GetComponent<BoxCollider2D>();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if(!Player.activeSelf)      //플레이어가 비활성화 상태라면
+                Player.SetActive(true);
+
+            PlayerManager.i.GoToSavePoint();
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
