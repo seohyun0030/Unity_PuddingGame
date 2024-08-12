@@ -13620,7 +13620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Friction: 0.4
-  BouncePower: 0.4
+  BouncePower: 0.5
   JumpPower: 3.5
   JumpGauge: 0.5
   MaxSpeed: 3.5
