@@ -403,6 +403,8 @@ public class PlayerMoveControl : MonoBehaviour
     }
     public void ToppingJump(int i)   //토핑을 쓰면 나타나는 점프 구현
     {
+        StopCoroutine(CheckJumping());
+        StartCoroutine(CheckJumping());
         float jumpForce = Mathf.Sqrt(2 * rb.mass * Physics2D.gravity.magnitude * jumpPower);
 
         if (i == 0) //레몬
