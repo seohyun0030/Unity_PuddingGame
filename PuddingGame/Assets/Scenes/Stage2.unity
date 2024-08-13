@@ -4136,7 +4136,6 @@ Transform:
   - {fileID: 298998270}
   - {fileID: 1421425279}
   - {fileID: 44131220}
-  - {fileID: 2133334013}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &964373566
@@ -4623,6 +4622,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2115677689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1086623321 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3544537320404333119, guid: e6c7acd1134ee2742b741d50d469d567, type: 3}
+  m_PrefabInstance: {fileID: 1302595563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1127781173
 GameObject:
   m_ObjectHideFlags: 0
@@ -5492,7 +5496,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2133334013}
     m_Modifications:
     - target: {fileID: 1584997363758365247, guid: e6c7acd1134ee2742b741d50d469d567, type: 3}
       propertyPath: m_Name
@@ -5516,15 +5520,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3544537320404333119, guid: e6c7acd1134ee2742b741d50d469d567, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3544537320404333119, guid: e6c7acd1134ee2742b741d50d469d567, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3544537320404333119, guid: e6c7acd1134ee2742b741d50d469d567, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3544537320404333119, guid: e6c7acd1134ee2742b741d50d469d567, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6624,6 +6628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb9bc891c95393409ecbac2e7313b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canJump: 0
   angle: 0
   fallingSpeed: -2
   flyingSpeed: 10
@@ -6637,6 +6642,7 @@ MonoBehaviour:
   rotationSpeed: 10
   isJumping: 0
   isFalling: 0
+  jumpPlatform: 0
 --- !u!61 &1841373062
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6773,7 +6779,7 @@ Transform:
   m_GameObject: {fileID: 1841373059}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.69936, y: 25.270912, z: 0}
+  m_LocalPosition: {x: 20.941854, y: 36.168873, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7688,12 +7694,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1.6666665}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1834007973}
   - {fileID: 1218395754}
-  m_Father: {fileID: 958621280}
+  - {fileID: 1086623321}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2138735857
 GameObject:
@@ -7840,6 +7847,6 @@ SceneRoots:
   - {fileID: 16568058}
   - {fileID: 2115677689}
   - {fileID: 958621280}
+  - {fileID: 2133334013}
   - {fileID: 2138735858}
   - {fileID: 1127781175}
-  - {fileID: 1302595563}
