@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class VanishingPlatform : MonoBehaviour // 사라지는 발판
 {
-    [SerializeField] float Time = 5f;
 
-    void OnCollisionExit2D(Collision2D collision)
+    [SerializeField] float Time = 2f;
+    private bool state = true;
+
+
+    private void Update()
     {
-        if (collision.gameObject.name.Equals("Player"))
+        if (state == false)
+        {
+            Invoke("ActiveTrue", Time);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.CompareTag("Player"))
         {
             Invoke("ActiveFalse", Time);
         }
@@ -16,6 +27,13 @@ public class VanishingPlatform : MonoBehaviour // 사라지는 발판
 
     void ActiveFalse()
     {
-       gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(false);
+        state = false;
+    }
+
+    void ActiveTrue()
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+        state = true;
     }
 }

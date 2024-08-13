@@ -13,8 +13,10 @@ public class JumpingPlatform : MonoBehaviour //튀어오르는 발판
         Vector2 normal = contactPoint.normal; // 법선 벡터
         if (collision.gameObject.CompareTag("Player"))
         {
+            PlayerManager.i.BouncePower = 0;
+            PlayerMoveControl.i.jumpPlatform = true;
+
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-normal.normalized * bounce, ForceMode2D.Impulse);
         }
     }
-
 }
