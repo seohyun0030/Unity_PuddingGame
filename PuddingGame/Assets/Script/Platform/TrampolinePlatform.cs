@@ -14,6 +14,9 @@ public class TrampolinePlatform : MonoBehaviour //Æ®·¥ÆÞ¸° ¹ßÆÇ
         Vector2 normal = contactPoint.normal; // ¹ý¼± º¤ÅÍ
         if (collision.gameObject.CompareTag("Player"))
         {
+            PlayerManager.i.BouncePower = 0;
+            PlayerMoveControl.i.jumpPlatform = true;
+
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-normal.normalized * PlayerManager.i.speed * bounce, ForceMode2D.Impulse);
         }
     }

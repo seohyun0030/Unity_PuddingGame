@@ -12,7 +12,7 @@ public class PlayerMoveControl : MonoBehaviour
     public static PlayerMoveControl i;
     Rigidbody2D rb;
     float moveSpeed;
-    bool canJump;
+    public bool canJump;
     float jumpPower;
     float maxSpeed;
     float jumpGauge;
@@ -37,6 +37,7 @@ public class PlayerMoveControl : MonoBehaviour
     public bool isJumping = false;  //jumping상태
     public bool isFalling = false;  //falling상태
     bool isGrounded = true;     //땅에 있는지 확인
+    public bool jumpPlatform = false;
 
     private void Awake()
     {
@@ -65,7 +66,7 @@ public class PlayerMoveControl : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Z))    //Z키를 눌러서 점프게이지 충전
         {
-            if (canJump && isGrounded)    //점프 가능 상태일 때, 땅에 있을 때
+            if (canJump && isGrounded || jumpPlatform)    //점프 가능 상태일 때, 땅에 있을 때
             {
                 PlayerManager.i.plusJumpGauge();
             }
@@ -73,11 +74,12 @@ public class PlayerMoveControl : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Z))  //Z키를 뗄 때 점프, 점프 상태가 아닐 때
         {
-            if(canJump && isGrounded)     //점프 가능하고 땅에 있을 때
+            if(canJump && isGrounded || jumpPlatform)     //점프 가능하고 땅에 있을 때
             {
                 Jump();
                 PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
                 PlayerManager.i.time = 0f;         //시간 초기화
+                jumpPlatform = false;
             }
         }
         else if (chocolate && Input.GetKeyDown(KeyCode.Z))
@@ -150,7 +152,7 @@ public class PlayerMoveControl : MonoBehaviour
             rb.velocity = new Vector2(maxSpeed * (-1), rb.velocity.y);
         }
     }
-    void Jump()
+    public void Jump()
     {
         float jumpForce = Mathf.Sqrt(2 * rb.mass * Physics2D.gravity.magnitude * jumpPower * PlayerManager.i.JumpGauge);
 
@@ -403,17 +405,19 @@ public class PlayerMoveControl : MonoBehaviour
     }
     public void ToppingJump(int i)   //토핑을 쓰면 나타나는 점프 구현
     {
+        float jumpForce = Mathf.Sqrt(2 * rb.mass * Physics2D.gravity.magnitude * jumpPower);
+
         if (i == 0) //레몬
         {
             if (rb.gravityScale > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
-                rb.AddForce(Vector3.up * jumpPower, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             }
             else
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
-                rb.AddForce(Vector3.down * jumpPower, ForceMode2D.Impulse);
+                rb.AddForce(Vector3.down * jumpForce, ForceMode2D.Impulse);
             }
         }
         else if (i == 1)    //체리
@@ -426,7 +430,7 @@ public class PlayerMoveControl : MonoBehaviour
                 jumpDirection = new Vector3(1, 1, 0).normalized;
 
             rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
-            rb.AddForce(jumpDirection * jumpPower, ForceMode2D.Impulse);
+            rb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
         }
         else if(i == 2)
         {

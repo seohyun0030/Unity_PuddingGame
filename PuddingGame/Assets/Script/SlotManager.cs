@@ -18,12 +18,6 @@ public class SlotManager : MonoBehaviour
     {
         i = this;
     }
-    private void Start()
-    {
-        /*slots.Enqueue(Toppings);
-        Instantiate(Toppings, Slot);
-        Toppings.SetActive(true);*/
-    }
     public void AddTopping(string name)        //토핑을 먹었을 때 저장 공간에 토핑을 저장하기
     {
         if (name == "Lemon") n = 0;
@@ -36,40 +30,39 @@ public class SlotManager : MonoBehaviour
         {
             GameObject UsedTopping = slots[0];
             slots.RemoveAt(0);          //리스트에서 0번째 요소 삭제
-            Destroy(UsedTopping);       //Ui에서도 삭제
+            Destroy(Slot.GetChild(0).gameObject);       //Ui에서도 삭제
         }
 
         slots.Add(Toppings[n]);
         Instantiate(Toppings[n], Slot);
-        Toppings[n].SetActive(true);
     }
     public void UseTopping()
     {
-        if (slots[0].name == "LemonImage")
+        if (slots[0].name == "1_LemonImage")
         {
             //레몬 아이템을 사용했을 때
             Debug.Log("Lemon");
             PlayerMoveControl.i.ToppingJump(0);
         }
-        else if(slots[0].name == "CherryImage")
+        else if(slots[0].name == "2_CherryImage")
         {
             //체리 아이템을 사용했을 때
             Debug.Log("Cherry");
             PlayerMoveControl.i.ToppingJump(1);
         }
-        else if (slots[0].name == "ChocolateImage")
+        else if (slots[0].name == "3_ChocolateImage")
         {
             //초콜릿 아이템을 사용했을 때
             Debug.Log("Chocolate");
             PlayerMoveControl.i.ToppingJump(2);
         }
-        else if (slots[0].name == "RasberryImage")
+        else if (slots[0].name == "4_RasberryImage")
         {
             //라즈베리 아이템을 사용했을 때
             Debug.Log("Rasberry");
             PlayerMoveControl.i.ToppingJump(3);
         }
-        else if (slots[0].name == "MatchaImage")
+        else if (slots[0].name == "5_MatchaImage")
         {
             //녹차 아이템을 사용했을 때
             Debug.Log("Matcha");
@@ -78,7 +71,7 @@ public class SlotManager : MonoBehaviour
 
         GameObject UsedTopping = slots[0];
         slots.RemoveAt(0);          //리스트에서 0번째 요소 삭제
-        Destroy(UsedTopping);       //Ui에서도 삭제
+        Destroy(Slot.GetChild(0).gameObject);       //Ui에서도 삭제
     }
     public string GetTopping()
     {
