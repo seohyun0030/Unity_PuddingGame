@@ -8,9 +8,14 @@ PhysicsMaterial2D:
   m_PrefabAsset: {fileID: 0}
   m_Name: FrictionControl
 <<<<<<< HEAD
+<<<<<<< HEAD
   friction: 0.5
   bounciness: 0.5
 =======
   friction: 0.2
   bounciness: 0
 >>>>>>> a39370ec5225498d48c8c893b2481e927e6de470
+=======
+  friction: 0.4
+  bounciness: 0.4
+>>>>>>> parent of 5d231d8 (2스테이지 제작 시작)
