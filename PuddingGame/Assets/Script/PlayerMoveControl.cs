@@ -38,6 +38,7 @@ public class PlayerMoveControl : MonoBehaviour
     public bool isFalling = false;  //falling상태
     bool isGrounded = true;     //땅에 있는지 확인
     public bool jumpPlatform = false;
+    
 
     private void Awake()
     {
@@ -279,7 +280,10 @@ public class PlayerMoveControl : MonoBehaviour
             isFalling = false;
             isGrounded = true;
 
-            StartCoroutine(isStopMoving());
+            Falling(collision);
+
+            if(gameObject.activeSelf)
+                StartCoroutine(isStopMoving());
             if (Cannon.i.isFire)
             {
                 rb.gravityScale = 1f;
@@ -310,6 +314,16 @@ public class PlayerMoveControl : MonoBehaviour
             //isJumping = true;         한번 충돌하고 나서 움직이지 못하도록
             canJump = false;
             isGrounded = false;
+        }
+    }
+    public void Falling(Collision2D collision)   //낙사 구현
+    {
+        //임계점보다 속도가 더 빨라지면 추락
+
+        Vector2 impactVelocity = collision.relativeVelocity;
+        if (impactVelocity.y > PlayerManager.i.fallingSpeed)
+        {
+            gameObject.SetActive(false);
         }
     }
     IEnumerator isStopMoving()
@@ -405,6 +419,9 @@ public class PlayerMoveControl : MonoBehaviour
     }
     public void ToppingJump(int i)   //토핑을 쓰면 나타나는 점프 구현
     {
+        StopCoroutine(CheckJumping());
+        StartCoroutine(CheckJumping());
+
         float jumpForce = Mathf.Sqrt(2 * rb.mass * Physics2D.gravity.magnitude * jumpPower);
 
         if (i == 0) //레몬

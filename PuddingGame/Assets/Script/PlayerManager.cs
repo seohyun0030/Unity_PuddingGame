@@ -17,12 +17,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] public float JumpChargeTime;   //점프 차지 시간
     [HideInInspector] public bool CanJump;       //점프를 할 수 있는 상태인지
     [HideInInspector] public float time = 0f;
-    public PhysicsMaterial2D FrictionControl;
+    public PhysicsMaterial2D Physics;
     public BoxCollider2D boxCollider2D;
     float currentFriction;  //현재 마찰력
     float currentBouncePower;   //현재 탄력
     public Rigidbody2D rigidbody;
     public float speed; // 플레이어 속도
+    public float fallingSpeed;  //낙하 속도
 
     private void Awake()
     {
@@ -31,14 +32,13 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
-        FrictionControl.friction = Friction;    //PhysicsMaterial2D의 마찰력 부분에 변수 할당
-        FrictionControl.bounciness = BouncePower;
-        currentFriction = Friction;             //현재 마찰력 저장
-        currentBouncePower = BouncePower;       //현재 탄력 저장
+        Physics.friction = Friction;    //PhysicsMaterial2D의 마찰력 부분에 변수 할당
+        Physics.bounciness = BouncePower;
+        /*currentFriction = Friction;             //현재 마찰력 저장
+        currentBouncePower = BouncePower;       //현재 탄력 저장*/
     }
     private void Update()
     {
-        Slide_Bounce();
         if (Input.GetKeyDown(KeyCode.X))
         {
             if(SlotManager.i.GetTopping()=="LemonImage" || SlotManager.i.GetTopping() == "CherryImage") //만약 토핑이 레몬이거나 체리이면
@@ -76,7 +76,9 @@ public class PlayerManager : MonoBehaviour
             JumpGauge = Mathf.Lerp(firstJumpGauge, 1, time / JumpChargeTime);
         }
     }
-    void Slide_Bounce()    //마찰력, 탄력 시험 용 --> 나중에 삭제
+
+    
+    /*void Slide_Bounce()    //마찰력, 탄력 시험 용 --> 나중에 삭제
     {
         if (Friction != currentFriction)    //마찰력이 바뀌었다면
         {
@@ -95,8 +97,8 @@ public class PlayerManager : MonoBehaviour
             boxCollider2D.sharedMaterial = null;
             boxCollider2D.sharedMaterial = FrictionControl;     //콜라이더 다시 할당해주기
         }
-    }
-    void ChangeBoncePower(float newBonce)
+    }*/
+    /*void ChangeBoncePower(float newBonce)
     {
         FrictionControl.bounciness = newBonce;    //마찰력 값 할당하기
         currentBouncePower = newBonce;             //현재 마찰력 값 저장
@@ -104,5 +106,5 @@ public class PlayerManager : MonoBehaviour
         //콜라이더 null로 바꾸기 -> 마찰력 값이 바뀌어도 인게임에서 마찰력이 바뀌지 않는 것처럼 보이는 오류 수정하기 위해
         boxCollider2D.sharedMaterial = null;
         boxCollider2D.sharedMaterial = FrictionControl;     //콜라이더 다시 할당해주기
-    }
+    }*/
 }

@@ -3908,10 +3908,11 @@ MonoBehaviour:
   JumpChargeTime: 1.25
   CanJump: 0
   time: 0
-  FrictionControl: {fileID: 6200000, guid: 2ba57cd491c91e44790ae341a22687a4, type: 2}
+  Physics: {fileID: 6200000, guid: 7e4cf6a4756c4754190876f24eeeeb50, type: 2}
   boxCollider2D: {fileID: 559807316}
   rigidbody: {fileID: 0}
   speed: 0
+  fallingSpeed: 0
 --- !u!114 &559807315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3949,7 +3950,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 2ba57cd491c91e44790ae341a22687a4, type: 2}
+  m_Material: {fileID: 6200000, guid: 7e4cf6a4756c4754190876f24eeeeb50, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
