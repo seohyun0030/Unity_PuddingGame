@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float cameraSpeed = 3.0f;
+    public float cameraSpeed;
 
     public GameObject player;
-
     private void FixedUpdate()
     {
         Vector3 dir = player.transform.position - this.transform.position;

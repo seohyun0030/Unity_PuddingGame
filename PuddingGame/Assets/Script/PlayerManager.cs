@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if(SlotManager.i.GetTopping()=="LemonImage" || SlotManager.i.GetTopping() == "CherryImage") //만약 토핑이 레몬이거나 체리이면
             {
@@ -54,11 +54,6 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        /*if(Input.GetKeyDown(KeyCode.R))
-        {
-            GoToSavePoint();
-        }*/
-
         speed = rigidbody.velocity.magnitude; // 플레이어 속도
     }
     public void GoToSavePoint()
@@ -67,7 +62,7 @@ public class PlayerManager : MonoBehaviour
         rigidbody.velocity = new Vector2(0, 0);
         //상태 원상복귀 구현 해야함
     }
-    public void plusJumpGauge()
+    /*public void plusJumpGauge()
     {
         if (time < JumpChargeTime)
         {
@@ -75,9 +70,8 @@ public class PlayerManager : MonoBehaviour
             //JumpGauge = Mathf.Lerp(0.2f, 1, time / JumpChargeTime);
             JumpGauge = Mathf.Lerp(firstJumpGauge, 1, time / JumpChargeTime);
         }
-    }
+    }*/
 
-    
     /*void Slide_Bounce()    //마찰력, 탄력 시험 용 --> 나중에 삭제
     {
         if (Friction != currentFriction)    //마찰력이 바뀌었다면

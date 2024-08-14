@@ -65,7 +65,7 @@ public class PlayerMoveControl : MonoBehaviour
             HandleCannon();
         }
 
-        if (Input.GetKey(KeyCode.Z))    //Z키를 눌러서 점프게이지 충전
+        /*if (Input.GetKey(KeyCode.Z))    //Z키를 눌러서 점프게이지 충전
         {
             if (canJump && isGrounded || jumpPlatform)    //점프 가능 상태일 때, 땅에 있을 때
             {
@@ -89,15 +89,27 @@ public class PlayerMoveControl : MonoBehaviour
             rb.velocity = jumpDirection.normalized * clingJumpForce;
             rb.gravityScale = 1f;
             chocolate = false;
-        }
+        }*/
         RayCastControl();
+
+        /*if (Input.GetMouseButtonDown(0))
+        {
+
+            *//*Vector2 screenPosition = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+            Debug.Log(screenPosition + " " + CursorControl.GetPosition());
+            CursorController.SetPosition(screenPosition);*//*
+        }*/
+        if (Input.GetMouseButtonUp(0) && canJump && isGrounded || jumpPlatform)
+        {
+            Move();
+        }
     }
     void FixedUpdate()
     {
         if (!Cannon.i.isAttached && !Cannon.i.isFire)
         {
-            if(isJumping)
-                Move();
+            /*if(isJumping)
+                Move();*/
             
             if (isGravityReserved)
             {
@@ -122,7 +134,14 @@ public class PlayerMoveControl : MonoBehaviour
         }
         
     }
-    void Move()    //움직임 구현
+    public void Move()     //움직임 구현
+    {
+        //Vector3 jumpGauge = new Vector3(1, 1, 0).normalized;
+
+        rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
+        rb.AddForce(CursorController.i.GetDirection() * jumpGauge, ForceMode2D.Impulse);
+    }
+    /*void Move()    //움직임 구현
     {
         //방향키 동시에 입력받을 때 최초로 눌려진 키에만 반응
         if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
@@ -166,7 +185,7 @@ public class PlayerMoveControl : MonoBehaviour
             rb.AddForce(Vector3.down * jumpForce, ForceMode2D.Impulse);
         }
         StartCoroutine(CheckJumping());
-    }
+    }*/
     void RayCastControl()  //레이 캐스트 구현
     {
         //아래로 레이 쏘기
