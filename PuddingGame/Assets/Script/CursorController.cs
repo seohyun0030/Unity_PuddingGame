@@ -39,11 +39,12 @@ public class CursorController : MonoBehaviour
             arrow.transform.position = screenPosition;      //화살표의 위치를 플레이어 오브젝트 위치로 설정
             startPos = Input.mousePosition;
         }
+
         if (Input.GetMouseButton(0))
         {
             myPos = Input.mousePosition;
 
-            mouseCircle.transform.localPosition = currentCursor.localPosition;
+            mouseCircle.transform.localPosition = currentCursor.localPosition;      //마우스 원 위치
 
             arrow.transform.localScale = new Vector2(Vector3.Distance(myPos, startPos), 1); //마우스를 당기는 만큼 사이즈 변경
             arrow.transform.localRotation = Quaternion.Euler(0, 0, AngleInDeg(startPos, myPos) + 180);  //마우스가 당기는 방향으로 회전
@@ -56,16 +57,18 @@ public class CursorController : MonoBehaviour
             {
                 PlayerManager.i.CanJump = false;
             }
+            PlayerManager.i.JumpGauge = Mathf.Lerp(0.2f, 1, arrow.transform.localScale.x / MaxLength);
+            //최대 길이와 화살표의 길이를 나눠서 0.2, 1로 선형보간
         }
+
         if (Input.GetMouseButtonUp(0))
         {
             mouseCircle.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
-            PlayerManager.i.JumpGauge = Mathf.Lerp(0.2f, 1, arrow.transform.localScale.x / MaxLength);
-            Debug.Log("길이 " + arrow.transform.localScale.x+"  게이지 "+ PlayerManager.i.JumpGauge);
+            Debug.Log("길이 "+arrow.transform.localScale.x);
         }
     }
-    public Vector2 GetDirection()
+    public Vector2 GetDirection()       //점프 방향 구하기
     {
         Vector2 direction = (startPos - myPos).normalized;
         return direction;

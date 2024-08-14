@@ -14,7 +14,6 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] public float firstJumpGauge;   //점프게이지를 인스펙터창에서 조절하기 위해
 
-    [SerializeField] public float JumpChargeTime;   //점프 차지 시간
     [HideInInspector] public bool CanJump;       //점프를 할 수 있는 상태인지
     [HideInInspector] public float time = 0f;
     public PhysicsMaterial2D Physics;

@@ -99,9 +99,10 @@ public class PlayerMoveControl : MonoBehaviour
             Debug.Log(screenPosition + " " + CursorControl.GetPosition());
             CursorController.SetPosition(screenPosition);*//*
         }*/
-        if (Input.GetMouseButtonUp(0) && canJump && isGrounded || jumpPlatform)
+        if (Input.GetMouseButtonUp(0) && canJump && isGrounded || jumpPlatform)     //마우스를 뗐을 때 점프가능 상태이고 땅에 있으면 점프 가능
         {
             Move();
+            PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
         }
     }
     void FixedUpdate()
@@ -136,10 +137,8 @@ public class PlayerMoveControl : MonoBehaviour
     }
     public void Move()     //움직임 구현
     {
-        //Vector3 jumpGauge = new Vector3(1, 1, 0).normalized;
-
         rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
-        rb.AddForce(CursorController.i.GetDirection() * jumpGauge, ForceMode2D.Impulse);
+        rb.AddForce(CursorController.i.GetDirection() * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
     }
     /*void Move()    //움직임 구현
     {
