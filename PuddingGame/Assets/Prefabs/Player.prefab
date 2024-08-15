@@ -202,16 +202,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3856f4c0449568046a83ff9abf6b3503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Friction: 0.3
-  BouncePower: 0.4
-  JumpPower: 9
+  Friction: 0.2
+  BouncePower: 0.5
+  JumpPower: 3.5
   JumpGauge: 0.5
   MaxSpeed: 3.5
   firstJumpGauge: 0.2
+  JumpChargeTime: 1.25
   CanJump: 0
   time: 0
   Physics: {fileID: 6200000, guid: 7e4cf6a4756c4754190876f24eeeeb50, type: 2}
   boxCollider2D: {fileID: 5258652701715739387}
-  rigidbody: {fileID: 4797295366104073697}
+  rigidbody: {fileID: 0}
   speed: 0
-  fallingSpeed: 100
+  fallingSpeed: 20
