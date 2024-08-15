@@ -18,6 +18,9 @@ public class CursorController : MonoBehaviour
     public bool isLong;    //마우스 드래그가 한계선을 넘었는지 확인
     [SerializeField] float MinLength;   //마우스를 당길 때 점프 가능한 최소 길이
     [SerializeField] float MaxLength;   //최대 길이
+
+    public Sprite[] changeSprite;
+    
     private void Awake()
     {
         i = this;
@@ -65,6 +68,8 @@ public class CursorController : MonoBehaviour
                 isLong = true;
             }
 
+            findAngle();
+
             PlayerManager.i.JumpGauge = Mathf.Lerp(0.2f, 1, arrow.transform.localScale.x / MaxLength);
             //최대 길이와 화살표의 길이를 나눠서 0.2, 1로 선형보간
         }
@@ -73,12 +78,42 @@ public class CursorController : MonoBehaviour
         {
             mouseCircle.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
+            Debug.Log(AngleInDeg(startPos, myPos));
         }
     }
     public Vector2 GetDirection()       //점프 방향 구하기
     {
         Vector2 direction = (startPos - myPos).normalized;
         return direction;
+    }
+    void findAngle()
+    {
+        float angle = AngleInDeg(startPos, myPos);
+
+        if (angle > 0)      //마우스를 상단에 놓는 경우
+            changeImage(changeSprite[2], false);
+        else if (angle > -30)   //오른쪽 1번
+            changeImage(changeSprite[0], false);
+
+        else if (angle > -60)   //오른쪽 2번
+            changeImage(changeSprite[1], false);
+        
+        else if(angle > -120)   //3번
+            changeImage(changeSprite[2], false);
+
+        else if(angle > -150)   //왼쪽 2번
+            changeImage(changeSprite[1], true);
+
+        else if (angle > -180)   //왼쪽 1번
+            changeImage(changeSprite[0], true);
+    }
+    public void changeImage(Sprite newSprite, bool isFlip)
+    {
+        GameObject player = GameObject.FindWithTag("Player");   //플레이어 찾기
+        player.GetComponent<SpriteRenderer>().sprite = newSprite;
+
+        //좌우반전 구현
+        player.GetComponent<SpriteRenderer>().flipX = isFlip;
     }
     void CursorMoving()
     {

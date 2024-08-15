@@ -11,6 +11,7 @@ public class PlayerMoveControl : MonoBehaviour
 {
     public static PlayerMoveControl i;
     Rigidbody2D rb;
+    SpriteRenderer sr;
     float moveSpeed;
     public bool canJump;
     float jumpPower;
@@ -40,6 +41,8 @@ public class PlayerMoveControl : MonoBehaviour
     public bool jumpPlatform = false;
     bool isLong;
 
+    public Sprite changeImage;
+
     private void Awake()
     {
         i = this;
@@ -47,6 +50,7 @@ public class PlayerMoveControl : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         canJump = PlayerManager.i.CanJump;
         jumpPower = PlayerManager.i.JumpPower;
         maxSpeed = PlayerManager.i.MaxSpeed;
