@@ -38,7 +38,7 @@ public class PlayerMoveControl : MonoBehaviour
     public bool isFalling = false;  //falling상태
     bool isGrounded = true;     //땅에 있는지 확인
     public bool jumpPlatform = false;
-    
+    bool isLong;
 
     private void Awake()
     {
@@ -99,7 +99,8 @@ public class PlayerMoveControl : MonoBehaviour
             Debug.Log(screenPosition + " " + CursorControl.GetPosition());
             CursorController.SetPosition(screenPosition);*//*
         }*/
-        if (Input.GetMouseButtonUp(0) && canJump && isGrounded || jumpPlatform)     //마우스를 뗐을 때 점프가능 상태이고 땅에 있으면 점프 가능
+        isLong = CursorController.i.isLong;
+        if (Input.GetMouseButtonUp(0) && canJump && isGrounded && isLong || jumpPlatform)     //마우스를 뗐을 때 점프가능 상태이고 땅에 있으면 점프 가능
         {
             Move();
             PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
@@ -137,8 +138,28 @@ public class PlayerMoveControl : MonoBehaviour
     }
     public void Move()     //움직임 구현
     {
-        rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
-        rb.AddForce(CursorController.i.GetDirection() * PlayerManager.i.JumpGauge * jumpPower, ForceMode2D.Impulse);
+        rb.velocity = Vector2.zero;  // 현재의 수직 속도 초기화
+
+        Vector2 MoveDirection = CursorController.i.GetDirection();
+        //점프 높이 일정하도록
+        float jumpForce = Mathf.Sqrt(2 * rb.mass * Physics2D.gravity.magnitude * jumpPower * PlayerManager.i.JumpGauge);
+
+        if (MoveDirection.y <= 0)       //마우스가 플레이어 상단으로 드래그되면 (y값이 0보다 작아지면)
+            MoveDirection.y = 0;        //x좌표로만 이동하도록 y를 0으로
+
+        rb.AddForce(MoveDirection * jumpForce, ForceMode2D.Impulse);
+
+        StartCoroutine(CheckJumping());
+
+        //최대 속도 넘지 않도록 설정
+        if (rb.velocity.x > maxSpeed)
+        {
+            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+        }
+        else if (rb.velocity.x < maxSpeed * (-1))
+        {
+            rb.velocity = new Vector2(maxSpeed * (-1), rb.velocity.y);
+        }
     }
     /*void Move()    //움직임 구현
     {
@@ -271,13 +292,6 @@ public class PlayerMoveControl : MonoBehaviour
         Cannon.i.transform.rotation = Quaternion.identity;
         Cannon.i.isFire = false;
     }
-    /*void Bounce(bool isLeft)   //벽에 닿으면 튕기기
-    {
-        if(isLeft)      //만약 왼쪽 벽에 닿았다면
-            rb.AddForce(Vector3.right * bouncePower, ForceMode2D.Impulse);  //오른쪽으로 튕기기
-        else            //만약 오른쪽 벽에 닿았다면
-            rb.AddForce(Vector3.left * bouncePower, ForceMode2D.Impulse);  //왼쪽으로 튕기기
-    }*/
     public void SetGravityReversed(bool reserved) //중력 반전
     {
         isGravityReserved = reserved;

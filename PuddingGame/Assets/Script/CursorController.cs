@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 public class CursorController : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class CursorController : MonoBehaviour
     Vector3 screenPosition;
     Vector3 startPos;
     Vector3 myPos;
+    public bool isLong;    //마우스 드래그가 한계선을 넘었는지 확인
     [SerializeField] float MinLength;   //마우스를 당길 때 점프 가능한 최소 길이
     [SerializeField] float MaxLength;   //최대 길이
     private void Awake()
@@ -55,8 +56,15 @@ public class CursorController : MonoBehaviour
             }
             if(arrow.transform.localScale.x <= MinLength)     //길이가 최소점보다 작으면
             {
-                PlayerManager.i.CanJump = false;
+                changeAlpha(true);
+                isLong = false;
             }
+            else
+            {
+                changeAlpha(false);
+                isLong = true;
+            }
+
             PlayerManager.i.JumpGauge = Mathf.Lerp(0.2f, 1, arrow.transform.localScale.x / MaxLength);
             //최대 길이와 화살표의 길이를 나눠서 0.2, 1로 선형보간
         }
@@ -65,7 +73,6 @@ public class CursorController : MonoBehaviour
         {
             mouseCircle.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
-            Debug.Log("길이 "+arrow.transform.localScale.x);
         }
     }
     public Vector2 GetDirection()       //점프 방향 구하기
@@ -104,6 +111,15 @@ public class CursorController : MonoBehaviour
     public static float AngleInDeg(Vector3 vec1, Vector3 vec2)
     {
         return AngleInRad(vec1, vec2) * 180 / Mathf.PI;
+    }
+
+    void changeAlpha(bool isAlpha)
+    {
+        Color color = mouseCircle.color;
+
+        color.a = isAlpha ? 0.5f : 1f;
+        //isAlpha가 참이면 0.5, 거짓이면 1
+        mouseCircle.color = color;
     }
 }
 

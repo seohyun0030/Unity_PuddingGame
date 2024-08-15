@@ -208,7 +208,6 @@ MonoBehaviour:
   JumpGauge: 0.5
   MaxSpeed: 3.5
   firstJumpGauge: 0.2
-  JumpChargeTime: 1.25
   CanJump: 0
   time: 0
   Physics: {fileID: 6200000, guid: 7e4cf6a4756c4754190876f24eeeeb50, type: 2}
