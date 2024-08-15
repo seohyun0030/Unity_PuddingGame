@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pngimg.com - cursor_PNG100716_0: 381467857489619918
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
