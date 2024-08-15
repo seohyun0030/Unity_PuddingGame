@@ -78,6 +78,9 @@ public class CursorController : MonoBehaviour
         {
             mouseCircle.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
+
+            changeImage(changeSprite[2], false);
+
             Debug.Log(AngleInDeg(startPos, myPos));
         }
     }
