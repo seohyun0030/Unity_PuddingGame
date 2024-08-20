@@ -69,41 +69,18 @@ public class PlayerMoveControl : MonoBehaviour
             HandleCannon();
         }
 
-        /*if (Input.GetKey(KeyCode.Z))    //Z키를 눌러서 점프게이지 충전
-        {
-            if (canJump && isGrounded || jumpPlatform)    //점프 가능 상태일 때, 땅에 있을 때
-            {
-                PlayerManager.i.plusJumpGauge();
-            }
-        }
-
-        if (Input.GetKeyUp(KeyCode.Z))  //Z키를 뗄 때 점프, 점프 상태가 아닐 때
-        {
-            if(canJump && isGrounded || jumpPlatform)     //점프 가능하고 땅에 있을 때
-            {
-                Jump();
-                PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
-                PlayerManager.i.time = 0f;         //시간 초기화
-                jumpPlatform = false;
-            }
-        }
-        else if (chocolate && Input.GetKeyDown(KeyCode.Z))
+        /*else if (chocolate && Input.GetKeyDown(KeyCode.Z))
         {
             Vector2 jumpDirection = Vector2.up + (Vector2)(transform.position.x < 0 ? Vector2.right : Vector2.left).Rotate(60);
             rb.velocity = jumpDirection.normalized * clingJumpForce;
             rb.gravityScale = 1f;
             chocolate = false;
         }*/
+
         RayCastControl();
 
-        /*if (Input.GetMouseButtonDown(0))
-        {
-
-            *//*Vector2 screenPosition = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-            Debug.Log(screenPosition + " " + CursorControl.GetPosition());
-            CursorController.SetPosition(screenPosition);*//*
-        }*/
         isLong = CursorController.i.isLong;
+
         if (Input.GetMouseButtonUp(0) && canJump && isGrounded && isLong || jumpPlatform)     //마우스를 뗐을 때 점프가능 상태이고 땅에 있으면 점프 가능
         {
             Move();
@@ -114,8 +91,6 @@ public class PlayerMoveControl : MonoBehaviour
     {
         if (!Cannon.i.isAttached && !Cannon.i.isFire)
         {
-            /*if(isJumping)
-                Move();*/
             
             if (isGravityReserved)
             {
@@ -154,62 +129,19 @@ public class PlayerMoveControl : MonoBehaviour
         rb.AddForce(MoveDirection * jumpForce, ForceMode2D.Impulse);
 
         StartCoroutine(CheckJumping());
+        StartCoroutine(JumpDelay());
 
         //최대 속도 넘지 않도록 설정
-        if (rb.velocity.x > maxSpeed)
+        /*if (rb.velocity.x > maxSpeed)
         {
             rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
         }
         else if (rb.velocity.x < maxSpeed * (-1))
         {
             rb.velocity = new Vector2(maxSpeed * (-1), rb.velocity.y);
-        }
+        }*/
     }
-    /*void Move()    //움직임 구현
-    {
-        //방향키 동시에 입력받을 때 최초로 눌려진 키에만 반응
-        if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
-        {
-            rb.AddForce(Vector2.left, ForceMode2D.Impulse);
-            isLeftMoving = true;
-        }
-        else if(Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
-        {
-            rb.AddForce(Vector2.right, ForceMode2D.Impulse);
-            isLeftMoving = false;
-        }
-        else if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow))    //두 방향키가 다 눌려진 상태일 때
-        {
-            if(isLeftMoving)        //왼쪽으로 이동중인 상태였을 때
-                rb.AddForce(Vector2.left, ForceMode2D.Impulse);
-            else                    //오른쪽으로 이동중인 상태였을 때
-                rb.AddForce(Vector2.right, ForceMode2D.Impulse);
-        }
-
-        //최대 속도 넘지 않도록 설정
-        if (rb.velocity.x > maxSpeed)
-        {
-            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
-        }
-        else if (rb.velocity.x < maxSpeed * (-1))
-        {
-            rb.velocity = new Vector2(maxSpeed * (-1), rb.velocity.y);
-        }
-    }
-    public void Jump()
-    {
-        float jumpForce = Mathf.Sqrt(2 * rb.mass * Physics2D.gravity.magnitude * jumpPower * PlayerManager.i.JumpGauge);
-
-        if (rb.gravityScale > 0f)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
-        }
-        else 
-        {
-            rb.AddForce(Vector3.down * jumpForce, ForceMode2D.Impulse);
-        }
-        StartCoroutine(CheckJumping());
-    }*/
+    
     void RayCastControl()  //레이 캐스트 구현
     {
         //아래로 레이 쏘기
@@ -301,6 +233,11 @@ public class PlayerMoveControl : MonoBehaviour
         isGravityReserved = reserved;
         rb.gravityScale = reserved ? -1f : 1f;
     }
+    IEnumerator JumpDelay()     //한번 점프하고 1초 뒤에 점프가능
+    {
+        yield return new WaitForSeconds(1f);
+        canJump = true;
+    }
     IEnumerator CheckJumping()      //점프하고 2초후에는 falling상태로 변함
     {
         isJumping = true;
@@ -339,7 +276,7 @@ public class PlayerMoveControl : MonoBehaviour
             isFalling = false;      //플랫폼에 닿아있는 내내 falling상태 아님
 
             //Test용     움직이는 플랫폼으로 이동하다가 다른 플랫폼에 닿으면 점프안됨
-            canJump = true;
+            //canJump = true;
             isGrounded = true;
         }
     }
@@ -357,6 +294,8 @@ public class PlayerMoveControl : MonoBehaviour
         //임계점보다 속도가 더 빨라지면 추락
 
         Vector2 impactVelocity = collision.relativeVelocity;
+        Debug.Log(impactVelocity.y + " " + PlayerManager.i.fallingSpeed);
+
         if (impactVelocity.y > PlayerManager.i.fallingSpeed)
         {
             gameObject.SetActive(false);
