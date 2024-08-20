@@ -18267,6 +18267,10 @@ PrefabInstance:
       propertyPath: changeImage
       value: 
       objectReference: {fileID: -855298285791758126, guid: edaa83dc44cf6af47a33065e490dd6fb, type: 3}
+    - target: {fileID: 1402079377435233665, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
+      propertyPath: floorMaxRay
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3215823547444094436, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -18277,11 +18281,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6799938352629571395, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0774479
+      value: 19.28
       objectReference: {fileID: 0}
     - target: {fileID: 6799938352629571395, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.420991
+      value: 31.79
       objectReference: {fileID: 0}
     - target: {fileID: 6799938352629571395, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
       propertyPath: m_LocalPosition.z

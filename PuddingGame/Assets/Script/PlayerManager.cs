@@ -61,15 +61,6 @@ public class PlayerManager : MonoBehaviour
         rigidbody.velocity = new Vector2(0, 0);
         //상태 원상복귀 구현 해야함
     }
-    /*public void plusJumpGauge()
-    {
-        if (time < JumpChargeTime)
-        {
-            time += Time.deltaTime;
-            //JumpGauge = Mathf.Lerp(0.2f, 1, time / JumpChargeTime);
-            JumpGauge = Mathf.Lerp(firstJumpGauge, 1, time / JumpChargeTime);
-        }
-    }*/
 
     /*void Slide_Bounce()    //마찰력, 탄력 시험 용 --> 나중에 삭제
     {

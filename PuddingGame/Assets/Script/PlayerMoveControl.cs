@@ -37,9 +37,9 @@ public class PlayerMoveControl : MonoBehaviour
     bool isLeftMoving = false;      //왼쪽으로 이동하고 있는지 확인
     public bool isJumping = false;  //jumping상태
     public bool isFalling = false;  //falling상태
-    bool isGrounded = true;     //땅에 있는지 확인
+    public bool isGrounded = true;     //땅에 있는지 확인
     public bool jumpPlatform = false;
-    bool isLong;
+    public bool isLong;
 
     public Sprite changeImage;
 
@@ -130,16 +130,6 @@ public class PlayerMoveControl : MonoBehaviour
 
         StartCoroutine(CheckJumping());
         StartCoroutine(JumpDelay());
-
-        //최대 속도 넘지 않도록 설정
-        /*if (rb.velocity.x > maxSpeed)
-        {
-            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
-        }
-        else if (rb.velocity.x < maxSpeed * (-1))
-        {
-            rb.velocity = new Vector2(maxSpeed * (-1), rb.velocity.y);
-        }*/
     }
     
     void RayCastControl()  //레이 캐스트 구현
@@ -255,8 +245,9 @@ public class PlayerMoveControl : MonoBehaviour
 
             Falling(collision);
 
-            if(gameObject.activeSelf)
+            if (gameObject.activeSelf)
                 StartCoroutine(isStopMoving());
+
             if (Cannon.i.isFire)
             {
                 rb.gravityScale = 1f;
@@ -285,7 +276,6 @@ public class PlayerMoveControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform"))        //플랫폼과 닿아있지 않으면 점핑상태 이므로 움직일 수 있음
         {
             //isJumping = true;         한번 충돌하고 나서 움직이지 못하도록
-            canJump = false;
             isGrounded = false;
         }
     }
@@ -294,7 +284,6 @@ public class PlayerMoveControl : MonoBehaviour
         //임계점보다 속도가 더 빨라지면 추락
 
         Vector2 impactVelocity = collision.relativeVelocity;
-        Debug.Log(impactVelocity.y + " " + PlayerManager.i.fallingSpeed);
 
         if (impactVelocity.y > PlayerManager.i.fallingSpeed)
         {
@@ -320,7 +309,9 @@ public class PlayerMoveControl : MonoBehaviour
 
         float threshold = 0.01f;
         //임계치보다 속도가 낮으면 점프 가능
-        canJump = rb.velocity.magnitude < threshold && Mathf.Abs(rb.angularVelocity) < threshold;
+        //canJump = rb.velocity.magnitude < threshold && Mathf.Abs(rb.angularVelocity) < threshold;
+        canJump = rb.velocity.magnitude < 0.01f;
+        Debug.Log(rb.velocity.magnitude);
     }
     private void HandleCannon()
     {

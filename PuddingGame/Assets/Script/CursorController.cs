@@ -80,8 +80,6 @@ public class CursorController : MonoBehaviour
             arrow.gameObject.SetActive(false);
 
             changeImage(changeSprite[2], false);
-
-            Debug.Log(AngleInDeg(startPos, myPos));
         }
     }
     public Vector2 GetDirection()       //점프 방향 구하기
