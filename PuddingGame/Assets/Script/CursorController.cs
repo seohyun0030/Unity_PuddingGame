@@ -121,6 +121,11 @@ public class CursorController : MonoBehaviour
 
             changeImage(changeSprite[2], false);
         }
+
+        if (angle > -90 && angle < 0)
+            PlayerMoveControl.i.isLeftMoving = true;
+        else if(angle > -180)
+            PlayerMoveControl.i.isLeftMoving = false;
     }
     public void changeImage(Sprite newSprite, bool isFlip)
     {

@@ -11,12 +11,9 @@ public class PlayerMoveControl : MonoBehaviour
 {
     public static PlayerMoveControl i;
     Rigidbody2D rb;
-    SpriteRenderer sr;
-    float moveSpeed;
     public bool canJump;
     float jumpPower;
     public float angle;    //회전한 값
-    float bouncePower;
     bool matcha = false; //녹차잎 사용
     bool rasberry = false; //라즈베리 사용
     bool chocolate = false; //초콜릿 사용
@@ -32,14 +29,12 @@ public class PlayerMoveControl : MonoBehaviour
     [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
     public float rotationSpeed = 10f;
     private bool isGravityReserved = false;
-    bool isLeftMoving = false;      //왼쪽으로 이동하고 있는지 확인
+    public bool isLeftMoving;      //왼쪽으로 이동하고 있는지 확인
     public bool isJumping = false;  //jumping상태
     public bool isFalling = false;  //falling상태
     public bool isGrounded = true;     //땅에 있는지 확인
     public bool jumpPlatform = false;
     public bool isLong;
-
-    public Sprite changeImage;
 
     private void Awake()
     {
@@ -48,15 +43,12 @@ public class PlayerMoveControl : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
         canJump = PlayerManager.i.CanJump;
         jumpPower = PlayerManager.i.JumpPower;
-        bouncePower = PlayerManager.i.BouncePower;
     }
     private void Update()
     {
         jumpPower = PlayerManager.i.JumpPower;
-        bouncePower = PlayerManager.i.BouncePower;
 
         if (Cannon.i.isAttached)
         {
