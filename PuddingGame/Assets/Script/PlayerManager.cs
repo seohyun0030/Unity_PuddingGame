@@ -10,9 +10,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField, Range(0,0.9f)] public float BouncePower;  //탄력
     [SerializeField] public float JumpPower;    //점프력
     [SerializeField] public float JumpGauge;    //점프 게이지
-    [SerializeField] public float MaxSpeed;     //최고 속도
-
-    [SerializeField] public float firstJumpGauge;   //점프게이지를 인스펙터창에서 조절하기 위해
 
     [HideInInspector] public bool CanJump;       //점프를 할 수 있는 상태인지
     [HideInInspector] public float time = 0f;

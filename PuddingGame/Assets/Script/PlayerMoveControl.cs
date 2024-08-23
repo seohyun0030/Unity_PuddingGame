@@ -15,8 +15,6 @@ public class PlayerMoveControl : MonoBehaviour
     float moveSpeed;
     public bool canJump;
     float jumpPower;
-    float maxSpeed;
-    float jumpGauge;
     public float angle;    //È¸ÀüÇÑ °ª
     float bouncePower;
     bool matcha = false; //³ìÂ÷ÀÙ »ç¿ë
@@ -53,8 +51,6 @@ public class PlayerMoveControl : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         canJump = PlayerManager.i.CanJump;
         jumpPower = PlayerManager.i.JumpPower;
-        maxSpeed = PlayerManager.i.MaxSpeed;
-        jumpGauge = PlayerManager.i.JumpGauge;
         bouncePower = PlayerManager.i.BouncePower;
     }
     private void Update()
