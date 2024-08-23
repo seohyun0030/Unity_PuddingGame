@@ -4575,6 +4575,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSpeed: 5
   player: {fileID: 2058848979}
+  minPos: {x: -4, y: -15}
+  maxPos: {x: 130, y: 45}
 --- !u!81 &799950838
 AudioListener:
   m_ObjectHideFlags: 0
