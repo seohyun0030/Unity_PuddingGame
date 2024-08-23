@@ -91,22 +91,36 @@ public class CursorController : MonoBehaviour
     {
         float angle = AngleInDeg(startPos, myPos);
 
-        if (angle > 0)      //마우스를 상단에 놓는 경우
+        if (angle > -15)      //마우스를 상단에 놓는 경우
+        {
+            changeAlpha(true);
+            isLong = false;
+
             changeImage(changeSprite[2], false);
-        else if (angle > -30)   //오른쪽 1번
+        }
+
+        else if (angle > -40)   //오른쪽 3번
             changeImage(changeSprite[0], false);
 
-        else if (angle > -60)   //오른쪽 2번
+        else if (angle > -65)   //오른쪽 2번
             changeImage(changeSprite[1], false);
         
-        else if(angle > -120)   //3번
+        else if(angle > -115)   //1번
             changeImage(changeSprite[2], false);
 
-        else if(angle > -150)   //왼쪽 2번
+        else if(angle > -140)   //왼쪽 2번
             changeImage(changeSprite[1], true);
 
-        else if (angle > -180)   //왼쪽 1번
+        else if (angle > -165)   //왼쪽 3번
             changeImage(changeSprite[0], true);
+
+        else                     //왼쪽 불가 영역
+        {
+            changeAlpha(true);
+            isLong = false;
+
+            changeImage(changeSprite[2], false);
+        }
     }
     public void changeImage(Sprite newSprite, bool isFlip)
     {
