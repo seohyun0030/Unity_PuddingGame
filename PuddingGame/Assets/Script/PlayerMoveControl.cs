@@ -11,14 +11,9 @@ public class PlayerMoveControl : MonoBehaviour
 {
     public static PlayerMoveControl i;
     Rigidbody2D rb;
-    SpriteRenderer sr;
-    float moveSpeed;
     public bool canJump;
     float jumpPower;
-    float maxSpeed;
-    float jumpGauge;
     public float angle;    //회전한 값
-    float bouncePower;
     bool matcha = false; //녹차잎 사용
     bool rasberry = false; //라즈베리 사용
     bool chocolate = false; //초콜릿 사용
@@ -34,14 +29,12 @@ public class PlayerMoveControl : MonoBehaviour
     [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
     public float rotationSpeed = 10f;
     private bool isGravityReserved = false;
-    bool isLeftMoving = false;      //왼쪽으로 이동하고 있는지 확인
+    public bool isLeftMoving;      //왼쪽으로 이동하고 있는지 확인
     public bool isJumping = false;  //jumping상태
     public bool isFalling = false;  //falling상태
     public bool isGrounded = true;     //땅에 있는지 확인
     public bool jumpPlatform = false;
     public bool isLong;
-
-    public Sprite changeImage;
 
     private void Awake()
     {
@@ -50,17 +43,12 @@ public class PlayerMoveControl : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
         canJump = PlayerManager.i.CanJump;
         jumpPower = PlayerManager.i.JumpPower;
-        maxSpeed = PlayerManager.i.MaxSpeed;
-        jumpGauge = PlayerManager.i.JumpGauge;
-        bouncePower = PlayerManager.i.BouncePower;
     }
     private void Update()
     {
         jumpPower = PlayerManager.i.JumpPower;
-        bouncePower = PlayerManager.i.BouncePower;
 
         if (Cannon.i.isAttached)
         {
@@ -394,6 +382,7 @@ public class PlayerMoveControl : MonoBehaviour
         {
             if (rb.gravityScale > 0f)
             {
+                //rb.velocity = Vector2.zero;
                 rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
                 rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             }
@@ -412,7 +401,8 @@ public class PlayerMoveControl : MonoBehaviour
             else
                 jumpDirection = new Vector3(1, 1, 0).normalized;
 
-            rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
+            rb.velocity = Vector2.zero;
+            //rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
             rb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
         }
         else if(i == 2)
