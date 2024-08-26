@@ -14403,6 +14403,7 @@ MonoBehaviour:
   - {fileID: 1869679514335190659, guid: cad6c6be8739feb48a29198ed7b5eadc, type: 3}
   - {fileID: 6261179091068579846, guid: 1671978545edba344ae2bd9a1d6e45ca, type: 3}
   - {fileID: 330994998814286021, guid: ffc6c481e7a4840419976e0d35f26deb, type: 3}
+  toppingObj: {fileID: 0}
 --- !u!4 &1686547097
 Transform:
   m_ObjectHideFlags: 0
@@ -18400,6 +18401,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1402079377435233665, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
+      propertyPath: isLong
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402079377435233665, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
       propertyPath: changeImage
       value: 
       objectReference: {fileID: -855298285791758126, guid: edaa83dc44cf6af47a33065e490dd6fb, type: 3}
@@ -18417,11 +18422,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6799938352629571395, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.30545807
+      value: -0.55
       objectReference: {fileID: 0}
     - target: {fileID: 6799938352629571395, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6104393
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 6799938352629571395, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
       propertyPath: m_LocalPosition.z
