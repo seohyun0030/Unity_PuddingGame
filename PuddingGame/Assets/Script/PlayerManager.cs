@@ -65,6 +65,9 @@ public class PlayerManager : MonoBehaviour
         if (collision.CompareTag("SavePoint"))      //세이프 포인트에 닿으면
         {
             SavePos = collision.transform.position;     //위치 정보 저장
+            PlayerPrefs.SetFloat("SavePosX", SavePos.x);
+            PlayerPrefs.SetFloat("SavePosY", SavePos.y);
+
             collision.GetComponent<BoxCollider2D>().enabled = false;    //세이프 포인트 콜라이더 삭제
         }
         else if (collision.CompareTag("EndPoint"))  //종료지점에 닿으면
