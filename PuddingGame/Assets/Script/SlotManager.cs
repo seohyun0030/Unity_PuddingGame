@@ -11,6 +11,7 @@ public class SlotManager : MonoBehaviour
     [SerializeField] Transform Slot;   //토핑을 저장할 슬롯
     public int ToppingCnt = 1;      //저장 가능한 토핑 개수
     public GameObject[] Toppings;
+    public GameObject toppingObj;   //토핑을 모은 부모 오브젝트
     int n;      //토핑 순서 나타냄
 
     private List<GameObject> slots = new List<GameObject>();
@@ -72,6 +73,14 @@ public class SlotManager : MonoBehaviour
         GameObject UsedTopping = slots[0];
         slots.RemoveAt(0);          //리스트에서 0번째 요소 삭제
         Destroy(Slot.GetChild(0).gameObject);       //Ui에서도 삭제
+    }
+
+    public void RespawnTopping()        //토핑 재생성하기
+    {
+        for(int i = 0; i < toppingObj.transform.childCount; i++)
+        {
+            toppingObj.transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
     public string GetTopping()
     {

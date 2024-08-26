@@ -295,11 +295,9 @@ public class PlayerMoveControl : MonoBehaviour
 
         yield return new WaitForSeconds(1f);        //1초 기다리기
 
-        float threshold = 0.01f;
         //임계치보다 속도가 낮으면 점프 가능
         //canJump = rb.velocity.magnitude < threshold && Mathf.Abs(rb.angularVelocity) < threshold;
         canJump = rb.velocity.magnitude < 0.01f;
-        Debug.Log(rb.velocity.magnitude);
     }
     private void HandleCannon()
     {

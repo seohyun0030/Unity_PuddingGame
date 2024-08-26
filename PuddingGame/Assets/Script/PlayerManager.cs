@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     public float speed; // 플레이어 속도
     public float fallingSpeed;  //낙하 속도
 
+    public Vector3 SavePos;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -54,9 +56,21 @@ public class PlayerManager : MonoBehaviour
     }
     public void GoToSavePoint()
     {
-        transform.position = SavePointManager.i.savePoint;
+        transform.position = SavePos;
         rigidbody.velocity = new Vector2(0, 0);
         //상태 원상복귀 구현 해야함
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SavePoint"))      //세이프 포인트에 닿으면
+        {
+            SavePos = collision.transform.position;     //위치 정보 저장
+            collision.GetComponent<BoxCollider2D>().enabled = false;    //세이프 포인트 콜라이더 삭제
+        }
+        else if (collision.CompareTag("EndPoint"))  //종료지점에 닿으면
+        {
+            SceneManager.LoadScene(SceneManager.sceneCount+1);      //다음 씬으로 이동
+        }
     }
 
     /*void Slide_Bounce()    //마찰력, 탄력 시험 용 --> 나중에 삭제

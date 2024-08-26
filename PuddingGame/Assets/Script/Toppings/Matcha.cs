@@ -8,7 +8,8 @@ public class Matcha : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
             SlotManager.i.AddTopping("Matcha");
         }
     }
