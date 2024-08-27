@@ -179,17 +179,20 @@ MonoBehaviour:
   angle: 0
   fallingSpeed: -2
   flyingSpeed: 10
-  limitDistance: 10
+  limitDistance: 6
   clingJumpForce: 0.5
-  clingRay: 1.37
+  clingRay: 1.33
   rayOffset: -0.5
   floorMaxRay: 0.6
   rightMaxRay: 0.6
   leftMaxRay: 0.6
   rotationSpeed: 10
+  isLeftMoving: 0
   isJumping: 0
   isFalling: 0
+  isGrounded: 1
   jumpPlatform: 0
+  isLong: 0
 --- !u!114 &9073303877650764129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,8 +209,6 @@ MonoBehaviour:
   BouncePower: 0.5
   JumpPower: 3.5
   JumpGauge: 0.5
-  MaxSpeed: 3.5
-  firstJumpGauge: 0.2
   CanJump: 0
   time: 0
   Physics: {fileID: 6200000, guid: 7e4cf6a4756c4754190876f24eeeeb50, type: 2}
@@ -215,3 +216,4 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   speed: 0
   fallingSpeed: 20
+  SavePos: {x: 0, y: 0, z: 0}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 using Transform = UnityEngine.Transform;
@@ -14,7 +15,7 @@ public class PlayerMoveControl : MonoBehaviour
     public bool canJump;
     float jumpPower;
     public float angle;    //회전한 값
-    bool matcha = false; //녹차잎 사용
+    public bool matcha = false; //녹차잎 사용
     bool rasberry = false; //라즈베리 사용
     bool chocolate = false; //초콜릿 사용
     [SerializeField] float fallingSpeed = -5f; // 떨어지는 속도
@@ -57,23 +58,25 @@ public class PlayerMoveControl : MonoBehaviour
             HandleCannon();
         }
 
-        /*else if (chocolate && Input.GetKeyDown(KeyCode.Z))
-        {
-            Vector2 jumpDirection = Vector2.up + (Vector2)(transform.position.x < 0 ? Vector2.right : Vector2.left).Rotate(60);
-            rb.velocity = jumpDirection.normalized * clingJumpForce;
-            rb.gravityScale = 1f;
-            chocolate = false;
-        }*/
-
         RayCastControl();
 
         isLong = CursorController.i.isLong;
 
         if (Input.GetMouseButtonUp(0) && canJump && isGrounded && isLong || (jumpPlatform && Input.GetMouseButtonUp(0)))     //마우스를 뗐을 때 점프가능 상태이고 땅에 있으면 점프 가능
         {
+            
             Move();
             PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
         }
+        if(chocolate && Input.GetMouseButtonUp(0))
+        {
+            chocolate = false;
+            Move();
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            PlayerManager.i.JumpGauge = 0.2f;
+            
+        }
+
     }
     void FixedUpdate()
     {
@@ -91,6 +94,14 @@ public class PlayerMoveControl : MonoBehaviour
             if (matcha)
             {
                 rb.velocity = new Vector2(rb.velocity.x, fallingSpeed);
+                if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+                {
+                    rb.velocity = new Vector2(-2f, rb.velocity.y);
+                }
+                else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+                {
+                    rb.velocity = new Vector2(2f, rb.velocity.y);
+                }
             }
             if (rasberry)
             {
@@ -246,6 +257,11 @@ public class PlayerMoveControl : MonoBehaviour
             {
                 rb.velocity = Vector3.zero;
                 matcha = false;
+            }
+            if (rasberry)
+            {
+                rb.velocity = Vector3.zero;
+                rasberry = false;
             }
            
         }
@@ -405,14 +421,14 @@ public class PlayerMoveControl : MonoBehaviour
             //rb.velocity = new Vector2(rb.velocity.x, 0);  // 현재의 수직 속도 초기화
             rb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
         }
-        else if(i == 2)
+        else if(i == 2) // 초콜렛
         {
             if(isJumping || isFalling)
             {
                 chocolate = true;
             }
         }
-        else if(i == 3)
+        else if(i == 3) // 라즈베리
         {
             if(isJumping || isFalling)
             {
@@ -421,7 +437,7 @@ public class PlayerMoveControl : MonoBehaviour
                 StartCoroutine(Rasberry_Co());
             }
         }
-        else if(i == 4)
+        else if(i == 4) // 녹차
         {
             
             if (!isFalling)
@@ -443,22 +459,22 @@ public class PlayerMoveControl : MonoBehaviour
         
         while (rasberry && inputTime < 2f)
         {
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
                 flyDirection = Vector2.up;
                 break;
             }
-            else if (Input.GetKey(KeyCode.DownArrow))
+            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.D))
             {
                 flyDirection = Vector2.down;
                 break;
             }
-            else if (Input.GetKey(KeyCode.LeftArrow))
+            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
                 flyDirection = Vector2.left;
                 break;
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.F))
             {
                 flyDirection = Vector2.right;
                 break;
@@ -484,6 +500,7 @@ public class PlayerMoveControl : MonoBehaviour
             rb.gravityScale = 1f;
         }
     }
+    private bool isRotated = false; // 회전
     private void Chocolate()
     {
         RaycastHit2D left = Physics2D.Raycast(transform.position, Vector2.left, clingRay, LayerMask.GetMask("Platform"));
@@ -492,13 +509,24 @@ public class PlayerMoveControl : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0f;
-            transform.position = new Vector2(left.point.x-rayOffset, transform.position.y);
+            transform.position = new Vector2(left.point.x - rayOffset, transform.position.y);
+            if (!isRotated)
+            {
+                transform.Rotate(0, 0, -90);
+                isRotated = true;
+            }
+            
         }
         else if (right.collider != null)
         {
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0f;
             transform.position = new Vector2(right.point.x+rayOffset, transform.position.y);
+            if (!isRotated)
+            {
+                transform.Rotate(0, 0, 90);
+                isRotated = true;
+            }
         }
        
     }
