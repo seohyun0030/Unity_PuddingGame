@@ -37,22 +37,25 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!DialogueUI.i.dialogueText.IsActive())
         {
-            if(SlotManager.i.GetTopping()=="LemonImage" || SlotManager.i.GetTopping() == "CherryImage") //만약 토핑이 레몬이거나 체리이면
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("jumping= " + PlayerMoveControl.i.isJumping);
-                Debug.Log("falling= " + PlayerMoveControl.i.isFalling);
-                if (PlayerMoveControl.i.isJumping || PlayerMoveControl.i.isFalling)      //jumping이나 falling 상태이면
+                if (SlotManager.i.GetTopping() == "LemonImage" || SlotManager.i.GetTopping() == "CherryImage") //만약 토핑이 레몬이거나 체리이면
+                {
+                    Debug.Log("jumping= " + PlayerMoveControl.i.isJumping);
+                    Debug.Log("falling= " + PlayerMoveControl.i.isFalling);
+                    if (PlayerMoveControl.i.isJumping || PlayerMoveControl.i.isFalling)      //jumping이나 falling 상태이면
+                        SlotManager.i.UseTopping();
+                }
+                else
+                {
                     SlotManager.i.UseTopping();
+                }
             }
-            else
-            {
-                SlotManager.i.UseTopping();
-            }
-        }
 
-        speed = rigidbody.velocity.magnitude; // 플레이어 속도
+            speed = rigidbody.velocity.magnitude; // 플레이어 속도
+        }
     }
     public void GoToSavePoint()
     {
