@@ -177,11 +177,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canJump: 0
   angle: 0
+  matcha: 0
   fallingSpeed: -2
   flyingSpeed: 10
   limitDistance: 6
   clingJumpForce: 0.5
-  clingRay: 1.33
+  clingRay: 0.54
   rayOffset: -0.5
   floorMaxRay: 0.6
   rightMaxRay: 0.6

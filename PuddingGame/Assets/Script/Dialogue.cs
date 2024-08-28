@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -39,7 +39,7 @@ public class Dialogue : EditorWindow
                 else
                 {
 
-                    Debug.Log("Ω«∆–");
+                    Debug.Log("¬Ω√á√Ü√ê");
 
                 }
 
