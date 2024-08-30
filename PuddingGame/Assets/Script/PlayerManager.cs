@@ -16,8 +16,6 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public float time = 0f;
     public PhysicsMaterial2D Physics;
     public BoxCollider2D boxCollider2D;
-    float currentFriction;  //현재 마찰력
-    float currentBouncePower;   //현재 탄력
     public Rigidbody2D rigidbody;
     public float speed; // 플레이어 속도
     public float fallingSpeed;  //낙하 속도
@@ -30,10 +28,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
-        Physics.friction = Friction;    //PhysicsMaterial2D의 마찰력 부분에 변수 할당
-        Physics.bounciness = BouncePower;
-        /*currentFriction = Friction;             //현재 마찰력 저장
-        currentBouncePower = BouncePower;       //현재 탄력 저장*/
+        ChangeFriction_Bounce(Friction, BouncePower);
     }
     private void Update()
     {
@@ -79,34 +74,13 @@ public class PlayerManager : MonoBehaviour
             PlayerPrefs.DeleteAll();
         }
     }
-
-    /*void Slide_Bounce()    //마찰력, 탄력 시험 용 --> 나중에 삭제
+    public void ChangeFriction_Bounce(float newFriction, float newBoune)
     {
-        if (Friction != currentFriction)    //마찰력이 바뀌었다면
-        {
-            FrictionControl.friction = Friction;    //마찰력 값 할당하기
-            currentFriction = Friction;             //현재 마찰력 값 저장
-
-            //콜라이더 null로 바꾸기 -> 마찰력 값이 바뀌어도 인게임에서 마찰력이 바뀌지 않는 것처럼 보이는 오류 수정하기 위해
-            boxCollider2D.sharedMaterial = null;
-            boxCollider2D.sharedMaterial = FrictionControl;     //콜라이더 다시 할당해주기
-        }
-        if(BouncePower != currentBouncePower)
-        {
-            FrictionControl.bounciness = BouncePower;   //탄력 값 할당하기
-            currentBouncePower = BouncePower;           //현재 탄력 값 저장
-
-            boxCollider2D.sharedMaterial = null;
-            boxCollider2D.sharedMaterial = FrictionControl;     //콜라이더 다시 할당해주기
-        }
-    }*/
-    /*void ChangeBoncePower(float newBonce)
-    {
-        FrictionControl.bounciness = newBonce;    //마찰력 값 할당하기
-        currentBouncePower = newBonce;             //현재 마찰력 값 저장
+        Physics.friction = newFriction;    //마찰력 값 할당하기
+        Physics.bounciness = newBoune;     //탄성력 값 할당하기
 
         //콜라이더 null로 바꾸기 -> 마찰력 값이 바뀌어도 인게임에서 마찰력이 바뀌지 않는 것처럼 보이는 오류 수정하기 위해
         boxCollider2D.sharedMaterial = null;
-        boxCollider2D.sharedMaterial = FrictionControl;     //콜라이더 다시 할당해주기
-    }*/
+        boxCollider2D.sharedMaterial = Physics;     //콜라이더 다시 할당해주기
+    }
 }
