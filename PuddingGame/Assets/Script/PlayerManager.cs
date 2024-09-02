@@ -73,6 +73,15 @@ public class PlayerManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.sceneCount+1);      //다음 씬으로 이동
             PlayerPrefs.DeleteAll();
         }
+        else if (collision.CompareTag("Topping"))
+        {
+            StartCoroutine(RespawnTopping(collision));
+        }
+    }
+    IEnumerator RespawnTopping(Collider2D c)
+    {
+        yield return new WaitForSeconds(5f);
+        c.gameObject.SetActive(true);
     }
     public void ChangeFriction_Bounce(float newFriction, float newBoune)
     {
