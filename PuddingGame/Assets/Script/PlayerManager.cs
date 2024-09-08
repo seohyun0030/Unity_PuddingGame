@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Spine.Unity;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     public float fallingSpeed;  //낙하 속도
 
     public Vector3 SavePos;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -70,7 +72,7 @@ public class PlayerManager : MonoBehaviour
         }
         else if (collision.CompareTag("EndPoint"))  //종료지점에 닿으면
         {
-            SceneManager.LoadScene(SceneManager.sceneCount+1);      //다음 씬으로 이동
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);  //다음 씬으로 이동
             PlayerPrefs.DeleteAll();
         }
         else if (collision.CompareTag("Topping"))
@@ -91,5 +93,16 @@ public class PlayerManager : MonoBehaviour
         //콜라이더 null로 바꾸기 -> 마찰력 값이 바뀌어도 인게임에서 마찰력이 바뀌지 않는 것처럼 보이는 오류 수정하기 위해
         boxCollider2D.sharedMaterial = null;
         boxCollider2D.sharedMaterial = Physics;     //콜라이더 다시 할당해주기
+    }
+    public void Animation(string b)
+    {
+        SkeletonAnimation anim;
+        anim = GetComponent<SkeletonAnimation>();
+
+        if(b=="jump")
+            anim.AnimationState.AddAnimation(0, "jump2", false, 0);
+
+        else if(b=="idle")
+            anim.AnimationState.AddAnimation(0, "idel", true, 0);
     }
 }

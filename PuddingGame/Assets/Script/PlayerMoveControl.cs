@@ -133,6 +133,8 @@ public class PlayerMoveControl : MonoBehaviour
         StartCoroutine(JumpDelay());
         jumpPlatform = false;
 
+        PlayerManager.i.Animation("jump");
+
     }
     
     void RayCastControl()  //레이 캐스트 구현
@@ -265,7 +267,7 @@ public class PlayerMoveControl : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 rasberry = false;
             }
-           
+            PlayerManager.i.Animation("idle");
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
