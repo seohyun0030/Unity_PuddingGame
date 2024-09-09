@@ -7779,11 +7779,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8205590320be68408be381ec6defa86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 5
+  cameraSpeed: 8
   player: {fileID: 1131327728}
   minPos: {x: -4, y: 0.5}
   maxPos: {x: 110.8, y: 57.6}
-  playerXPos: 10
+  playerXPos: 9
   playerYPos: 5
 --- !u!81 &799950838
 AudioListener:
