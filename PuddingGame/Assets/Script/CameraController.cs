@@ -10,6 +10,9 @@ public class CameraController : MonoBehaviour
 
     public Vector2 minPos;
     public Vector2 maxPos;
+
+    public float playerXPos;
+    public float playerYPos;
     private void FixedUpdate()
     {
         playerMoveControl = player.GetComponent<PlayerMoveControl>();
@@ -34,7 +37,8 @@ public class CameraController : MonoBehaviour
         this.transform.Translate(moveVector);*/
 
         CameraMove();
-        LimitPosition();
+        //LimitPosition();
+        LimitPositionPlayer();
     }
     void CameraMove()
     {
@@ -51,6 +55,27 @@ public class CameraController : MonoBehaviour
     {
         Vector3 position = transform.position;
 
+        // 영역을 벗어나지 않도록 제한
+        position.x = Mathf.Clamp(position.x, minPos.x, maxPos.x);
+        position.y = Mathf.Clamp(position.y, minPos.y, maxPos.y);
+
+        // 제한된 위치로 업데이트
+        transform.position = position;
+    }
+    void LimitPositionPlayer()  //플레이어의 위치에 따라 카메라 이동 제한
+    {
+        Vector3 position = transform.position;
+
+        GameObject p = GameObject.FindGameObjectWithTag("Player");
+
+        if(p != null)
+        {
+            Vector2 playerPos = p.transform.position;
+
+            // 영역을 벗어나지 않도록 제한
+            position.x = Mathf.Clamp(position.x, playerPos.x - playerXPos, playerPos.x + playerXPos);
+            position.y = Mathf.Clamp(position.y, playerPos.y - playerYPos, playerPos.y + playerYPos);
+        }
         // 영역을 벗어나지 않도록 제한
         position.x = Mathf.Clamp(position.x, minPos.x, maxPos.x);
         position.y = Mathf.Clamp(position.y, minPos.y, maxPos.y);

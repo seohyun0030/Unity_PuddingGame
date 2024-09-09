@@ -8,7 +8,6 @@ public class CursorController : MonoBehaviour
 {
     public static CursorController i;
     [SerializeField] Transform currentCursor;   // 커서의 현재 위치
-    RectTransform rectTransform;
     [SerializeField] GameObject Player;
     [SerializeField] Image mouseCircle;     //마우스 위치에 생기는 원
     [SerializeField] Image arrow;           //화살표
@@ -24,10 +23,6 @@ public class CursorController : MonoBehaviour
     private void Awake()
     {
         i = this;
-    }
-    private void Start()
-    {
-        rectTransform = GetComponent<RectTransform>();
     }
 
     void Update()
@@ -68,7 +63,7 @@ public class CursorController : MonoBehaviour
                 isLong = true;
             }
 
-            findAngle();
+            //findAngle();---------------오류 SpriteRenderer
 
             PlayerManager.i.JumpGauge = Mathf.Lerp(0.2f, 1, arrow.transform.localScale.x / MaxLength);
             //최대 길이와 화살표의 길이를 나눠서 0.2, 1로 선형보간
@@ -79,7 +74,7 @@ public class CursorController : MonoBehaviour
             mouseCircle.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
 
-            changeImage(changeSprite[2], false);
+            //changeImage(changeSprite[2], false);---------------오류 SpriteRenderer
         }
     }
     public Vector2 GetDirection()       //점프 방향 구하기
