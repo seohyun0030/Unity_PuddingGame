@@ -10,6 +10,7 @@ public class NPCManager : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isActive) // 플레이어와 충돌했을 때
         {
+            Debug.Log("NPC");
             dialogueUI.StartDialogue(dialogueNo);
         }
     }
