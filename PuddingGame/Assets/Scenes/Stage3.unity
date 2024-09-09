@@ -22778,16 +22778,24 @@ PrefabInstance:
       value: Player1
       objectReference: {fileID: 0}
     - target: {fileID: 1168091971585114960, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8845215
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168091971585114960, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_Size.y
-      value: 3.9389553
+      value: 0.8956771
       objectReference: {fileID: 0}
     - target: {fileID: 1168091971585114960, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1168091971585114960, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.009010315
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168091971585114960, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_Offset.y
-      value: 2.2692957
+      value: 0.55829024
       objectReference: {fileID: 0}
     - target: {fileID: 2073744750206138292, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: clingRay
@@ -22803,11 +22811,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 105.931
+      value: 106.167
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.986
+      value: 4.914
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z

@@ -23,6 +23,8 @@ public class PlayerManager : MonoBehaviour
 
     public Vector3 SavePos;
 
+    SkeletonAnimation anim;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -31,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         ChangeFriction_Bounce(Friction, BouncePower);
+        anim = GetComponent<SkeletonAnimation>();
     }
     private void Update()
     {
@@ -96,13 +99,10 @@ public class PlayerManager : MonoBehaviour
     }
     public void Animation(string b)
     {
-        SkeletonAnimation anim;
-        anim = GetComponent<SkeletonAnimation>();
-
         if(b=="jump")
-            anim.AnimationState.AddAnimation(0, "jump2", false, 0);
+            anim.AnimationState.SetAnimation(0, "jump2", false);
 
         else if(b=="idle")
-            anim.AnimationState.AddAnimation(0, "idel", true, 0);
+            anim.AnimationState.SetAnimation(0, "idel", true);
     }
 }
