@@ -2,11 +2,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using static DialogueSystem;
+using Spine;
+using Spine.Unity;
+using UnityEngine.SceneManagement;
 
 public class DialogueUI : MonoBehaviour
 {
     public static DialogueUI i;
+    public SkeletonAnimation playerSkeletonAnimation;
+    public TMP_Text nameText; // 이름 
     public TMP_Text dialogueText; // 대화 내용을 표시할 Text 컴포넌트
+    public Image playerImage;
+    public Image npcImage;
+    public float nameX; // 이름UI 위치
+    public float nameY;
+    public Attachment cream;
+    public Attachment cherry;
     private DialogueSystem dialogueSystem;
     private NPCManager npc;
     private int currentNo;
@@ -18,44 +30,174 @@ public class DialogueUI : MonoBehaviour
         npc = FindObjectOfType<NPCManager>();
         string documentID = "1jwP7whZvA5w7gJFezyhpXNXFDhdBbbDSXM1Wb_BHO58";
         string gid = "0";
+
         GoogleSheet.GetSheetData(documentID, gid, this, (success, data) =>
         {
             if (success && data != null)
             {
                 dialogueSystem.LoadDialogues(data);
-                DisplayNextDialogue();
+                //DisplayNextDialogue();
+                if (SceneManager.GetActiveScene().name == "Stage1")
+                {
+                    var skeleton = playerSkeletonAnimation.Skeleton;
+
+                    var slot1 = skeleton.FindSlot("cream");
+                    var slot2 = skeleton.FindSlot("cherry");
+                    slot2.Attachment = null;
+                    slot1.Attachment = null;
+                    StartDialogue(0);
+                }
             }
             else
             {
                 Debug.LogError("데이터 로드 실패");
             }
         });
+        if (SceneManager.GetActiveScene().name == "Stage2")
+        {
+            var skeleton = playerSkeletonAnimation.Skeleton;
+
+            var slot1 = skeleton.FindSlot("cream");
+            var slot2 = skeleton.FindSlot("cherry");
+            cream = slot1.Attachment;
+            cherry = slot2.Attachment;
+            slot2.Attachment = null;
+            slot1.Attachment = null;
+        }
+        //gameObject.SetActive(false);
     }
     private void Update()
     {
-        if (dialogueText.IsActive() && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))) // 마우스 클릭 시 대화 넘기기
+        if (dialogueText.gameObject.activeSelf && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))) // 마우스 클릭 시 대화 넘기기
         {
             DisplayNextDialogue();
         }
     }
     public void StartDialogue(int no)
     {
+        nameText.gameObject.SetActive(true);
         dialogueText.gameObject.SetActive(true);
         currentNo = no;
         DisplayNextDialogue();
+        Time.timeScale = 0.00001f;
     }
     private void DisplayNextDialogue()
     {
-        string nextDialogue = dialogueSystem.GetNextDialogue(currentNo);
+        DialogueEntry nextDialogue = dialogueSystem.GetNextDialogue(currentNo);
 
-        if (nextDialogue == null)
+        if (dialogueText.IsActive() && nextDialogue == null) // 대화 끝
         {
-            dialogueText.gameObject.SetActive(false); // 대화가 끝날 때 호출
-            npc.EndDialog();
+            GameObjectActivate(false);
+            
+            Time.timeScale = 1f;
+            if (SceneManager.GetActiveScene().name == "Stage2")
+            {
+                npc.EndDialogue();
+                var skeleton = playerSkeletonAnimation.Skeleton;
+
+                var slot1 = skeleton.FindSlot("cream");
+                var slot2 = skeleton.FindSlot("cherry");
+                if(slot1 != null && slot2 != null)
+                {
+                    slot2.Attachment = cherry;
+                    slot1.Attachment = cream;
+                } 
+               
+            }
+            else if (SceneManager.GetActiveScene().name == "Stage3")
+            {
+                npc.EndDialogue();
+                //ChangePlayerSkin("Mint");
+            }
+            else if(SceneManager.GetActiveScene().name == "Stage4")
+            {
+                npc.EndDialogue();
+            }
+            else if(SceneManager.GetActiveScene().name == "Stage5")
+            {
+                npc.EndDialogue();
+            }
         }
         else
         {
-            dialogueText.text = nextDialogue; // 대화 내용을 표시
+            Debug.Log($"다음 대화: {nextDialogue.Name}: {nextDialogue.Line}");
+            nameText.text = nextDialogue.Name;
+            dialogueText.text = nextDialogue.Line; // 대화 내용을 표시
+            HandleImage(nextDialogue);
+        }
+    }
+    private void GameObjectActivate(bool no)
+    {
+        dialogueText.gameObject.SetActive(no);
+        nameText.gameObject.SetActive(no);
+        playerImage.gameObject.SetActive(no);
+        npcImage.gameObject.SetActive(no);
+    }
+    private void HandleImage(DialogueEntry next)
+    {
+        int pc = next.PC;
+        int npc = next.NPC;
+
+        //플레이어 이미지
+        if (nameText.text == "푸딩") 
+        {
+            //playerImage.sprite = LoadImage(pc);
+            playerImage.gameObject.SetActive(true);
+            RectTransform nameTextRect = nameText.GetComponent<RectTransform>();
+            nameTextRect.anchoredPosition = new Vector2(nameX, nameY); // 위치 수정
+        }
+        else if(npcImage.IsActive())
+        {
+            playerImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            playerImage.gameObject.SetActive(false);
+        }
+        //NPC 이미지
+        if(nameText.text != "푸딩")
+        {
+            //npcImage.sprite = LoadImage(npc);
+            npcImage.gameObject.SetActive(true);
+            RectTransform nameTextRect = nameText.GetComponent<RectTransform>();
+            nameTextRect.anchoredPosition = new Vector2(-nameX, nameY); // 위치 수정
+        }
+        else if (playerImage.IsActive())
+        {
+            npcImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            npcImage.gameObject.SetActive(false);
+            
+        }
+        
+    }
+    private Sprite LoadImage(int num)
+    {
+        return Resources.Load<Sprite>($"Images");
+    }
+    private void ChangePlayerSkin(string skinName)
+    {
+        if (playerSkeletonAnimation != null)
+        {
+            var skeleton = playerSkeletonAnimation.Skeleton;
+            var newSkin = skeleton.Data.FindSkin(skinName);
+
+            if (newSkin != null)
+            {
+                skeleton.SetSkin(newSkin);
+                skeleton.SetSlotsToSetupPose();
+                playerSkeletonAnimation.AnimationState.Apply(skeleton);
+            }
+            else
+            {
+                Debug.LogError($"스킨 '{skinName}'을 찾을 수 없음.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Skeleton 설정 x");
         }
     }
 }

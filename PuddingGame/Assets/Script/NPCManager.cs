@@ -14,8 +14,9 @@ public class NPCManager : MonoBehaviour
             dialogueUI.StartDialogue(dialogueNo);
         }
     }
-    public void EndDialog()
+    public void EndDialogue()
     {
         isActive = false;
     }
+
 }
