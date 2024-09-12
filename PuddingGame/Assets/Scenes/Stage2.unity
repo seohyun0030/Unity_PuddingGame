@@ -9792,6 +9792,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 1168091971585114960, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: m_Size.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168091971585114960, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168091971585114960, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168091971585114960, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.950556
@@ -9831,6 +9847,10 @@ PrefabInstance:
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7486024907907391955, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: JumpPower
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 8487472260730769595, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_Mesh

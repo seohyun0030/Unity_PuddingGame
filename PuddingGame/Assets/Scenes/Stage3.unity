@@ -9119,7 +9119,7 @@ Transform:
   m_GameObject: {fileID: 650492372}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 207.08109, y: 33.353306, z: 0}
+  m_LocalPosition: {x: 206.73216, y: 34.225586, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9704,7 +9704,7 @@ Transform:
   m_GameObject: {fileID: 679145288}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33, y: 0.50000095, z: 0}
+  m_LocalPosition: {x: 33, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 31.999855, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13093,7 +13093,7 @@ Transform:
   m_GameObject: {fileID: 927126912}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.9063079, w: 0.42261827}
-  m_LocalPosition: {x: 33.02503, y: 65.842834, z: 0}
+  m_LocalPosition: {x: 33.87305, y: 66.382484, z: 0}
   m_LocalScale: {x: 5, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15667,7 +15667,7 @@ Transform:
   m_GameObject: {fileID: 1082657568}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25, y: 4.5, z: 0}
+  m_LocalPosition: {x: 25, y: 4, z: 0}
   m_LocalScale: {x: 4, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28246,7 +28246,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
   m_FlipX: 0
@@ -29435,7 +29435,7 @@ Transform:
   m_GameObject: {fileID: 2124773485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.08715578, w: 0.9961947}
-  m_LocalPosition: {x: 41.456905, y: 46.010788, z: 0}
+  m_LocalPosition: {x: 41.35066, y: 45.08996, z: 0}
   m_LocalScale: {x: 1.45129, y: 9.082311, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29925,11 +29925,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 99.99
+      value: 115.31596
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.74
+      value: 58.334248
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30014,6 +30014,10 @@ PrefabInstance:
     - target: {fileID: 7486024907907391955, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: BouncePower
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7486024907907391955, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: fallingSpeed
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8487472260730769595, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_Mesh
