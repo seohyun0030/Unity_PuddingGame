@@ -63,7 +63,7 @@ public class CursorController : MonoBehaviour
                 isLong = true;
             }
 
-            //findAngle();---------------오류 SpriteRenderer
+            findAngle();
 
             PlayerManager.i.JumpGauge = Mathf.Lerp(0.2f, 1, arrow.transform.localScale.x / MaxLength);
             //최대 길이와 화살표의 길이를 나눠서 0.2, 1로 선형보간
@@ -91,10 +91,10 @@ public class CursorController : MonoBehaviour
             changeAlpha(true);
             isLong = false;
 
-            changeImage(changeSprite[2], false);
+            //changeImage(changeSprite[2], false);
         }
 
-        else if (angle > -40)   //오른쪽 3번
+        /*else if (angle > -40)   //오른쪽 3번
             changeImage(changeSprite[0], false);
 
         else if (angle > -65)   //오른쪽 2번
@@ -107,14 +107,14 @@ public class CursorController : MonoBehaviour
             changeImage(changeSprite[1], true);
 
         else if (angle > -165)   //왼쪽 3번
-            changeImage(changeSprite[0], true);
+            changeImage(changeSprite[0], true);*/
 
-        else                     //왼쪽 불가 영역
+        else if(angle < -165)                    //왼쪽 불가 영역
         {
             changeAlpha(true);
             isLong = false;
 
-            changeImage(changeSprite[2], false);
+            //changeImage(changeSprite[2], false);
         }
 
         if (angle > -90 && angle < 0)
