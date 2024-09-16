@@ -56,6 +56,11 @@ public class PlayerManager : MonoBehaviour
 
             speed = rigidbody.velocity.magnitude; // 플레이어 속도
         }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1 && transform.position.x > 90)     //스테이지1에서 카트로 낙사 방지
+        {
+            fallingSpeed = 100;
+        }
     }
     public void GoToSavePoint()
     {
