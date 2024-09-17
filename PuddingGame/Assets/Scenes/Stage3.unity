@@ -1705,7 +1705,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1402079377435233665, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
       propertyPath: clingRay
-      value: 0.6
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402079377435233665, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
+      propertyPath: rayOffset
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6799938352629571395, guid: 2b860926893296d4ea10db1dca4b4412, type: 3}
       propertyPath: m_LocalScale.x
@@ -29925,11 +29929,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 115.31596
+      value: 105.392
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 58.334248
+      value: 4.812
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z

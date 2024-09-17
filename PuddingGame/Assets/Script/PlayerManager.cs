@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     public Rigidbody2D rigidbody;
     public float speed; // 플레이어 속도
     public float fallingSpeed;  //낙하 속도
-
+   
     public Vector3 SavePos;
 
     SkeletonAnimation anim;

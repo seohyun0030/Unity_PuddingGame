@@ -54,12 +54,6 @@ public class PlayerMoveControl : MonoBehaviour
             Time.timeScale = 1f;
             jumpPower = PlayerManager.i.JumpPower;
 
-            if (Cannon.i.isAttached)
-            {
-                transform.rotation = Cannon.i.transform.rotation;
-                rb.gravityScale = 0f;
-                HandleCannon();
-            }
 
             RayCastControl();
 
@@ -74,6 +68,7 @@ public class PlayerMoveControl : MonoBehaviour
             if (chocolate && Input.GetMouseButtonUp(0))
             {
                 chocolate = false;
+                isRotated = false;
                 Move();
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 PlayerManager.i.JumpGauge = 0.2f;
@@ -84,9 +79,7 @@ public class PlayerMoveControl : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!Cannon.i.isAttached && !Cannon.i.isFire)
-        {
-            
+
             if (isGravityReserved)
             {
                 rb.gravityScale = -1f;
@@ -115,7 +108,7 @@ public class PlayerMoveControl : MonoBehaviour
             {
                 Chocolate();
             }
-        }
+        
         
     }
     public void Move()     //움직임 구현
@@ -141,6 +134,7 @@ public class PlayerMoveControl : MonoBehaviour
     
     void RayCastControl()  //레이 캐스트 구현
     {
+        Vector2 origin = new Vector2(transform.position.x, transform.position.y + (GetComponent<Collider2D>().bounds.size.y / 2));
         //아래로 레이 쏘기
         //레이어 마스크로 Platform인 레이어에만 레이 쏘기
         //transform.TransformDirection(Vector2.down) <-- 오브젝트 회전에 맞게 레이도 회전
@@ -153,10 +147,7 @@ public class PlayerMoveControl : MonoBehaviour
             if (hit.collider.tag == "Platform")
             {
                 canJump = true;
-                if (Cannon.i.isFire)
-                {
-                    resetRotation();
-                }
+
             }
             else
             {
@@ -177,10 +168,7 @@ public class PlayerMoveControl : MonoBehaviour
             if (hit1.collider.tag == "Platform")
             {
                 canJump = true;
-                if (Cannon.i.isFire)
-                {
-                    resetRotation();
-                }
+
                 //Bounce(false);
             }
             else
@@ -198,10 +186,7 @@ public class PlayerMoveControl : MonoBehaviour
             if (hit2.collider.tag == "Platform")
             {
                 canJump = true;
-                if (Cannon.i.isFire)
-                {
-                    resetRotation();
-                }
+
                 //Bounce(true);
             }
             else
@@ -255,10 +240,6 @@ public class PlayerMoveControl : MonoBehaviour
             if (gameObject.activeSelf)
                 StartCoroutine(isStopMoving());
 
-            if (Cannon.i.isFire)
-            {
-                rb.gravityScale = 1f;
-            }
             if (matcha)
             {
                 rb.velocity = Vector3.zero;
@@ -272,6 +253,7 @@ public class PlayerMoveControl : MonoBehaviour
             PlayerManager.i.Animation("idle");
         }
     }
+    public bool playerActive = true;
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform"))
@@ -300,6 +282,7 @@ public class PlayerMoveControl : MonoBehaviour
         if (impactVelocity.y > PlayerManager.i.fallingSpeed)
         {
             gameObject.SetActive(false);
+            playerActive = false;
         }
     }
     IEnumerator isStopMoving()
@@ -470,7 +453,7 @@ public class PlayerMoveControl : MonoBehaviour
                 flyDirection = Vector2.up;
                 break;
             }
-            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
                 flyDirection = Vector2.down;
                 break;
@@ -480,7 +463,7 @@ public class PlayerMoveControl : MonoBehaviour
                 flyDirection = Vector2.left;
                 break;
             }
-            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.F))
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
                 flyDirection = Vector2.right;
                 break;
@@ -490,9 +473,11 @@ public class PlayerMoveControl : MonoBehaviour
         }
         if (flyDirection != Vector2.zero)
         {
+            rb.gravityScale = 0f;
             rb.velocity = flyDirection.normalized * flyingSpeed;
             while (rasberry && flyingDistance < limitDistance)
             {
+                
                 flyingDistance += rb.velocity.magnitude * Time.deltaTime;
                 yield return null;
             }
@@ -511,21 +496,29 @@ public class PlayerMoveControl : MonoBehaviour
     {
         RaycastHit2D left = Physics2D.Raycast(transform.position, Vector2.left, clingRay, LayerMask.GetMask("Platform"));
         RaycastHit2D right = Physics2D.Raycast(transform.position, Vector2.right, clingRay, LayerMask.GetMask("Platform"));
-        if (left.collider != null && !isRotated)
+        if (left.collider != null)
         {
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0f;
             transform.position = new Vector2(left.point.x - rayOffset, transform.position.y);
-            transform.Rotate(0, 0, -90);
-            isRotated = true;
+            if (!isRotated)
+            {
+                transform.Rotate(0, 0, -90);
+                isRotated = true;
+            }
+
+
         }
-        else if (right.collider != null && !isRotated)
+        else if (right.collider != null)
         {
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0f;
             transform.position = new Vector2(right.point.x + rayOffset, transform.position.y);
-            transform.Rotate(0, 0, 90);
-            isRotated = true;
+            if (!isRotated)
+            {
+                transform.Rotate(0, 0, 90);
+                isRotated = true;
+            }
         }
 
     }

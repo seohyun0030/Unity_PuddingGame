@@ -7,12 +7,13 @@ public class VanishingDropGimmick : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D trigger;
     private Collider2D physical;
-
+    private bool isActive = true;
+    private PlayerMoveControl moveControl;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
-
+        moveControl = FindObjectOfType<PlayerMoveControl>();
         Collider2D[] colliders = GetComponents<Collider2D>();
         foreach (Collider2D collider in colliders)
         {
@@ -40,15 +41,32 @@ public class VanishingDropGimmick : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name.Equals("Player"))
+        if (col.gameObject.CompareTag("Player"))
         {
             //Destroy(col.gameObject);
             col.gameObject.SetActive(false);
+            isActive = false;
         }
         if (col.gameObject.CompareTag("Platform") || col.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            isActive = false;
         }
 
     }
+    /*
+    private void Update()
+    {
+        if(!moveControl.playerActive || Input.GetKeyDown(KeyCode.R))
+        {
+            Respawn();
+        }
+    }
+    private void Respawn()
+    {
+        Instantiate(gameObject, transform.position, Quaternion.Euler(0, 0, 180));
+        isActive = true;
+        //gameObject.SetActive(false);
+    }
+    */
 }
