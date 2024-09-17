@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Spine.Unity;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     public Rigidbody2D rigidbody;
     public float speed; // 플레이어 속도
     public float fallingSpeed;  //낙하 속도
-   
+    
     public Vector3 SavePos;
 
     SkeletonAnimation anim;
@@ -34,6 +36,7 @@ public class PlayerManager : MonoBehaviour
     {
         ChangeFriction_Bounce(Friction, BouncePower);
         anim = GetComponent<SkeletonAnimation>();
+
     }
     private void Update()
     {
@@ -110,4 +113,5 @@ public class PlayerManager : MonoBehaviour
         else if(b=="idle")
             anim.AnimationState.SetAnimation(0, "idel", true);
     }
+
 }

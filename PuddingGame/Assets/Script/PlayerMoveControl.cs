@@ -424,6 +424,7 @@ public class PlayerMoveControl : MonoBehaviour
                 rasberry = true;
                 rb.velocity = Vector2.zero;
                 StartCoroutine(Rasberry_Co());
+                
             }
         }
         else if(i == 4) // ³ìÂ÷
@@ -444,7 +445,8 @@ public class PlayerMoveControl : MonoBehaviour
     {
         //Vector2 startPosition = transform.position;
         float inputTime = 0f;
-
+        flyDirection = Vector2.zero;
+        flyingDistance = 0f;
         
         while (rasberry && inputTime < 2f)
         {
@@ -490,6 +492,7 @@ public class PlayerMoveControl : MonoBehaviour
             rasberry = false;
             rb.gravityScale = 1f;
         }
+        rasberry = false;
     }
     private bool isRotated = false; // È¸Àü
     private void Chocolate()
