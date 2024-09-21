@@ -8,7 +8,7 @@ public class DeathPlatform : MonoBehaviour
     {
         if (collision.gameObject.name.Equals("Player"))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 }
