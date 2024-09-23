@@ -141,7 +141,7 @@ public class DialogueUI : MonoBehaviour
         //플레이어 이미지
         if (nameText.text == "푸딩") 
         {
-            //playerImage.sprite = LoadImage(pc);
+            playerImage.sprite = LoadPCImage(pc);
             playerImage.gameObject.SetActive(true);
             RectTransform nameTextRect = nameText.GetComponent<RectTransform>();
             nameTextRect.anchoredPosition = new Vector2(nameX, nameY); // 위치 수정
@@ -157,7 +157,7 @@ public class DialogueUI : MonoBehaviour
         //NPC 이미지
         if(nameText.text != "푸딩")
         {
-            //npcImage.sprite = LoadImage(npc);
+            if(npc != 0) npcImage.sprite = LoadNPCImage(npc);
             npcImage.gameObject.SetActive(true);
             RectTransform nameTextRect = nameText.GetComponent<RectTransform>();
             nameTextRect.anchoredPosition = new Vector2(-nameX, nameY); // 위치 수정
@@ -173,9 +173,79 @@ public class DialogueUI : MonoBehaviour
         }
         
     }
-    private Sprite LoadImage(int num)
+    private Sprite LoadPCImage(int num)
     {
-        return Resources.Load<Sprite>($"Images");
+        string imageName = "";
+        switch (num)
+        {
+            case 0:
+                imageName = "PC/0";
+                break;
+            case 1:
+                imageName = "PC/1";
+                break;
+            case 2:
+                imageName = "PC/2";
+                break;
+            case 3:
+                imageName = "PC/3";
+                break;
+            case 4:
+                imageName = "PC/4";
+                break;
+            case 5:
+                imageName = "PC/5";
+                break;
+            case 6:
+                imageName = "PC/6";
+                break;
+            case 7:
+                imageName = "PC/7";
+                break;
+            case 8:
+                imageName = "PC/8";
+                break;
+            default:
+                Debug.Log("PC x");
+                return null;
+        }
+        Sprite loadedSprite = Resources.Load<Sprite>(imageName);
+        if(loadedSprite == null)
+        {
+            Debug.Log("PC 이미지x");
+        }
+        return loadedSprite;
+    }
+    private Sprite LoadNPCImage(int num)
+    {
+        string imageName = "";
+        switch (num)
+        {
+            case 1:
+                imageName = "NPC/1";
+                break;
+            case 2:
+                imageName = "NPC/2";
+                break;
+            case 3:
+                imageName = "NPC/3";
+                break;
+            case 4:
+                imageName = "NPC/4";
+                break;
+            case 5:
+                imageName = "NPC/5";
+                break;
+            default:
+                Debug.Log("NPC x");
+                return null;
+        }
+        Sprite loadedSprite = Resources.Load<Sprite>(imageName);
+        if (loadedSprite == null)
+        {
+            Debug.Log("NPC 이미지x");
+        }
+        return loadedSprite;
     }
     private void ChangePlayerSkin(string skinName)
     {

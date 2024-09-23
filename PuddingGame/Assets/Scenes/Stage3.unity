@@ -27211,6 +27211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TestText: {fileID: 1787329762}
   fadeImage: {fileID: 783018856}
+  fadeOutTime: 0.5
 --- !u!4 &1976327284
 Transform:
   m_ObjectHideFlags: 0
@@ -29910,6 +29911,10 @@ PrefabInstance:
     - target: {fileID: 2073744750206138292, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: clingRay
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073744750206138292, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: rayOffset
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2073744750206138292, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: fallingSpeed

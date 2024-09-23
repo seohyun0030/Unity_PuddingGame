@@ -134,13 +134,13 @@ public class PlayerMoveControl : MonoBehaviour
     
     void RayCastControl()  //레이 캐스트 구현
     {
-        Vector2 origin = new Vector2(transform.position.x, transform.position.y + (GetComponent<Collider2D>().bounds.size.y / 2));
+        Vector2 origin = GetComponent<Collider2D>().bounds.center;
         //아래로 레이 쏘기
         //레이어 마스크로 Platform인 레이어에만 레이 쏘기
         //transform.TransformDirection(Vector2.down) <-- 오브젝트 회전에 맞게 레이도 회전
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), floorMaxRay, LayerMask.GetMask("Platform"));
+        RaycastHit2D hit = Physics2D.Raycast(origin, transform.TransformDirection(Vector2.down), floorMaxRay, LayerMask.GetMask("Platform"));
         //isGrounded = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.down), floorMaxRay, LayerMask.GetMask("Platform"));
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.down) * floorMaxRay, Color.red, 0.3f);    //레이 그리기
+        Debug.DrawRay(origin, transform.TransformDirection(Vector2.down) * floorMaxRay, Color.red, 0.3f);    //레이 그리기
         //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
         if (hit.collider != null)
         {
@@ -160,8 +160,8 @@ public class PlayerMoveControl : MonoBehaviour
         }*/
 
         //오른쪽으로 레이 쏘기
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), rightMaxRay, LayerMask.GetMask("Platform"));
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.right) * rightMaxRay, Color.green, 0.3f);    //레이 그리기
+        RaycastHit2D hit1 = Physics2D.Raycast(origin, transform.TransformDirection(Vector2.right), rightMaxRay, LayerMask.GetMask("Platform"));
+        Debug.DrawRay(origin, transform.TransformDirection(Vector2.right) * rightMaxRay, Color.green, 0.3f);    //레이 그리기
         //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
         if (hit1.collider != null)
         {
@@ -178,8 +178,8 @@ public class PlayerMoveControl : MonoBehaviour
         }
 
         //왼쪽으로 레이 쏘기
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.left), leftMaxRay, LayerMask.GetMask("Platform"));
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.left) * leftMaxRay, Color.blue, 0.3f);    //레이 그리기
+        RaycastHit2D hit2 = Physics2D.Raycast(origin, transform.TransformDirection(Vector2.left), leftMaxRay, LayerMask.GetMask("Platform"));
+        Debug.DrawRay(origin, transform.TransformDirection(Vector2.left) * leftMaxRay, Color.blue, 0.3f);    //레이 그리기
         //레이에 맞은 바닥의 태그가 Platform일 때만 점프 가능
         if (hit2.collider != null)
         {
@@ -497,13 +497,14 @@ public class PlayerMoveControl : MonoBehaviour
     private bool isRotated = false; // 회전
     private void Chocolate()
     {
+        float colliderHalfWidth = GetComponent<Collider2D>().bounds.extents.x;
         RaycastHit2D left = Physics2D.Raycast(transform.position, Vector2.left, clingRay, LayerMask.GetMask("Platform"));
         RaycastHit2D right = Physics2D.Raycast(transform.position, Vector2.right, clingRay, LayerMask.GetMask("Platform"));
         if (left.collider != null)
         {
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0f;
-            transform.position = new Vector2(left.point.x - rayOffset, transform.position.y);
+            transform.position = new Vector2(left.point.x  - colliderHalfWidth - rayOffset, transform.position.y);
             if (!isRotated)
             {
                 transform.Rotate(0, 0, -90);
@@ -516,7 +517,7 @@ public class PlayerMoveControl : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0f;
-            transform.position = new Vector2(right.point.x + rayOffset, transform.position.y);
+            transform.position = new Vector2(right.point.x + colliderHalfWidth + rayOffset, transform.position.y);
             if (!isRotated)
             {
                 transform.Rotate(0, 0, 90);
