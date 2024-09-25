@@ -131,7 +131,7 @@ MonoBehaviour:
   physicsMovementRelativeTo: {fileID: 0}
   updateTiming: 1
   unscaledTime: 0
-  _animationName: idel
+  _animationName: '#1idel'
   loop: 1
   timeScale: 1
 --- !u!50 &7878825567082698524
@@ -195,7 +195,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.042266846, y: 2.2668247}
+  m_Offset: {x: -0.011253357, y: 0.45992637}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -205,7 +205,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.6608276, y: 3.9438972}
+  m_Size: {x: 0.8077545, y: 0.878119}
   m_EdgeRadius: 0
 --- !u!114 &2073744750206138292
 MonoBehaviour:

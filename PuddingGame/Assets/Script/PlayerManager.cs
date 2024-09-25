@@ -108,10 +108,10 @@ public class PlayerManager : MonoBehaviour
     public void Animation(string b)
     {
         if(b=="jump")
-            anim.AnimationState.SetAnimation(0, "jump2", false);
+            anim.AnimationState.SetAnimation(0, "Jump0-Enter", false);
 
         else if(b=="idle")
-            anim.AnimationState.SetAnimation(0, "idel", true);
+            anim.AnimationState.SetAnimation(0, "#1idel", true);
     }
 
 }

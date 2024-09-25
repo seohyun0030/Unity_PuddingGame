@@ -1,23 +1,42 @@
 PD1.png
-size:345,157
+size:1471,298
 filter:Linear,Linear
 pma:true
-scale:0.3
+scale:0.5
 body
-bounds:2,2,210,153
+bounds:2,41,350,255
+charge
+bounds:661,25,271,168
+rotate:90
 cherry
-bounds:276,77,67,78
-rotate:180
+bounds:1339,5,112,130
+rotate:90
 cream
-bounds:201,5,139,89
+bounds:831,64,232,149
 rotate:90
 e1
-bounds:2,15,20,27
+bounds:2,65,34,45
 e2
-bounds:292,45,21,25
+bounds:304,7,35,42
 f1
-bounds:187,9,34,22
+bounds:2,10,57,37
 f2
-bounds:292,26,32,17
+bounds:138,12,54,28
+face 2
+bounds:1231,119,177,107
+face 3
+bounds:1112,119,177,117
+rotate:90
+face 4
+bounds:1160,6,177,111
+face 5
+bounds:981,2,177,115
+offsets:0,0,177,133
+face 6
+bounds:982,119,177,128
+offsets:0,1,177,129
+rotate:90
+face__jumping
+bounds:353,44,306,233
 mot
-bounds:291,8,45,16
+bounds:61,13,75,27
