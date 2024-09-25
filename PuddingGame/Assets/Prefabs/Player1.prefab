@@ -265,6 +265,11 @@ MonoBehaviour:
   speed: 0
   fallingSpeed: 20
   SavePos: {x: 0, y: 0, z: 0}
+  idle: '#1idel'
+  jump: Jump0-Enter
+  char1: Char1
+  char2: Char2
+  char3: Char3
 --- !u!1001 &3388092011100757572
 PrefabInstance:
   m_ObjectHideFlags: 0

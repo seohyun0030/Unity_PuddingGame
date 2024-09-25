@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Spine.Unity;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -39,7 +40,6 @@ public class PlayerMoveControl : MonoBehaviour
     public bool isLong;
     private bool canEmitParticles = true;
     public float particleCoolDownTime = 1f;
-
     private void Awake()
     {
         i = this;
@@ -131,8 +131,8 @@ public class PlayerMoveControl : MonoBehaviour
         StartCoroutine(JumpDelay());
         jumpPlatform = false;
 
-        PlayerManager.i.Animation("Jump0-Enter", false);
-
+        //PlayerManager.i.Animation("Jump0-Enter", false);
+        PlayerManager.i.jumpAnim();
     }
     
     void RayCastControl()  //레이 캐스트 구현
@@ -274,7 +274,8 @@ public class PlayerMoveControl : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 rasberry = false;
             }
-            PlayerManager.i.Animation("#1idel", true);
+            //PlayerManager.i.Animation("#1idel", true);
+            PlayerManager.i.idleAnim();
         }
     }
     public bool playerActive = true;

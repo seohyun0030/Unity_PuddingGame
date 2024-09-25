@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour
 
     SkeletonAnimation anim;
 
+    string currentAnim;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -107,15 +108,46 @@ public class PlayerManager : MonoBehaviour
     }
     public void Animation(string name, bool isLoop)
     {
-        anim.AnimationState.SetAnimation(0, name, isLoop);
-        /*if (b == "jump")
-            anim.AnimationState.SetAnimation(0, "Jump0-Enter", false);
+        /*if (currentAnim == name) return;
+        currentAnim = name;
+        anim.AnimationState.SetAnimation(0, name, isLoop);*/
 
-        else if (b == "idle")
-            anim.AnimationState.SetAnimation(0, "#1idel", true);
-
-        else if (b == "char1")
-            anim.AnimationState.SetAnimation(0, "Char1", true);*/
+        /*if (isLoop)
+        {
+            anim.AnimationState.SetAnimation(0, name, true); // 루프 설정
+        }
+        else
+            anim.AnimationState.SetAnimation(0, name, false); // 루프 설정*/
     }
-
+    public void jumpAnim()
+    {
+        if (anim.state.GetCurrent(0).Animation.Name == "Jump0-Enter")
+            return;
+        anim.AnimationState.SetAnimation(0, "Jump0-Enter", false);
+    }
+    public void idleAnim()
+    {
+        if (anim.state.GetCurrent(0).Animation.Name == "#1idel")
+            return;
+        anim.AnimationState.SetAnimation(0, "#1idel", true);
+    }
+    public void char1Anim()
+    {
+        if (anim.state.GetCurrent(0).Animation.Name == "Char1")
+            return;
+        Debug.Log(anim.state.GetCurrent(0).Animation.Name);
+        anim.AnimationState.SetAnimation(0, "Char1", true);
+    }
+    public void char2Anim()
+    {
+        if (anim.state.GetCurrent(0).Animation.Name == "Char2")
+            return;
+        anim.AnimationState.SetAnimation(0, "Char2", true);
+    }
+    public void char3Anim()
+    {
+        if (anim.state.GetCurrent(0).Animation.Name == "Char3")
+            return;
+        anim.AnimationState.SetAnimation(0, "Char3", true);
+    }
 }
