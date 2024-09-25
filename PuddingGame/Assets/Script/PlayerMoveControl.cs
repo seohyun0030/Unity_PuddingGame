@@ -131,7 +131,7 @@ public class PlayerMoveControl : MonoBehaviour
         StartCoroutine(JumpDelay());
         jumpPlatform = false;
 
-        PlayerManager.i.Animation("jump");
+        PlayerManager.i.Animation("Jump0-Enter", false);
 
     }
     
@@ -274,7 +274,7 @@ public class PlayerMoveControl : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 rasberry = false;
             }
-            PlayerManager.i.Animation("idle");
+            PlayerManager.i.Animation("#1idel", true);
         }
     }
     public bool playerActive = true;

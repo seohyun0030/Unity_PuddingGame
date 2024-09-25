@@ -105,13 +105,17 @@ public class PlayerManager : MonoBehaviour
         boxCollider2D.sharedMaterial = null;
         boxCollider2D.sharedMaterial = Physics;     //콜라이더 다시 할당해주기
     }
-    public void Animation(string b)
+    public void Animation(string name, bool isLoop)
     {
-        if(b=="jump")
+        anim.AnimationState.SetAnimation(0, name, isLoop);
+        /*if (b == "jump")
             anim.AnimationState.SetAnimation(0, "Jump0-Enter", false);
 
-        else if(b=="idle")
+        else if (b == "idle")
             anim.AnimationState.SetAnimation(0, "#1idel", true);
+
+        else if (b == "char1")
+            anim.AnimationState.SetAnimation(0, "Char1", true);*/
     }
 
 }

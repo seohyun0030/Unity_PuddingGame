@@ -74,7 +74,7 @@ public class CursorController : MonoBehaviour
             mouseCircle.gameObject.SetActive(false);
             arrow.gameObject.SetActive(false);
 
-            //changeImage(changeSprite[2], false);---------------오류 SpriteRenderer
+            changeAnim("#1idel", 1, true);
         }
     }
     public Vector2 GetDirection()       //점프 방향 구하기
@@ -91,30 +91,33 @@ public class CursorController : MonoBehaviour
             changeAlpha(true);
             isLong = false;
 
-            //changeImage(changeSprite[2], false);
+            changeAnim("#1idel", 1, true);
         }
 
-        /*else if (angle > -40)   //오른쪽 3번
-            changeImage(changeSprite[0], false);
+        else if (angle > -40)   //오른쪽 3번
+            changeAnim("Char3", 1, true);
 
         else if (angle > -65)   //오른쪽 2번
-            changeImage(changeSprite[1], false);
-        
-        else if(angle > -115)   //1번
-            changeImage(changeSprite[2], false);
+            changeAnim("Char2", 1, true);
 
-        else if(angle > -140)   //왼쪽 2번
-            changeImage(changeSprite[1], true);
+        else if (angle > -90)   //오른쪽 1번
+            changeAnim("Char1", 1, true);
+
+        else if (angle > -115)   //왼쪽 1번
+            changeAnim("Char1", -1, true);
+
+        else if (angle > -140)   //왼쪽 2번
+            changeAnim("Char2", -1, true);
 
         else if (angle > -165)   //왼쪽 3번
-            changeImage(changeSprite[0], true);*/
+            changeAnim("Char3", -1, true);
 
         else if(angle < -165)                    //왼쪽 불가 영역
         {
             changeAlpha(true);
             isLong = false;
 
-            //changeImage(changeSprite[2], false);
+            changeAnim("#1idel", 1, true);
         }
 
         if (angle > -90 && angle < 0)
@@ -122,13 +125,15 @@ public class CursorController : MonoBehaviour
         else if(angle > -180)
             PlayerMoveControl.i.isLeftMoving = false;
     }
-    public void changeImage(Sprite newSprite, bool isFlip)
+    public void changeAnim(string name, int isFlip, bool isLoop)     //isFlip이 1이면 오른쪽 -1이면 왼쪽
     {
         GameObject player = GameObject.FindWithTag("Player");   //플레이어 찾기
-        player.GetComponent<SpriteRenderer>().sprite = newSprite;
+        PlayerManager.i.Animation(name, isLoop);
 
         //좌우반전 구현
-        player.GetComponent<SpriteRenderer>().flipX = isFlip;
+        Vector3 scale = player.transform.localScale;
+        scale.x = isFlip;
+        player.transform.localScale = scale;
     }
     void CursorMoving()
     {
