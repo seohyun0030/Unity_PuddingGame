@@ -24,6 +24,7 @@ public class PlayerMoveControl : MonoBehaviour
     [SerializeField] float clingJumpForce = .5f;
     [SerializeField] float clingRay = 1f;
     [SerializeField] float rayOffset = .1f;
+    public GameObject particlePrefab;
 
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
@@ -36,6 +37,8 @@ public class PlayerMoveControl : MonoBehaviour
     public bool isGrounded = true;     //땅에 있는지 확인
     public bool jumpPlatform = false;
     public bool isLong;
+    private bool canEmitParticles = true;
+    public float particleCoolDownTime = 1f;
 
     private void Awake()
     {
@@ -227,6 +230,13 @@ public class PlayerMoveControl : MonoBehaviour
         isJumping = false;
         isFalling = true;
     }
+    IEnumerator ParticleCooldown()
+    {
+        canEmitParticles = false;
+        yield return new WaitForSeconds(particleCoolDownTime);
+        Debug.Log("co");
+        canEmitParticles = true;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform"))        //플랫폼과 닿아있으면 점핑상태가 아니므로 움직일 수 없음
@@ -237,6 +247,20 @@ public class PlayerMoveControl : MonoBehaviour
 
             Falling(collision);
 
+            if (canEmitParticles)
+            {
+                Vector2 contactPoint = collision.GetContact(0).point;
+                GameObject particle = Instantiate(particlePrefab, contactPoint, Quaternion.identity);
+                ParticleSystem ps = particle.GetComponent<ParticleSystem>();
+                if (ps != null)
+                {
+                    ps.Play();
+                    //Destroy(particle, ps.main.duration);
+                }
+                StartCoroutine(ParticleCooldown());
+                
+            }
+            Debug.Log(canEmitParticles.ToString());
             if (gameObject.activeSelf)
                 StartCoroutine(isStopMoving());
 
