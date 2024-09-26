@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     public Vector3 SavePos;
 
     SkeletonAnimation anim;
+    [SpineAnimation] public string jump;
 
     string currentAnim;
     private void Awake()
@@ -106,23 +107,8 @@ public class PlayerManager : MonoBehaviour
         boxCollider2D.sharedMaterial = null;
         boxCollider2D.sharedMaterial = Physics;     //콜라이더 다시 할당해주기
     }
-    public void Animation(string name, bool isLoop)
-    {
-        /*if (currentAnim == name) return;
-        currentAnim = name;
-        anim.AnimationState.SetAnimation(0, name, isLoop);*/
-
-        /*if (isLoop)
-        {
-            anim.AnimationState.SetAnimation(0, name, true); // 루프 설정
-        }
-        else
-            anim.AnimationState.SetAnimation(0, name, false); // 루프 설정*/
-    }
     public void jumpAnim()
     {
-        if (anim.state.GetCurrent(0).Animation.Name == "Jump0-Enter")
-            return;
         anim.AnimationState.SetAnimation(0, "Jump0-Enter", false);
     }
     public void idleAnim()
@@ -135,7 +121,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (anim.state.GetCurrent(0).Animation.Name == "Char1")
             return;
-        Debug.Log(anim.state.GetCurrent(0).Animation.Name);
         anim.AnimationState.SetAnimation(0, "Char1", true);
     }
     public void char2Anim()
