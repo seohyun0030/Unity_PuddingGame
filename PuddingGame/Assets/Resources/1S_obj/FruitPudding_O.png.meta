@@ -180,7 +180,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FruitPudding_O_0: -6701410449551529469
+      FruitPudding_O_1: 2462632204382226470
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

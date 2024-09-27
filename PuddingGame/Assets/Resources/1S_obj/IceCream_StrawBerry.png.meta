@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      IceCream_StrawBerry_0: 4021249198402783499
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

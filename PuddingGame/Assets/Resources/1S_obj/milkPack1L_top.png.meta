@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      milkPack1L_top_0: 926639589753694833
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

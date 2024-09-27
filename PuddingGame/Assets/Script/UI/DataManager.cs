@@ -1,44 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using UnityEditor.SearchService;
 
+[SerializeField]
 public class PlayerData
 {
-
+    public Vector3 playerPos;   // 세이브 포인트
+    public int saveStage; // 저장된 스테이지
 }
 
 public class DataManager : MonoBehaviour
 {
-    // ---싱글톤으로 선언--- //
-    public static DataManager instance;
+    public static DataManager instance; // 싱글톤패턴
 
-    PlayerData nowPlayer = new PlayerData();
-    
+    public PlayerData playerData = new PlayerData(); // 플레이어 데이터 생성
+
+    public string path; // 경로
+
     private void Awake()
     {
+        #region 싱글톤
         if (instance == null)
         {
             instance = this;
         }
-        else if (instance != this) 
-        { 
+        else if (instance != this)
+        {
             Destroy(instance.gameObject);
         }
         DontDestroyOnLoad(this.gameObject);
+        #endregion
 
+        path = Application.persistentDataPath + "/save";	// 경로 지정
+        print(path);
     }
 
-
-    // 불러오기
-    public void LoadGameData()
+    public void SaveData()
     {
-
+       string jsonData = JsonUtility.ToJson(playerData);
+        File.WriteAllText(path, jsonData);
     }
 
-
-    // 저장하기
-    public void SaveGameData()
+    public void LoadData()
     {
-
+        string jsonData = File.ReadAllText(path);
+        playerData = JsonUtility.FromJson<PlayerData>(jsonData);
     }
 }

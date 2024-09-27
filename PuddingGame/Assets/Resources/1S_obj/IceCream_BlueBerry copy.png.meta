@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      IceCream_BlueBerry copy_0: 4842776840201387547
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

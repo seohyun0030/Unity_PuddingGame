@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CheeseStick_G_0: 3314741476464362319
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -22,9 +22,8 @@ public class PlayerManager : MonoBehaviour
     public Rigidbody2D rigidbody;
     public float speed; // 플레이어 속도
     public float fallingSpeed;  //낙하 속도
-    
     public Vector3 SavePos;
-
+    public int StageIndex;
     SkeletonAnimation anim;
     [SpineAnimation] public string jump;
 
@@ -38,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     {
         ChangeFriction_Bounce(Friction, BouncePower);
         anim = GetComponent<SkeletonAnimation>();
-
+        StageIndex = SceneManager.GetActiveScene().buildIndex;
     }
     private void Update()
     {
@@ -66,6 +65,9 @@ public class PlayerManager : MonoBehaviour
         {
             fallingSpeed = 100;
         }
+
+        DataManager.instance.playerData.playerPos = PlayerManager.i.SavePos;
+        DataManager.instance.playerData.saveStage = PlayerManager.i.StageIndex;
     }
     public void GoToSavePoint()
     {

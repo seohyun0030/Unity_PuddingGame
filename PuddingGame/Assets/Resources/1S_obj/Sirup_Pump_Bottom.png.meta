@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sirup_Pump_Bottom_0: 2026531585546951618
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
