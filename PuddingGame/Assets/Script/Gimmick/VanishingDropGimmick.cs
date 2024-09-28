@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VanishingDropGimmick : MonoBehaviour
+public class VanishingDropGimmick : MonoBehaviour, IResettable
 {
     private Rigidbody2D rb;
     private Collider2D trigger;
     private Collider2D physical;
     private bool isActive = true;
-    private PlayerMoveControl moveControl;
+    public GameObject player;
+    private Vector2 initialPosition;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
-        moveControl = FindObjectOfType<PlayerMoveControl>();
+        initialPosition = transform.position;
         Collider2D[] colliders = GetComponents<Collider2D>();
         foreach (Collider2D collider in colliders)
         {
@@ -43,7 +44,6 @@ public class VanishingDropGimmick : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            //Destroy(col.gameObject);
             col.gameObject.SetActive(false);
             isActive = false;
         }
@@ -54,19 +54,14 @@ public class VanishingDropGimmick : MonoBehaviour
         }
 
     }
-    /*
-    private void Update()
+    public void Respawn()
     {
-        if(!moveControl.playerActive || Input.GetKeyDown(KeyCode.R))
-        {
-            Respawn();
-        }
-    }
-    private void Respawn()
-    {
-        Instantiate(gameObject, transform.position, Quaternion.Euler(0, 0, 180));
+        transform.position = initialPosition;
+        rb.gravityScale = 0f;
+        gameObject.SetActive(true);
+        if (trigger != null) trigger.enabled = true;
+        if (physical != null) physical.enabled = false;
         isActive = true;
-        //gameObject.SetActive(false);
     }
-    */
+    
 }

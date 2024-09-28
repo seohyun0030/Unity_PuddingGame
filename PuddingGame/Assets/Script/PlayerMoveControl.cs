@@ -234,7 +234,6 @@ public class PlayerMoveControl : MonoBehaviour
     {
         canEmitParticles = false;
         yield return new WaitForSeconds(particleCoolDownTime);
-        Debug.Log("co");
         canEmitParticles = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -255,12 +254,11 @@ public class PlayerMoveControl : MonoBehaviour
                 if (ps != null)
                 {
                     ps.Play();
-                    //Destroy(particle, ps.main.duration);
+                    Destroy(particle, ps.main.duration);
                 }
                 StartCoroutine(ParticleCooldown());
                 
             }
-            Debug.Log(canEmitParticles.ToString());
             if (gameObject.activeSelf)
                 StartCoroutine(isStopMoving());
 
