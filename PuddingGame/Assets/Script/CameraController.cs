@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController i;
     Camera camera;
     public float cameraSpeed;
     private PlayerMoveControl playerMoveControl;
@@ -26,10 +28,13 @@ public class CameraController : MonoBehaviour
     public bool isAnimation;
     public GameObject LeftDoor;
     public GameObject RightDoor;
+    private void Awake()
+    {
+        i = this;
+    }
     private void Start()
     {
         camera = GetComponent<Camera>();
-        StartCoroutine(Stage1Animation());
     }
     private void FixedUpdate()
     {
