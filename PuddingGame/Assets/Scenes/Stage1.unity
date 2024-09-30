@@ -8859,6 +8859,13 @@ MonoBehaviour:
   maxPos: {x: 130, y: 45}
   playerXPos: 10
   playerYPos: 5
+  zoomOut: 15
+  zoomSpeed: 5
+  animMoveSpeed: 0.1
+  dest_1: {x: 150, y: 2, z: -10}
+  dest_2: {x: 0, y: 28, z: -10}
+  dest_3: {x: 150, y: 28, z: -10}
+  isAnimation: 0
 --- !u!81 &799950838
 AudioListener:
   m_ObjectHideFlags: 0
@@ -22370,11 +22377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.495975
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.824871
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z
