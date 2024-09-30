@@ -20,7 +20,7 @@ public class SavePointManager : MonoBehaviour
 
             PlayerManager.i.GoToSavePoint();
 
-            SlotManager.i.RespawnTopping();
+            //SlotManager.i.RespawnTopping();
         }
     }
     /*private void OnTriggerEnter2D(Collider2D collision)

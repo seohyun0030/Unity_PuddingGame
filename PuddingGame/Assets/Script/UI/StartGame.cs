@@ -14,9 +14,11 @@ public class StartGame : MonoBehaviour
     public void Continuing()
     {
         if (File.Exists(DataManager.instance.path))
+        {
             DataManager.instance.LoadData();
-            
-        SceneManager.LoadScene(DataManager.instance.playerData.saveStage);
-        PlayerManager.i.gameObject.transform.position = DataManager.instance.playerData.playerPos;
+
+            SceneManager.LoadScene(DataManager.instance.playerData.saveStage);
+            //PlayerManager.i.gameObject.transform.position = DataManager.instance.playerData.playerPos;
+        }
     }
 }

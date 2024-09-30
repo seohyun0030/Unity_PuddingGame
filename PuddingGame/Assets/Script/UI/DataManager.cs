@@ -7,7 +7,7 @@ using UnityEditor.SearchService;
 [SerializeField]
 public class PlayerData
 {
-    public Vector3 playerPos;   // 세이브 포인트
+    //public Vector3 playerPos;   // 세이브 포인트
     public int saveStage; // 저장된 스테이지
 }
 
@@ -33,8 +33,11 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         #endregion
 
-        path = Application.persistentDataPath + "/save";	// 경로 지정
-        print(path);
+        path = Path.Combine(Application.dataPath, "database.json");
+    }
+
+    private void Update()
+    {
     }
 
     public void SaveData()

@@ -65,9 +65,10 @@ public class PlayerManager : MonoBehaviour
         {
             fallingSpeed = 100;
         }
+            //DataManager.instance.playerData.playerPos = PlayerManager.i.SavePos;
+            DataManager.instance.playerData.saveStage = PlayerManager.i.StageIndex;
+            DataManager.instance.SaveData();
 
-        DataManager.instance.playerData.playerPos = PlayerManager.i.SavePos;
-        DataManager.instance.playerData.saveStage = PlayerManager.i.StageIndex;
     }
     public void GoToSavePoint()
     {

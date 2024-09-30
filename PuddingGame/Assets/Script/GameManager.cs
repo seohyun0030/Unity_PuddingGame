@@ -6,11 +6,12 @@ public class GameManager : MonoBehaviour
 {
     float xPos;     //플레이어 위치
     float yPos;
+    public static bool isPause = false; // 일시 정지 메뉴 창 활성화
 
     public GameObject StartPoint;
     private void Start()
     {
-        SetPosition();
+       SetPosition();
     }
     void SetPosition()      //플레이어 위치 조정
     {
