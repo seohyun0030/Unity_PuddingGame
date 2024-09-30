@@ -24,6 +24,8 @@ public class CameraController : MonoBehaviour
     public Vector3 dest_2;
     public Vector3 dest_3;
     public bool isAnimation;
+    public GameObject LeftDoor;
+    public GameObject RightDoor;
     private void Start()
     {
         camera = GetComponent<Camera>();
@@ -102,71 +104,66 @@ public class CameraController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        MoveAnimation(dest_1);
-        /*//이동하는 시간동안 dest_1까지 이동을 한다
-        float moveTime = Vector3.Distance(transform.position, dest_1) / animMoveSpeed;
-        elapsedTime = 0f;
-        while (elapsedTime < moveTime)
+
+        //이동하는 시간동안 dest_1까지 이동을 한다
+        while (true)
         {
             distance = Vector3.Distance(transform.position, dest_1);  //거리 구하기
-            if (distance < 0.2f)        //현재 위치와 타겟 위치의 거리가 0.2보다 작으면 이동 멈추기
-            {
+
+            if (transform.position == dest_1)       //타겟 위치에 도착하면 반복문 빠져나오기
                 break;
-            }
-            transform.position = Vector3.Lerp(transform.position, dest_1, elapsedTime / moveTime);
-            elapsedTime += Time.deltaTime;
+
+            transform.position = Vector3.MoveTowards(transform.position, dest_1, animMoveSpeed);
             yield return null;
         }
         transform.position = dest_1;
 
         //이동하는 시간동안 dest_2까지 이동을 한다
-        moveTime = Vector3.Distance(transform.position, dest_2) / animMoveSpeed;
-        elapsedTime = 0f;
-        while (elapsedTime < moveTime)
+        while (true)
         {
             distance = Vector3.Distance(transform.position, dest_2);  //거리 구하기
-            if (distance < 0.2f)        //현재 위치와 타겟 위치의 거리가 0.2보다 작으면 이동 멈추기
-            {
+
+            if (transform.position == dest_2)       //타겟 위치에 도착하면 반복문 빠져나오기
                 break;
-            }
-            transform.position = Vector3.Lerp(transform.position, dest_2, elapsedTime / moveTime);
-            elapsedTime += Time.deltaTime;
+
+            transform.position = Vector3.MoveTowards(transform.position, dest_2, animMoveSpeed);
             yield return null;
         }
         transform.position = dest_2;
 
         //이동하는 시간동안 dest_3까지 이동을 한다
-        moveTime = Vector3.Distance(transform.position, dest_3) / animMoveSpeed;
-        elapsedTime = 0f;
-        while (elapsedTime < moveTime)
+        while (true)
         {
             distance = Vector3.Distance(transform.position, dest_3);  //거리 구하기
-            if (distance < 0.2f)        //현재 위치와 타겟 위치의 거리가 0.2보다 작으면 이동 멈추기
-            {
+
+            if (transform.position == dest_3)       //타겟 위치에 도착하면 반복문 빠져나오기
                 break;
-            }
-            transform.position = Vector3.Lerp(transform.position, dest_3, elapsedTime / moveTime);
-            elapsedTime += Time.deltaTime;
+
+            transform.position = Vector3.MoveTowards(transform.position, dest_3, animMoveSpeed);
             yield return null;
         }
-        transform.position = dest_3;*/
+        transform.position = dest_3;
 
-        //연출이 끝남을 알림
-        isAnimation = false;
+        StartCoroutine(OpenDoor());
     }
-    void MoveAnimation(Vector3 dest)
+    IEnumerator OpenDoor()
     {
-        float moveTime = Vector3.Distance(transform.position, dest) / animMoveSpeed;
-        float elapsedTime = 0f;
-        while (elapsedTime < moveTime)
+        Vector3 leftPos = LeftDoor.transform.position;
+        Vector3 rightPos = RightDoor.transform.position;
+        while (true)
         {
-            float distance = Vector3.Distance(transform.position, dest);  //거리 구하기
-            if (distance < 0.2f)        //현재 위치와 타겟 위치의 거리가 0.2보다 작으면 이동 멈추기
+            float dist = Vector3.Distance(LeftDoor.transform.position, leftPos - new Vector3(20, 0, 0));  //거리 구하기
+            if (dist < 0.1f)        //현재 위치와 타겟 위치의 거리가 0.2보다 작으면 이동 멈추기
             {
                 break;
             }
-            transform.position = Vector3.Lerp(transform.position, dest, elapsedTime / moveTime);
-            elapsedTime += Time.deltaTime;
+
+            LeftDoor.transform.position = Vector3.MoveTowards(LeftDoor.transform.position, leftPos - new Vector3(20, 0, 0), 0.05f);
+            RightDoor.transform.position = Vector3.MoveTowards(RightDoor.transform.position, rightPos + new Vector3(20, 0, 0), 0.05f);
+
+            yield return null;
         }
+        //연출이 끝남을 알림
+        isAnimation = false;
     }
 }
