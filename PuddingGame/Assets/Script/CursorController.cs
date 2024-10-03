@@ -27,52 +27,55 @@ public class CursorController : MonoBehaviour
 
     void Update()
     {
-        CursorMoving();
-
-        if (Input.GetMouseButtonDown(0))
+        
+            CursorMoving();
+        if (!DialogueUI.i.dialogueText.IsActive())
         {
-            screenPosition = Camera.main.WorldToScreenPoint(Player.transform.position);
-
-            mouseCircle.gameObject.SetActive(true);
-            arrow.gameObject.SetActive(true);
-            arrow.transform.position = screenPosition;      //화살표의 위치를 플레이어 오브젝트 위치로 설정
-            startPos = Input.mousePosition;
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            myPos = Input.mousePosition;
-
-            mouseCircle.transform.localPosition = currentCursor.localPosition;      //마우스 원 위치
-
-            arrow.transform.localScale = new Vector2(Vector3.Distance(myPos, startPos), 1); //마우스를 당기는 만큼 사이즈 변경
-            arrow.transform.localRotation = Quaternion.Euler(0, 0, AngleInDeg(startPos, myPos) + 180);  //마우스가 당기는 방향으로 회전
-
-            if (arrow.transform.localScale.x >= MaxLength)    //길이가 한계점을 넘어가면
+            if (Input.GetMouseButtonDown(0))
             {
-                arrow.transform.localScale = new Vector2(MaxLength, 1);     //길이 고정
-            }
-            if(arrow.transform.localScale.x <= MinLength)     //길이가 최소점보다 작으면
-            {
-                changeAlpha(true);
-                isLong = false;
-            }
-            else
-            {
-                changeAlpha(false);
-                isLong = true;
+                screenPosition = Camera.main.WorldToScreenPoint(Player.transform.position);
+
+                mouseCircle.gameObject.SetActive(true);
+                arrow.gameObject.SetActive(true);
+                arrow.transform.position = screenPosition;      //화살표의 위치를 플레이어 오브젝트 위치로 설정
+                startPos = Input.mousePosition;
             }
 
-            findAngle();
+            if (Input.GetMouseButton(0))
+            {
+                myPos = Input.mousePosition;
 
-            PlayerManager.i.JumpGauge = Mathf.Lerp(0.2f, 1, arrow.transform.localScale.x / MaxLength);
-            //최대 길이와 화살표의 길이를 나눠서 0.2, 1로 선형보간
-        }
+                mouseCircle.transform.localPosition = currentCursor.localPosition;      //마우스 원 위치
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            mouseCircle.gameObject.SetActive(false);
-            arrow.gameObject.SetActive(false);
+                arrow.transform.localScale = new Vector2(Vector3.Distance(myPos, startPos), 1); //마우스를 당기는 만큼 사이즈 변경
+                arrow.transform.localRotation = Quaternion.Euler(0, 0, AngleInDeg(startPos, myPos) + 180);  //마우스가 당기는 방향으로 회전
+
+                if (arrow.transform.localScale.x >= MaxLength)    //길이가 한계점을 넘어가면
+                {
+                    arrow.transform.localScale = new Vector2(MaxLength, 1);     //길이 고정
+                }
+                if (arrow.transform.localScale.x <= MinLength)     //길이가 최소점보다 작으면
+                {
+                    changeAlpha(true);
+                    isLong = false;
+                }
+                else
+                {
+                    changeAlpha(false);
+                    isLong = true;
+                }
+
+                findAngle();
+
+                PlayerManager.i.JumpGauge = Mathf.Lerp(0.2f, 1, arrow.transform.localScale.x / MaxLength);
+                //최대 길이와 화살표의 길이를 나눠서 0.2, 1로 선형보간
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                mouseCircle.gameObject.SetActive(false);
+                arrow.gameObject.SetActive(false);
+            }
         }
     }
     public Vector2 GetDirection()       //점프 방향 구하기

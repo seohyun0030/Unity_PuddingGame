@@ -23,6 +23,19 @@ public class DialogueUI : MonoBehaviour
     private NPCManager npc;
     private int currentNo;
 
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "Stage1")
+        {
+            var skeleton = playerSkeletonAnimation.Skeleton;
+
+            var slot1 = skeleton.FindSlot("cream");
+            var slot2 = skeleton.FindSlot("cherry");
+            slot2.Attachment = null;
+            slot1.Attachment = null;
+            
+        }
+    }
     private void Start()
     {
         i = this;
@@ -37,14 +50,9 @@ public class DialogueUI : MonoBehaviour
             {
                 dialogueSystem.LoadDialogues(data);
                 //DisplayNextDialogue();
-                if (SceneManager.GetActiveScene().name == "Stage1")
+                if (SceneManager.GetActiveScene().name == "Stage1" && StartGame.loadDialogue)
                 {
-                    var skeleton = playerSkeletonAnimation.Skeleton;
-
-                    var slot1 = skeleton.FindSlot("cream");
-                    var slot2 = skeleton.FindSlot("cherry");
-                    slot2.Attachment = null;
-                    slot1.Attachment = null;
+                    
                     StartDialogue(0);
                 }
             }
@@ -90,7 +98,7 @@ public class DialogueUI : MonoBehaviour
             GameObjectActivate(false);
             
             Time.timeScale = 1f;
-            if(SceneManager.GetActiveScene().name == "Stage1")
+            if(SceneManager.GetActiveScene().name == "Stage1" )
             {
                 StartCoroutine(CameraController.i.Stage1Animation());
             }

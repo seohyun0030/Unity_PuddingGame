@@ -6,13 +6,16 @@ using System.IO;
 
 public class StartGame : MonoBehaviour
 {
+    public static bool loadDialogue = false;
     public void StartButton()
     {
         SceneManager.LoadScene("Stage1");
+        loadDialogue = true;
     }
 
     public void Continuing()
     {
+        loadDialogue = false;
         if (File.Exists(DataManager.instance.path))
         {
             DataManager.instance.LoadData();

@@ -46,15 +46,25 @@ public class DropGmmick : MonoBehaviour, IResettable
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
+        Debug.Log(isDropped.ToString());
+       
         if (col.gameObject.CompareTag("Player") && isDropped)
         {
             col.gameObject.SetActive(false);
         }
-        else
+        if (col.gameObject.CompareTag("Platform") && isDropped)
         {
             isDropped = false;
         }
 
+    }
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Platform"))
+        {
+            
+            isDropped = true;
+        }
     }
     private void OnDestroy()
     {
