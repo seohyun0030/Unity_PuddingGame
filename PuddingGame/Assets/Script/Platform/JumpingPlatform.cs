@@ -5,6 +5,7 @@ using UnityEngine;
 public class JumpingPlatform : MonoBehaviour //Æ¢¾î¿À¸£´Â ¹ßÆÇ
 {
     public float bounce = 5f; // Æ¢¾î¿À¸£´Â Èû
+    float originalBounce;     //¿ø·¡ Åº¼º·Â
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,10 +14,18 @@ public class JumpingPlatform : MonoBehaviour //Æ¢¾î¿À¸£´Â ¹ßÆÇ
         Vector2 normal = contactPoint.normal; // ¹ý¼± º¤ÅÍ
         if (collision.gameObject.CompareTag("Player"))
         {
+            originalBounce = PlayerManager.i.Physics.bounciness;
             PlayerManager.i.Physics.bounciness = 0;
             PlayerMoveControl.i.jumpPlatform = true;
 
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-normal.normalized * bounce, ForceMode2D.Impulse);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerManager.i.Physics.bounciness = originalBounce;
         }
     }
 }
