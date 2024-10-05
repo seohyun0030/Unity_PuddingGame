@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      start_click_chadow_0: -5740041490462618865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

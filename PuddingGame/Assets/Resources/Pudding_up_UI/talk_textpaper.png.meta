@@ -180,7 +180,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      talk_textpaper_0: 3656666089570134433
+      talk_textpaper_1: 6117251827543448263
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -540,7 +540,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ingame_rail_body_0: 1377638583041679915
+      ingame_rail_body_1: -336843535209598385
+      ingame_rail_body_10: -2942870434653081612
+      ingame_rail_body_11: -7766543509067717980
+      ingame_rail_body_12: 377028905605734908
+      ingame_rail_body_13: 4658422091968311932
+      ingame_rail_body_14: 4253838192184325444
+      ingame_rail_body_15: 4821622723526433540
+      ingame_rail_body_16: 3866142053595238969
+      ingame_rail_body_2: -3806128674264048640
+      ingame_rail_body_3: 3759517650185367256
+      ingame_rail_body_4: 3905917367074810801
+      ingame_rail_body_5: -9041886459518297804
+      ingame_rail_body_6: 8978469161164562618
+      ingame_rail_body_7: 4763918317420768763
+      ingame_rail_body_8: -6563138706418244763
+      ingame_rail_body_9: -2765080345292073362
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -168,6 +168,22 @@ public class CameraController : MonoBehaviour
 
             yield return null;
         }
+
+        StartCoroutine(ZoomIn());
+    }
+    IEnumerator ZoomIn()
+    {
+        float elapsedTime = 0f;
+        float currentSize = camera.orthographicSize;
+        float zoomOutTime = Mathf.Abs(5 - currentSize) / zoomSpeed;
+
+        while (elapsedTime < zoomOutTime)
+        {
+            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 5, Time.deltaTime * zoomSpeed);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
         //연출이 끝남을 알림
         isAnimation = false;
     }

@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ingame_mouse_0: 183179659073655051
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

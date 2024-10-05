@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      setting_sounddar_line_0: 1876299436356167116
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
