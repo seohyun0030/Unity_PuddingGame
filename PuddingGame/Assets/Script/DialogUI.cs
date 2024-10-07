@@ -15,6 +15,8 @@ public class DialogueUI : MonoBehaviour
     public TMP_Text dialogueText; // 대화 내용을 표시할 Text 컴포넌트
     public Image playerImage;
     public Image npcImage;
+    public Image dialogueBack; // 배경
+    public Image nameBack; // 이름 배경
     public float nameX; // 이름UI 위치
     public float nameY;
     public Attachment cream;
@@ -43,6 +45,7 @@ public class DialogueUI : MonoBehaviour
         npc = FindObjectOfType<NPCManager>();
         string documentID = "1jwP7whZvA5w7gJFezyhpXNXFDhdBbbDSXM1Wb_BHO58";
         string gid = "0";
+
 
         GoogleSheet.GetSheetData(documentID, gid, this, (success, data) =>
         {
@@ -85,6 +88,7 @@ public class DialogueUI : MonoBehaviour
     {
         nameText.gameObject.SetActive(true);
         dialogueText.gameObject.SetActive(true);
+        dialogueBack.gameObject.SetActive(true);
         currentNo = no;
         DisplayNextDialogue();
         Time.timeScale = 0.00001f;
@@ -144,6 +148,8 @@ public class DialogueUI : MonoBehaviour
         nameText.gameObject.SetActive(no);
         playerImage.gameObject.SetActive(no);
         npcImage.gameObject.SetActive(no);
+        dialogueBack.gameObject.SetActive(no);
+        //nameBack.gameObject.SetActive(no);
     }
     private void HandleImage(DialogueEntry next)
     {
