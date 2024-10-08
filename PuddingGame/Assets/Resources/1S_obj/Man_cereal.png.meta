@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Man_cereal_0: 2435447762489642078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
