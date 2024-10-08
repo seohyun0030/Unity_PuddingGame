@@ -8,6 +8,8 @@ TagManager:
   - SavePoint
   - EndPoint
   - Topping
+  - Image
+  - Button
   layers:
   - Default
   - TransparentFX
@@ -44,4 +46,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Image
+    uniqueID: 4089164521
+    locked: 0
+  - name: Button
+    uniqueID: 3673654681
     locked: 0
