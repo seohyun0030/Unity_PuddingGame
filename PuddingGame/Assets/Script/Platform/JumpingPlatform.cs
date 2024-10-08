@@ -18,6 +18,7 @@ public class JumpingPlatform : MonoBehaviour //튀어오르는 발판
             PlayerManager.i.Physics.bounciness = 0;
             PlayerMoveControl.i.jumpPlatform = true;
 
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-normal.normalized * bounce, ForceMode2D.Impulse);
         }
     }

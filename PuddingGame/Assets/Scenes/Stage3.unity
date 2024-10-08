@@ -19668,6 +19668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpingPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 5254952642250840381, guid: 8924d25d85f83674b8200b04787eda73, type: 3}
+      propertyPath: bounce
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6380819054828547608, guid: 8924d25d85f83674b8200b04787eda73, type: 3}
       propertyPath: m_SortingOrder
       value: 3
@@ -21602,6 +21606,10 @@ PrefabInstance:
     - target: {fileID: 4800776029390482197, guid: 8924d25d85f83674b8200b04787eda73, type: 3}
       propertyPath: m_Name
       value: JumpingPlatform (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254952642250840381, guid: 8924d25d85f83674b8200b04787eda73, type: 3}
+      propertyPath: bounce
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6380819054828547608, guid: 8924d25d85f83674b8200b04787eda73, type: 3}
       propertyPath: m_SortingOrder
@@ -31143,11 +31151,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5
+      value: 68.5
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z
