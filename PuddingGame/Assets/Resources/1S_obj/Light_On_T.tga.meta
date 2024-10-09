@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: b4b81367ddaaae94c9e513e610d77169
+guid: 1d6ea0a91b5d8c64fa7b8b590b007d94
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5371202032598073433
-    second: Light_On_0
+      213: 2562123500124423410
+    second: Light_On_T_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
-    sRGBTexture: 1
+    sRGBTexture: 0
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -54,7 +54,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
+  alphaUsage: 2
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
@@ -109,39 +109,26 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Light_On_0
+      name: Light_On_T_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1320
-        height: 125
+        x: 27
+        y: 87
+        width: 1342
+        height: 262
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7afb22e8538a575b0800000000000000
-      internalID: -5371202032598073433
+      spriteID: 2f4c897afbd7e8320800000000000000
+      internalID: 2562123500124423410
       vertices: []
       indices: 
       edges: []
@@ -149,7 +136,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fbc2d0dfa191c7c40bfa96e9c36c439a
     internalID: 0
     vertices: []
     indices: 
@@ -157,7 +144,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Light_On_0: -5371202032598073433
+      Light_On_T_0: 2562123500124423410
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
