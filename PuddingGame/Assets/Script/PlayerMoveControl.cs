@@ -523,31 +523,35 @@ public class PlayerMoveControl : MonoBehaviour
         float colliderHalfWidth = GetComponent<Collider2D>().bounds.extents.x;
         RaycastHit2D left = Physics2D.Raycast(transform.position, Vector2.left, clingRay, LayerMask.GetMask("Platform"));
         RaycastHit2D right = Physics2D.Raycast(transform.position, Vector2.right, clingRay, LayerMask.GetMask("Platform"));
-        if (left.collider != null)
+        RaycastHit2D down = Physics2D.Raycast(transform.position, Vector2.down, clingRay, LayerMask.GetMask("Platform"));
+
+        if (down.collider == null)
         {
-            rb.velocity = Vector2.zero;
-            rb.gravityScale = 0f;
-            transform.position = new Vector2(left.point.x  - colliderHalfWidth - rayOffset, transform.position.y);
-            if (!isRotated)
+            if (left.collider != null)
             {
-                transform.Rotate(0, 0, -90);
-                isRotated = true;
+                rb.velocity = Vector2.zero;
+                rb.gravityScale = 0f;
+                transform.position = new Vector2(left.point.x - colliderHalfWidth - rayOffset, transform.position.y);
+                if (!isRotated)
+                {
+                    transform.Rotate(0, 0, -90);
+                    isRotated = true;
+                }
+
+
             }
-
-
-        }
-        else if (right.collider != null)
-        {
-            rb.velocity = Vector2.zero;
-            rb.gravityScale = 0f;
-            transform.position = new Vector2(right.point.x + colliderHalfWidth + rayOffset, transform.position.y);
-            if (!isRotated)
+            else if (right.collider != null)
             {
-                transform.Rotate(0, 0, 90);
-                isRotated = true;
+                rb.velocity = Vector2.zero;
+                rb.gravityScale = 0f;
+                transform.position = new Vector2(right.point.x + colliderHalfWidth + rayOffset, transform.position.y);
+                if (!isRotated)
+                {
+                    transform.Rotate(0, 0, 90);
+                    isRotated = true;
+                }
             }
         }
-
     }
 }
 public static class Vector2Extensions
