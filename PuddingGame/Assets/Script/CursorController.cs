@@ -1,42 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-//using static UnityEditor.PlayerSettings;
 
 public class CursorController : MonoBehaviour
 {
     public static CursorController i;
+    Image cursor;
     [SerializeField] Transform currentCursor;   // 커서의 현재 위치
     [SerializeField] GameObject Player;
-    [SerializeField] Image mouseCircle;     //마우스 위치에 생기는 원
     [SerializeField] Image arrow;           //화살표
+    [SerializeField] Image arrowHead;       //화살표의 머리부분
+    [SerializeField] Transform arrowHeadPos;    //삼각형 위치
     Vector3 screenPosition;
     Vector3 startPos;
     Vector3 myPos;
     public bool isLong;    //마우스 드래그가 한계선을 넘었는지 확인
     [SerializeField] float MinLength;   //마우스를 당길 때 점프 가능한 최소 길이
     [SerializeField] float MaxLength;   //최대 길이
-
-    public Sprite[] changeSprite;
     
     private void Awake()
     {
         i = this;
     }
-
+    private void Start()
+    {
+        cursor = GetComponent<Image>();
+    }
     void Update()
     {
-        
-            CursorMoving();
+        CursorMoving();
+
         if (!DialogueUI.i.dialogueText.IsActive())
         {
             if (Input.GetMouseButtonDown(0))
             {
                 screenPosition = Camera.main.WorldToScreenPoint(Player.transform.position);
 
-                mouseCircle.gameObject.SetActive(true);
                 arrow.gameObject.SetActive(true);
+                arrowHead.gameObject.SetActive(true);
                 arrow.transform.position = screenPosition;      //화살표의 위치를 플레이어 오브젝트 위치로 설정
                 startPos = Input.mousePosition;
             }
@@ -45,14 +48,18 @@ public class CursorController : MonoBehaviour
             {
                 myPos = Input.mousePosition;
 
-                mouseCircle.transform.localPosition = currentCursor.localPosition;      //마우스 원 위치
-
                 arrow.transform.localScale = new Vector2(Vector3.Distance(myPos, startPos), 1); //마우스를 당기는 만큼 사이즈 변경
                 arrow.transform.localRotation = Quaternion.Euler(0, 0, AngleInDeg(startPos, myPos) + 180);  //마우스가 당기는 방향으로 회전
+                arrowHead.transform.localRotation = Quaternion.Euler(0, 0, AngleInDeg(startPos, myPos) + 180);
 
                 if (arrow.transform.localScale.x >= MaxLength)    //길이가 한계점을 넘어가면
                 {
                     arrow.transform.localScale = new Vector2(MaxLength, 1);     //길이 고정
+                    arrowHead.transform.position = arrowHeadPos.position;       //삼각형 위치도 고정된 위치에 따라 설정
+                }
+                else
+                {
+                    arrowHead.transform.position = arrowHeadPos.position;       //삼각형 위치 설정
                 }
                 if (arrow.transform.localScale.x <= MinLength)     //길이가 최소점보다 작으면
                 {
@@ -75,8 +82,8 @@ public class CursorController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
-                mouseCircle.gameObject.SetActive(false);
                 arrow.gameObject.SetActive(false);
+                arrowHead.gameObject.SetActive(false);
             }
         }
     }
@@ -190,10 +197,10 @@ public class CursorController : MonoBehaviour
 
     void changeAlpha(bool isAlpha)
     {
-        Color color = mouseCircle.color;
+        Color color = cursor.color;
 
         color.a = isAlpha ? 0.5f : 1f;
         //isAlpha가 참이면 0.5, 거짓이면 1
-        mouseCircle.color = color;
+        cursor.color = color;
     }
 }
