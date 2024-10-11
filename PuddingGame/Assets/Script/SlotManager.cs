@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class SlotManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class SlotManager : MonoBehaviour
     public GameObject toppingObj;   //토핑을 모은 부모 오브젝트
     int n;      //토핑 순서 나타냄
 
-    private List<GameObject> slots = new List<GameObject>();
+    public List<GameObject> slots = new List<GameObject>();
     private void Awake()
     {
         i = this;
@@ -74,12 +75,16 @@ public class SlotManager : MonoBehaviour
         slots.RemoveAt(0);          //리스트에서 0번째 요소 삭제
         Destroy(Slot.GetChild(0).gameObject);       //Ui에서도 삭제
     }
-
-    public void RespawnTopping()        //토핑 재생성하기
+    public void DeleteTopping()
     {
-        for(int i = 0; i < toppingObj.transform.childCount; i++)
+        Debug.Log(slots.Count);
+        for (int i = 0; i < slots.Count; i++)
         {
-            toppingObj.transform.GetChild(i).gameObject.SetActive(true);
+            if (slots != null)
+            {
+                slots.RemoveAt(i);
+                Destroy(Slot.GetChild(i).gameObject);
+            }
         }
     }
     public string GetTopping()
