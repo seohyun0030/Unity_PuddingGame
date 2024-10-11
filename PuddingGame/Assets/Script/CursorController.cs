@@ -82,6 +82,7 @@ public class CursorController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
+                changeAlpha(false);
                 arrow.gameObject.SetActive(false);
                 arrowHead.gameObject.SetActive(false);
             }
