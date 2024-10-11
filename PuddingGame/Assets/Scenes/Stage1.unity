@@ -20365,11 +20365,11 @@ MonoBehaviour:
   Slot: {fileID: 2091861159}
   ToppingCnt: 1
   Toppings:
-  - {fileID: 4179068956928332592, guid: 93aaa821d1738fd4199b8694c97d7ee2, type: 3}
-  - {fileID: 1272060559391664672, guid: a79976f8f5cdd23468f875ac1a66a7df, type: 3}
-  - {fileID: 1869679514335190659, guid: cad6c6be8739feb48a29198ed7b5eadc, type: 3}
-  - {fileID: 6261179091068579846, guid: 1671978545edba344ae2bd9a1d6e45ca, type: 3}
-  - {fileID: 330994998814286021, guid: ffc6c481e7a4840419976e0d35f26deb, type: 3}
+  - {fileID: 1584997363758365247, guid: e6c7acd1134ee2742b741d50d469d567, type: 3}
+  - {fileID: 818572158661681389, guid: a07cf4161d36d06479d93e3197bed7a2, type: 3}
+  - {fileID: 1104267095103201, guid: 412e49c5fb3c91d49bb25810e5d05bdc, type: 3}
+  - {fileID: 4800519929316631420, guid: b5e639d08427837448c65a8e5902165b, type: 3}
+  - {fileID: 818572158661681389, guid: 593d4eaca6c2d6c4382fa96039ece0ef, type: 3}
   toppingObj: {fileID: 0}
 --- !u!4 &1686547097
 Transform:
@@ -25045,7 +25045,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: 446}
+  m_AnchoredPosition: {x: -810, y: 390}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091861160
