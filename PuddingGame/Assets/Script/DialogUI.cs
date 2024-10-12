@@ -7,6 +7,7 @@ using Spine;
 using Spine.Unity;
 using UnityEngine.SceneManagement;
 
+
 public class DialogueUI : MonoBehaviour
 {
     public static DialogueUI i;
@@ -35,7 +36,7 @@ public class DialogueUI : MonoBehaviour
             var slot2 = skeleton.FindSlot("cherry");
             slot2.Attachment = null;
             slot1.Attachment = null;
-            
+
         }
     }
     private void Start()
@@ -47,7 +48,7 @@ public class DialogueUI : MonoBehaviour
         string gid = "0";
 
 
-        GoogleSheet.GetSheetData(documentID, gid, this, (success, data) =>
+        GoogleSheetRuntime.GetSheetData(documentID, gid, this, (success, data) =>
         {
             if (success && data != null)
             {
@@ -55,7 +56,7 @@ public class DialogueUI : MonoBehaviour
                 //DisplayNextDialogue();
                 if (SceneManager.GetActiveScene().name == "Stage1" && StartGame.loadDialogue)
                 {
-                    
+
                     StartDialogue(0);
                 }
             }
@@ -100,9 +101,9 @@ public class DialogueUI : MonoBehaviour
         if (dialogueText.IsActive() && nextDialogue == null) // 대화 끝
         {
             GameObjectActivate(false);
-            
+
             Time.timeScale = 1f;
-            if(SceneManager.GetActiveScene().name == "Stage1" )
+            if (SceneManager.GetActiveScene().name == "Stage1")
             {
                 StartCoroutine(CameraController.i.Stage1Animation());
             }
@@ -113,23 +114,23 @@ public class DialogueUI : MonoBehaviour
 
                 var slot1 = skeleton.FindSlot("cream");
                 var slot2 = skeleton.FindSlot("cherry");
-                if(slot1 != null && slot2 != null)
+                if (slot1 != null && slot2 != null)
                 {
                     slot2.Attachment = cherry;
                     slot1.Attachment = cream;
-                } 
-               
+                }
+
             }
             else if (SceneManager.GetActiveScene().name == "Stage3")
             {
                 npc.EndDialogue();
                 //ChangePlayerSkin("Mint");
             }
-            else if(SceneManager.GetActiveScene().name == "Stage4")
+            else if (SceneManager.GetActiveScene().name == "Stage4")
             {
                 npc.EndDialogue();
             }
-            else if(SceneManager.GetActiveScene().name == "Stage5")
+            else if (SceneManager.GetActiveScene().name == "Stage5")
             {
                 npc.EndDialogue();
             }
@@ -157,14 +158,14 @@ public class DialogueUI : MonoBehaviour
         int npc = next.NPC;
 
         //플레이어 이미지
-        if (nameText.text == "푸딩") 
+        if (nameText.text == "푸딩")
         {
             playerImage.sprite = LoadPCImage(pc);
             playerImage.gameObject.SetActive(true);
             RectTransform nameTextRect = nameText.GetComponent<RectTransform>();
             nameTextRect.anchoredPosition = new Vector2(nameX, nameY); // 위치 수정
         }
-        else if(npcImage.IsActive())
+        else if (npcImage.IsActive())
         {
             playerImage.gameObject.SetActive(false);
         }
@@ -173,9 +174,9 @@ public class DialogueUI : MonoBehaviour
             playerImage.gameObject.SetActive(false);
         }
         //NPC 이미지
-        if(nameText.text != "푸딩")
+        if (nameText.text != "푸딩")
         {
-            if(npc != 0) npcImage.sprite = LoadNPCImage(npc);
+            if (npc != 0) npcImage.sprite = LoadNPCImage(npc);
             npcImage.gameObject.SetActive(true);
             RectTransform nameTextRect = nameText.GetComponent<RectTransform>();
             nameTextRect.anchoredPosition = new Vector2(-nameX, nameY); // 위치 수정
@@ -187,9 +188,9 @@ public class DialogueUI : MonoBehaviour
         else
         {
             npcImage.gameObject.SetActive(false);
-            
+
         }
-        
+
     }
     private Sprite LoadPCImage(int num)
     {
@@ -228,7 +229,7 @@ public class DialogueUI : MonoBehaviour
                 return null;
         }
         Sprite loadedSprite = Resources.Load<Sprite>(imageName);
-        if(loadedSprite == null)
+        if (loadedSprite == null)
         {
             Debug.Log("PC 이미지x");
         }

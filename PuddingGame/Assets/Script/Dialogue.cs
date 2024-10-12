@@ -5,11 +5,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UIElements;
+#if UNITY_EDITOR
 using Unity.EditorCoroutines.Editor;
+using UnityEditor;
+
 public class Dialogue : EditorWindow
 {
 
-    [MenuItem("MyEditor/GoogleSheet")]
+    //[MenuItem("MyEditor/GoogleSheet")]
     public static void OpenPanel()
     {
 
@@ -87,4 +90,30 @@ public static class GoogleSheet
 
     }
 
+}
+#endif
+public static class GoogleSheetRuntime
+{
+    public static void GetSheetData(string documentID, string sheetID, MonoBehaviour owner, Action<bool, string> process = null)
+    {
+        owner.StartCoroutine(GetSheetDataCo(documentID, sheetID, process));
+    }
+
+    private static IEnumerator GetSheetDataCo(string documentID, string sheetID, Action<bool, string> process = null)
+    {
+        string url = $"https://docs.google.com/spreadsheets/d/{documentID}/export?format=tsv&gid={sheetID}";
+
+        UnityWebRequest req = UnityWebRequest.Get(url);
+
+        yield return req.SendWebRequest();
+
+        if (req.result == UnityWebRequest.Result.ConnectionError || req.responseCode != 200)
+        {
+            process?.Invoke(false, null);
+        }
+        else
+        {
+            process?.Invoke(true, req.downloadHandler.text);
+        }
+    }
 }

@@ -206,13 +206,13 @@ public class PlayerMoveControl : MonoBehaviour
         angle = Vector2.Angle(hit3.normal, Vector2.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), 0.5f);
     }*/
-    void resetRotation() //회전 상태 초기화
-    {
-        rb.velocity = Vector3.zero;
-        transform.rotation = Quaternion.identity;
-        Cannon.i.transform.rotation = Quaternion.identity;
-        Cannon.i.isFire = false;
-    }
+    //void resetRotation() //회전 상태 초기화
+    //{
+    //    rb.velocity = Vector3.zero;
+    //    transform.rotation = Quaternion.identity;
+    //    Cannon.i.transform.rotation = Quaternion.identity;
+    //    Cannon.i.isFire = false;
+    //}
     public void SetGravityReversed(bool reserved) //중력 반전
     {
         isGravityReserved = reserved;
@@ -329,6 +329,7 @@ public class PlayerMoveControl : MonoBehaviour
         //canJump = rb.velocity.magnitude < threshold && Mathf.Abs(rb.angularVelocity) < threshold;
         canJump = rb.velocity.magnitude < 0.01f;
     }
+    /*
     private void HandleCannon()
     {
         
@@ -399,6 +400,7 @@ public class PlayerMoveControl : MonoBehaviour
         }
         
     }
+    */
     public void ToppingJump(int i)   //토핑을 쓰면 나타나는 점프 구현
     {
         StopCoroutine(CheckJumping());
