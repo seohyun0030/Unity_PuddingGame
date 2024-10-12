@@ -2,6 +2,7 @@ using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using static UnityEditor.PlayerSettings;
 
 public class Cannon : MonoBehaviour
@@ -74,3 +75,4 @@ public class Cannon : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + (Vector3)transform.up * rayDistance);
     }
 }
+#endif
