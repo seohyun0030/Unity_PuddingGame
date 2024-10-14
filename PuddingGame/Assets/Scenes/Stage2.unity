@@ -9984,6 +9984,7 @@ MonoBehaviour:
   - {fileID: 6261179091068579846, guid: 1671978545edba344ae2bd9a1d6e45ca, type: 3}
   - {fileID: 330994998814286021, guid: ffc6c481e7a4840419976e0d35f26deb, type: 3}
   toppingObj: {fileID: 1290144257}
+  slots: []
 --- !u!4 &1217863871
 Transform:
   m_ObjectHideFlags: 0
@@ -11607,7 +11608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237992072924256407, guid: ccdbbc2e8102233469826a19ef193fab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.976444
+      value: 31.949791
       objectReference: {fileID: 0}
     - target: {fileID: 2237992072924256407, guid: ccdbbc2e8102233469826a19ef193fab, type: 3}
       propertyPath: m_LocalPosition.z
