@@ -64,9 +64,11 @@ public class PlayerMoveControl : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0) && canJump && isGrounded && isLong || (jumpPlatform && Input.GetMouseButtonUp(0)))     //마우스를 뗐을 때 점프가능 상태이고 땅에 있으면 점프 가능
             {
-
-                Move();
-                PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
+                if (GameManager.isPause == false)
+                {
+                    Move();
+                    PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
+                }
             }
             if (chocolate && Input.GetMouseButtonUp(0))
             {
@@ -77,6 +79,7 @@ public class PlayerMoveControl : MonoBehaviour
                 PlayerManager.i.JumpGauge = 0.2f;
 
             }
+
         }
         
     }

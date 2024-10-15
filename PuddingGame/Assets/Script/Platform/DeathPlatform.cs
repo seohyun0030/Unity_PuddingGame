@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DeathPlatform : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        if (collision.gameObject.name.Equals("Player"))
+        if (col.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.SetActive(false);
+            Debug.Log(col.gameObject.name);
+            col.gameObject.SetActive(false);
         }
     }
 }
