@@ -32,7 +32,7 @@ public class CursorController : MonoBehaviour
     {
         CursorMoving();
 
-        if (!DialogueUI.i.dialogueText.IsActive())
+        if (!DialogueUI.i.dialogueText.IsActive() && !CameraController.i.isAnimation)
         {
             if (Input.GetMouseButtonDown(0))
             {
