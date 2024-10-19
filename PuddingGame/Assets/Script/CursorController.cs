@@ -165,11 +165,13 @@ public class CursorController : MonoBehaviour
     }
     void CursorMoving()
     {
+        currentCursor.position = Input.mousePosition;
+        
         //Cursor.visible = false;   마우스 안보이기
         // 마우스 이동
-        float x = Input.mousePosition.x - (Screen.width / 2);
+        /*float x = Input.mousePosition.x - (Screen.width / 2);
         float y = Input.mousePosition.y - (Screen.height / 2);
-        currentCursor.localPosition = new Vector2(x, y);
+        currentCursor.localPosition = Input.mousePosition;
 
         // 마우스 가두기 (범위 지정)
         float tmp_cursorPosX = currentCursor.localPosition.x;
@@ -184,7 +186,7 @@ public class CursorController : MonoBehaviour
         tmp_cursorPosX = Mathf.Clamp(tmp_cursorPosX, min_width + padding, max_width - padding);
         tmp_cursorPosY = Mathf.Clamp(tmp_cursorPosY, min_height + padding, max_height - padding);
 
-        currentCursor.localPosition = new Vector2(tmp_cursorPosX, tmp_cursorPosY);
+        currentCursor.localPosition = new Vector2(tmp_cursorPosX, tmp_cursorPosY);*/
     }
     public static float AngleInRad(Vector3 vec1, Vector3 vec2)
     {
