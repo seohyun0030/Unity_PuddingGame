@@ -91,4 +91,13 @@ public class SlotManager : MonoBehaviour
     {
         return slots[0].name;
     }
+    public void RespawnTopping(Collider2D c)
+    {
+        StartCoroutine(Respawn(c));
+    }
+    public IEnumerator Respawn(Collider2D c)
+    {
+        yield return new WaitForSeconds(5f);
+        c.gameObject.SetActive(true);
+    }
 }

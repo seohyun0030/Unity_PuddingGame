@@ -93,13 +93,9 @@ public class PlayerManager : MonoBehaviour
         }
         else if (collision.CompareTag("Topping"))
         {
-            StartCoroutine(RespawnTopping(collision));
+            if(SlotManager.i != null)
+                SlotManager.i.RespawnTopping(collision);
         }
-    }
-    IEnumerator RespawnTopping(Collider2D c)
-    {
-        yield return new WaitForSeconds(5f);
-        c.gameObject.SetActive(true);
     }
     public void ChangeFriction_Bounce(float newFriction, float newBoune)
     {

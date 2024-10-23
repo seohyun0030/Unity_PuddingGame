@@ -103,11 +103,11 @@ public class DialogueUI : MonoBehaviour
             GameObjectActivate(false);
 
             Time.timeScale = 1f;
-            if (SceneManager.GetActiveScene().name == "Stage1")
+            /*if (SceneManager.GetActiveScene().name == "Stage1")
             {
                 StartCoroutine(CameraController.i.Stage1Animation());
-            }
-            else if (SceneManager.GetActiveScene().name == "Stage2")
+            }*/
+            if (SceneManager.GetActiveScene().name == "Stage2")
             {
                 npc.EndDialogue();
                 var skeleton = playerSkeletonAnimation.Skeleton;

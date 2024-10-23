@@ -10451,8 +10451,8 @@ MonoBehaviour:
   zoomOut: 15
   zoomSpeed: 5
   animMoveSpeed: 0.3
-  dest_1: {x: 130, y: 2, z: -10}
-  dest_2: {x: 0, y: 28, z: -10}
+  dest_1: {x: 112.1, y: 2, z: -10}
+  dest_2: {x: 13.5, y: 28, z: -10}
   dest_3: {x: 190, y: 28, z: -10}
   isAnimation: 0
   LeftDoor: {fileID: 288467601}
@@ -10525,7 +10525,7 @@ Transform:
   m_GameObject: {fileID: 799950836}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
