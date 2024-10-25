@@ -262,8 +262,6 @@ public class PlayerMoveControl : MonoBehaviour
                 StartCoroutine(ParticleCooldown());
                 
             }
-            if (gameObject.activeSelf)
-                StartCoroutine(isStopMoving());
 
             if (matcha)
             {
@@ -310,27 +308,6 @@ public class PlayerMoveControl : MonoBehaviour
             gameObject.SetActive(false);
             playerActive = false;
         }
-    }
-    IEnumerator isStopMoving()
-    {
-        /*float xPos = transform.position.x;
-        float yPos = transform.position.y;
-        
-        yield return new WaitForSeconds(1f);
-
-        Debug.Log(xPos+" "+yPos);
-        Debug.Log(transform.position.x + " " + transform.position.y);
-        //1초동안 좌표가 변하지 않았으면 점프 가능
-        if (xPos == transform.position.x && (transform.position.y >= yPos - 0.1f || transform.position.y <= yPos + 0.1f))
-        {
-            canJump = true;
-        }*/
-
-        yield return new WaitForSeconds(1f);        //1초 기다리기
-
-        //임계치보다 속도가 낮으면 점프 가능
-        //canJump = rb.velocity.magnitude < threshold && Mathf.Abs(rb.angularVelocity) < threshold;
-        canJump = rb.velocity.magnitude < 0.01f;
     }
     /*
     private void HandleCannon()
