@@ -14985,11 +14985,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.52
+      value: -4.22
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.49
+      value: 1.49
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15024,6 +15024,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5961233528351968348, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961233528351968348, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 701b31b4419125c46803800b598cfc13, type: 2}
@@ -15031,6 +15035,14 @@ PrefabInstance:
       propertyPath: initialFlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6420187640016487988, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: initialSkinName
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420187640016487988, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f1a9ac0e3ca7e06438a24545be7bfd87, type: 2}
     - target: {fileID: 7486024907907391955, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: idle
       value: '#1idel'
