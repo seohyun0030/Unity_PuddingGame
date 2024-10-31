@@ -21,7 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-    private void CallMenu()
+    public void CallMenu()
     {
         GameManager.isPause = true;
         go_BaseUI.SetActive(true);
@@ -29,7 +29,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log(Time.timeScale);
     }
 
-    private void CloseMenu()
+    public void CloseMenu()
     {
         GameManager.isPause = false;
         go_BaseUI.SetActive(false);
