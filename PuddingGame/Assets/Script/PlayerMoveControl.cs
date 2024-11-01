@@ -134,8 +134,9 @@ public class PlayerMoveControl : MonoBehaviour
         StartCoroutine(JumpDelay());
         jumpPlatform = false;
 
-        //PlayerManager.i.Animation("Jump0-Enter", false);
         PlayerManager.i.jumpAnim();
+
+        SfxManager.i.PlaySound("Jump");
     }
     
     void RayCastControl()  //레이 캐스트 구현
@@ -260,7 +261,8 @@ public class PlayerMoveControl : MonoBehaviour
                     Destroy(particle, ps.main.duration);
                 }
                 StartCoroutine(ParticleCooldown());
-                
+
+                SfxManager.i.PlaySound("Collision");   //충돌 효과음 재생
             }
 
             if (matcha)
@@ -305,9 +307,15 @@ public class PlayerMoveControl : MonoBehaviour
 
         if (impactVelocity.y > PlayerManager.i.fallingSpeed)
         {
-            gameObject.SetActive(false);
             playerActive = false;
+            Death();
         }
+    }
+    public void Death()
+    {
+        gameObject.SetActive(false);
+
+        SfxManager.i.PlaySound("Death");        //죽음 효과음 재생
     }
     /*
     private void HandleCannon()

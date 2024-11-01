@@ -68,8 +68,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 701b31b4419125c46803800b598cfc13, type: 2}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: f1a9ac0e3ca7e06438a24545be7bfd87, type: 2}
-  initialSkinName: 
+  initialSkinName: 0
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
   initialFlipY: 0
@@ -265,11 +264,7 @@ MonoBehaviour:
   speed: 0
   fallingSpeed: 20
   SavePos: {x: 0, y: 0, z: 0}
-  idle: '#1idel'
-  jump: Jump0-Enter
-  char1: Char1
-  char2: Char2
-  char3: Char3
+  StageIndex: 0
 --- !u!1001 &3388092011100757572
 PrefabInstance:
   m_ObjectHideFlags: 0

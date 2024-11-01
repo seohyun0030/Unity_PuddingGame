@@ -25,9 +25,6 @@ public class PlayerManager : MonoBehaviour
     public Vector3 SavePos;
     public int StageIndex;
     SkeletonAnimation anim;
-    [SpineAnimation] public string jump;
-
-    string currentAnim;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -85,6 +82,8 @@ public class PlayerManager : MonoBehaviour
             PlayerPrefs.SetFloat("SavePosY", SavePos.y);
 
             collision.GetComponent<BoxCollider2D>().enabled = false;    //세이프 포인트 콜라이더 삭제
+
+            SfxManager.i.PlaySound("SavePoint");        //세이브 포인트 효과음 재생
         }
         else if (collision.CompareTag("EndPoint"))  //종료지점에 닿으면
         {
@@ -95,6 +94,8 @@ public class PlayerManager : MonoBehaviour
         {
             if(SlotManager.i != null)
                 SlotManager.i.RespawnTopping(collision);
+
+            SfxManager.i.PlaySound("GetItem");      //아이템 획득 효과음 재생
         }
     }
     public void ChangeFriction_Bounce(float newFriction, float newBoune)

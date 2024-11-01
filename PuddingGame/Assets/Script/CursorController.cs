@@ -42,6 +42,8 @@ public class CursorController : MonoBehaviour
                 arrowHead.gameObject.SetActive(true);
                 arrow.transform.position = screenPosition;      //화살표의 위치를 플레이어 오브젝트 위치로 설정
                 startPos = Input.mousePosition;
+
+                SfxManager.i.PlaySound("ButtonTouch");     //효과음 재생
             }
 
             if (Input.GetMouseButton(0))

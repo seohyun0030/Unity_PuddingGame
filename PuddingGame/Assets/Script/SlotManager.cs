@@ -74,6 +74,9 @@ public class SlotManager : MonoBehaviour
         GameObject UsedTopping = slots[0];
         slots.RemoveAt(0);          //리스트에서 0번째 요소 삭제
         Destroy(Slot.GetChild(0).gameObject);       //Ui에서도 삭제
+
+        if (slots[0].name != "3_ChocolateImage")    //아이템 사용시 초콜릿이 아닐 때
+            SfxManager.i.PlaySound("UseItem");      //아이템 사용 효과음 재생
     }
     public void DeleteTopping()
     {
