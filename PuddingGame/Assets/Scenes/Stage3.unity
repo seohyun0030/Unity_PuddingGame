@@ -925,7 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c713f3dd329634cb22884193943371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSkeletonAnimation: {fileID: 0}
+  playerSkeletonAnimation: {fileID: 1131327742}
   nameText: {fileID: 123718378}
   dialogueText: {fileID: 1576447439}
   playerImage: {fileID: 2133769917}
@@ -18637,6 +18637,17 @@ MonoBehaviour:
   playWhenSelected: 1
   playWhenDeselected: 1
   fixedTrackTime: 0
+--- !u!114 &1131327742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6420187640016487988, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+  m_PrefabInstance: {fileID: 241061969702189170}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131327728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1137742794
 GameObject:
   m_ObjectHideFlags: 0

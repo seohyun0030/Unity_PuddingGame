@@ -124,7 +124,7 @@ public class DialogueUI : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == "Stage3")
             {
                 npc.EndDialogue();
-                //ChangePlayerSkin("Mint");
+                ChangePlayerSkin("2");
             }
             else if (SceneManager.GetActiveScene().name == "Stage4")
             {
