@@ -22,6 +22,7 @@ public class DialogueUI : MonoBehaviour
     public float nameY;
     public Attachment cream;
     public Attachment cherry;
+    public Attachment cherry2;
     private DialogueSystem dialogueSystem;
     private NPCManager npc;
     private int currentNo;
@@ -34,8 +35,11 @@ public class DialogueUI : MonoBehaviour
 
             var slot1 = skeleton.FindSlot("cream");
             var slot2 = skeleton.FindSlot("cherry");
-            slot2.Attachment = null;
+            var slot3 = skeleton.FindSlot("cherry2");
             slot1.Attachment = null;
+            slot2.Attachment = null;
+            slot3.Attachment = null;
+            
 
         }
     }
@@ -71,10 +75,14 @@ public class DialogueUI : MonoBehaviour
 
             var slot1 = skeleton.FindSlot("cream");
             var slot2 = skeleton.FindSlot("cherry");
+            var slot3 = skeleton.FindSlot("cherry2");
             cream = slot1.Attachment;
             cherry = slot2.Attachment;
+            cherry2 = slot3.Attachment;
             slot2.Attachment = null;
             slot1.Attachment = null;
+            slot3.Attachment = null;
+
         }
         //gameObject.SetActive(false);
     }
