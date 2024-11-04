@@ -70,14 +70,14 @@ public class PlayerMoveControl : MonoBehaviour
                     PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
                 }
             }
-            if (chocolate && Input.GetMouseButtonUp(0))
+            if (chocolate && Input.GetMouseButtonUp(0)) 
             {
                 chocolate = false;
                 isRotated = false;
                 Move();
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 PlayerManager.i.JumpGauge = 0.2f;
-
+                chocolateSound = false;
             }
 
         }
@@ -113,7 +113,9 @@ public class PlayerMoveControl : MonoBehaviour
             if (chocolate)
             {
                 Chocolate();
-            }
+                
+
+               }
         
         
     }
@@ -508,6 +510,7 @@ public class PlayerMoveControl : MonoBehaviour
         rasberry = false;
     }
     private bool isRotated = false; // 회전
+    private bool chocolateSound = false;
     private void Chocolate()
     {
         float colliderHalfWidth = GetComponent<Collider2D>().bounds.extents.x;
@@ -527,7 +530,11 @@ public class PlayerMoveControl : MonoBehaviour
                     transform.Rotate(0, 0, -90);
                     isRotated = true;
                 }
-
+                if (!chocolateSound)
+                {
+                    SfxManager.i.PlaySound("Chocolate");
+                    chocolateSound = true;
+                }
 
             }
             else if (right.collider != null)
@@ -540,8 +547,16 @@ public class PlayerMoveControl : MonoBehaviour
                     transform.Rotate(0, 0, 90);
                     isRotated = true;
                 }
+                if (!chocolateSound)
+                {
+                    SfxManager.i.PlaySound("Chocolate");
+                    chocolateSound = true;
+                }
             }
+            
+            
         }
+
     }
 }
 public static class Vector2Extensions

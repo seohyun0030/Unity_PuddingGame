@@ -46,6 +46,7 @@ public class VanishingDropGimmick : MonoBehaviour, IResettable
         {
             col.gameObject.SetActive(false);
             isActive = false;
+            SfxManager.i.PlaySound("Death");
         }
         if (col.gameObject.CompareTag("Platform") || col.gameObject.CompareTag("Player"))
         {

@@ -60,6 +60,7 @@ public class SlotManager : MonoBehaviour
             //초콜릿 아이템을 사용했을 때
             Debug.Log("Chocolate");
             PlayerMoveControl.i.ToppingJump(2);
+            
         }
         else if (slots[0].name == "4_RasberryImage")
         {

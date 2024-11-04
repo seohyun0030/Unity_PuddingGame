@@ -51,6 +51,7 @@ public class DropGmmick : MonoBehaviour, IResettable
         if (col.gameObject.CompareTag("Player") && isDropped)
         {
             col.gameObject.SetActive(false);
+            SfxManager.i.PlaySound("Death");
         }
         if (col.gameObject.CompareTag("Platform") && isDropped)
         {
