@@ -32,6 +32,9 @@ public class CursorController : MonoBehaviour
     {
         CursorMoving();
 
+        if (DialogueUI.i == null || CameraController.i == null)
+            return;
+
         if (!DialogueUI.i.dialogueText.IsActive() && !CameraController.i.isAnimation)
         {
             if (Input.GetMouseButtonDown(0))
@@ -169,7 +172,7 @@ public class CursorController : MonoBehaviour
     {
         currentCursor.position = Input.mousePosition;
         
-        //Cursor.visible = false;   마우스 안보이기
+        Cursor.visible = false;   //마우스 안보이기
         // 마우스 이동
         /*float x = Input.mousePosition.x - (Screen.width / 2);
         float y = Input.mousePosition.y - (Screen.height / 2);
