@@ -10502,9 +10502,9 @@ GameObject:
   - component: {fileID: 793482279}
   - component: {fileID: 793482278}
   - component: {fileID: 793482280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: milkPack1L_top_0
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24639,9 +24639,9 @@ GameObject:
   - component: {fileID: 1843055110}
   - component: {fileID: 1843055112}
   - component: {fileID: 1843055111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: milkPack1L_top_0 (1)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
