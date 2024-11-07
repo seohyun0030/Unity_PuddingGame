@@ -9,6 +9,8 @@ public class StartGame : MonoBehaviour
     public static bool loadDialogue = false;
     public void StartButton()
     {
+        PlayerPrefs.SetFloat("SavePosX", 0);
+        PlayerPrefs.SetFloat("SavePosY", 0);
         SceneManager.LoadScene("Stage1");
         loadDialogue = true;
     }
