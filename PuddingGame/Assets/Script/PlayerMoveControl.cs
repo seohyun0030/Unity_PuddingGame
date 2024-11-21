@@ -36,6 +36,7 @@ public class PlayerMoveControl : MonoBehaviour
     public bool isJumping = false;  //jumping상태
     public bool isFalling = false;  //falling상태
     public bool isGrounded = true;     //땅에 있는지 확인
+    public bool isCling = false; // 벽에 붙었는지
     public bool jumpPlatform = false;
     public bool isLong;
     private bool canEmitParticles = true;
@@ -72,12 +73,16 @@ public class PlayerMoveControl : MonoBehaviour
             }
             if (chocolate && Input.GetMouseButtonUp(0)) 
             {
+                if (!isCling) return;
                 chocolate = false;
                 isRotated = false;
                 Move();
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 PlayerManager.i.JumpGauge = 0.2f;
                 chocolateSound = false;
+                isCling = false;
+
+
             }
 
         }
@@ -518,6 +523,7 @@ public class PlayerMoveControl : MonoBehaviour
         RaycastHit2D right = Physics2D.Raycast(transform.position, Vector2.right, clingRay, LayerMask.GetMask("Platform"));
         RaycastHit2D down = Physics2D.Raycast(transform.position, Vector2.down, clingRay, LayerMask.GetMask("Platform"));
 
+        isCling = false;
         if (down.collider == null)
         {
             if (left.collider != null)
@@ -525,6 +531,7 @@ public class PlayerMoveControl : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 rb.gravityScale = 0f;
                 transform.position = new Vector2(left.point.x - colliderHalfWidth - rayOffset, transform.position.y);
+                isCling = true;
                 if (!isRotated)
                 {
                     transform.Rotate(0, 0, -90);
@@ -542,6 +549,7 @@ public class PlayerMoveControl : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 rb.gravityScale = 0f;
                 transform.position = new Vector2(right.point.x + colliderHalfWidth + rayOffset, transform.position.y);
+                isCling = true;
                 if (!isRotated)
                 {
                     transform.Rotate(0, 0, 90);
