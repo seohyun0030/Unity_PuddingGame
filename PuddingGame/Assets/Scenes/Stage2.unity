@@ -10530,7 +10530,6 @@ RectTransform:
   - {fileID: 2021640114}
   - {fileID: 134975055}
   - {fileID: 312015018}
-  - {fileID: 1491424341}
   - {fileID: 911669188}
   - {fileID: 2070191084}
   - {fileID: 1848680947}
@@ -10540,6 +10539,7 @@ RectTransform:
   - {fileID: 1718446000}
   - {fileID: 861158337}
   - {fileID: 205485208}
+  - {fileID: 1491424341}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13609,7 +13609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a9fe02ecc3b6a4388f620434d5f563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backSpd: 5
+  player: {fileID: 0}
+  outline: {fileID: 0}
 --- !u!4 &1195890921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3544537320404333119, guid: e6c7acd1134ee2742b741d50d469d567, type: 3}
@@ -17652,7 +17653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
