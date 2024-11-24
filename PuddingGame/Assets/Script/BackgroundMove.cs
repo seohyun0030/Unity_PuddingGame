@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class BackgroundMove : MonoBehaviour
 {
@@ -39,7 +40,9 @@ public class BackgroundMove : MonoBehaviour
         float bgX = Mathf.Lerp(bgMin.x, bgMax.x, normalizedX);
         float bgY = Mathf.Lerp(bgMin.y, bgMax.y, normalizedY);
 
-        transform.position = new Vector3(bgX, bgY);
+        //transform.position = new Vector3(bgX, bgY);
+
+        transform.position = Vector3.Lerp(transform.position, new Vector3(bgX, bgY), 0.02f);
     }
     /*void LimitPosition()
     {
