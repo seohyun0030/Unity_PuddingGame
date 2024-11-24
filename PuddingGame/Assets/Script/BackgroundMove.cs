@@ -6,7 +6,33 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BackgroundMove : MonoBehaviour
 {
-    public Transform player;      // 플레이어 Transform
+    // 배경 레이어의 이동 속도 조정 (0일 경우 이동하지 않음)
+    public Vector2 parallaxFactor = new Vector2(0.5f, 0.5f);  // X와 Y에 대한 별도의 조정
+    // 카메라의 위치
+    private Transform cameraTransform;
+    private Vector3 lastCameraPosition;
+    private Vector3 deltaMovement;
+
+    void Start()
+    {
+        // 카메라 트랜스폼을 가져옴
+        cameraTransform = Camera.main.transform;
+        // 이전 카메라 위치 저장
+        lastCameraPosition = cameraTransform.position;
+    }
+
+    void Update()
+    {
+        // 카메라의 이동 거리 계산
+        deltaMovement = cameraTransform.position - lastCameraPosition;
+
+        // 배경을 이동 (X, Y 좌표 모두 패럴랙스 효과를 적용)
+        transform.position += new Vector3(deltaMovement.x * parallaxFactor.x, deltaMovement.y * parallaxFactor.y, 0);
+
+        // 이전 카메라 위치 갱신
+        lastCameraPosition = cameraTransform.position;
+    }
+    /*public Transform player;      // 플레이어 Transform
     public Transform outline;     // 아웃라인 Transform
 
     private Vector3 outlineMin;   // 아웃라인의 최소 좌표
@@ -44,11 +70,5 @@ public class BackgroundMove : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, new Vector3(bgX, bgY), 0.02f);
     }
-    /*void LimitPosition()
-    {
-        clampedX = Mathf.Clamp(clampedX, outlineMin.x, outlineMax.x);
-        clampedY = Mathf.Clamp(clampedY, outlineMin.y, outlineMax.y);
-
-        transform.position = new Vector3(clampedX, clampedY);
-    }*/
+    */
 }
