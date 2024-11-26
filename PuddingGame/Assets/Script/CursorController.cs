@@ -23,6 +23,7 @@ public class CursorController : MonoBehaviour
     private void Awake()
     {
         i = this;
+        GameManager.isPause = false;
     }
     private void Start()
     {
@@ -35,7 +36,7 @@ public class CursorController : MonoBehaviour
         if (DialogueUI.i == null || CameraController.i == null)
             return;
 
-        if (!DialogueUI.i.dialogueText.IsActive() && !CameraController.i.isAnimation)
+        if (!DialogueUI.i.dialogueText.IsActive() && !CameraController.i.isAnimation && !GameManager.isPause)
         {
             if (Input.GetMouseButtonDown(0))
             {
