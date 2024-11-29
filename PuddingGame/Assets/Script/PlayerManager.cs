@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     public Vector3 SavePos;
     public int StageIndex;
     SkeletonAnimation anim;
+    float originalBounce;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -35,6 +36,8 @@ public class PlayerManager : MonoBehaviour
         ChangeFriction_Bounce(Friction, BouncePower);
         anim = GetComponent<SkeletonAnimation>();
         StageIndex = SceneManager.GetActiveScene().buildIndex;
+
+        originalBounce = Physics.bounciness;
     }
     private void Update()
     {
@@ -72,6 +75,8 @@ public class PlayerManager : MonoBehaviour
         transform.position = SavePos;
         rigidbody.velocity = new Vector2(0, 0);
         //상태 원상복귀 구현 해야함
+        Debug.Log(originalBounce);
+        Physics.bounciness = originalBounce;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
