@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BackgroundMove : MonoBehaviour
 {
-    public Vector2 parallaxFactor = new Vector2(0.5f, 0.2f);      //얼마나 빨리 움직일지 결정
-    
+    public Vector2 parallaxFactor = new Vector2(0.5f, 0.5f);      //얼마나 빨리 움직일지 결정
+
     private Transform cameraTransform;
     private Vector3 lastCameraPos;
     private Vector3 movement;      //카메라 움직임
@@ -13,7 +13,7 @@ public class BackgroundMove : MonoBehaviour
     void Start()
     {
         cameraTransform = Camera.main.transform;
-        
+
         lastCameraPos = cameraTransform.position;
     }
 

@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class CursorController : MonoBehaviour
 {
     public static CursorController i;
-    Image cursor;
+    public Texture2D originalCursor;    //원래 커서 이미지
+    Texture2D transparentCursor;        //투명화된 커서 이미지
     [SerializeField] Transform currentCursor;   // 커서의 현재 위치
     [SerializeField] GameObject Player;
     [SerializeField] Image arrow;           //화살표
@@ -27,12 +28,11 @@ public class CursorController : MonoBehaviour
     }
     private void Start()
     {
-        cursor = GetComponent<Image>();
+        Cursor.SetCursor(originalCursor, Vector2.zero, CursorMode.Auto);
+        transparentCursor = CreateTransparentTexture(originalCursor, 0.5f);
     }
     void Update()
     {
-        CursorMoving();
-
         if (DialogueUI.i == null || CameraController.i == null)
             return;
 
@@ -169,31 +169,6 @@ public class CursorController : MonoBehaviour
         scale.x = isFlip;
         player.transform.localScale = scale;
     }
-    void CursorMoving()
-    {
-        currentCursor.position = Input.mousePosition;
-        
-        Cursor.visible = false;   //마우스 안보이기
-        // 마우스 이동
-        /*float x = Input.mousePosition.x - (Screen.width / 2);
-        float y = Input.mousePosition.y - (Screen.height / 2);
-        currentCursor.localPosition = Input.mousePosition;
-
-        // 마우스 가두기 (범위 지정)
-        float tmp_cursorPosX = currentCursor.localPosition.x;
-        float tmp_cursorPosY = currentCursor.localPosition.y;
-
-        float min_width = -Screen.width / 2;
-        float max_width = Screen.width / 2;
-        float min_height = -Screen.height / 2;
-        float max_height = Screen.height / 2;
-        int padding = 20;	// 값은 자유
-
-        tmp_cursorPosX = Mathf.Clamp(tmp_cursorPosX, min_width + padding, max_width - padding);
-        tmp_cursorPosY = Mathf.Clamp(tmp_cursorPosY, min_height + padding, max_height - padding);
-
-        currentCursor.localPosition = new Vector2(tmp_cursorPosX, tmp_cursorPosY);*/
-    }
     public static float AngleInRad(Vector3 vec1, Vector3 vec2)
     {
         return Mathf.Atan2(vec2.y - vec1.y, vec2.x - vec1.x);
@@ -206,10 +181,27 @@ public class CursorController : MonoBehaviour
 
     void changeAlpha(bool isAlpha)
     {
-        Color color = cursor.color;
+        if (!isAlpha)
+        {
+            Cursor.SetCursor(originalCursor, Vector2.zero, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(transparentCursor, Vector2.zero, CursorMode.Auto);
+        }
+    }
+    Texture2D CreateTransparentTexture(Texture2D original, float alpha)
+    {
+        Texture2D newTexture = new Texture2D(original.width, original.height);
+        Color[] pixels = original.GetPixels();
 
-        color.a = isAlpha ? 0.5f : 1f;
-        //isAlpha가 참이면 0.5, 거짓이면 1
-        cursor.color = color;
+        for (int i = 0; i < pixels.Length; i++)
+        {
+            pixels[i].a *= alpha; // 알파 값을 조정
+        }
+
+        newTexture.SetPixels(pixels);
+        newTexture.Apply();
+        return newTexture;
     }
 }

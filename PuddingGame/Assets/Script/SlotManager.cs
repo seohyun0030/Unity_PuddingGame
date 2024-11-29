@@ -81,7 +81,7 @@ public class SlotManager : MonoBehaviour
     }
     public void DeleteTopping()
     {
-        Debug.Log(slots.Count);
+        //Debug.Log(slots.Count);
         for (int i = 0; i < slots.Count; i++)
         {
             if (slots != null)
