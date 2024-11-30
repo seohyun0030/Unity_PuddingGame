@@ -5,6 +5,7 @@ using Spine.Unity;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 using Transform = UnityEngine.Transform;
@@ -27,6 +28,7 @@ public class PlayerMoveControl : MonoBehaviour
     [SerializeField] float rayOffset = .1f;
     public GameObject particlePrefab;
 
+
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
     [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
@@ -41,6 +43,7 @@ public class PlayerMoveControl : MonoBehaviour
     public bool isLong;
     private bool canEmitParticles = true;
     public float particleCoolDownTime = 1f;
+    public bool isPlayerFixed = false;
     private void Awake()
     {
         i = this;
@@ -118,11 +121,12 @@ public class PlayerMoveControl : MonoBehaviour
             if (chocolate)
             {
                 Chocolate();
-                
+            }
+        if(!EndTrigger.i.isTriggered && SceneManager.GetActiveScene().name == "Stage1")
+            {
+            transform.SetParent(null);
+        }
 
-               }
-        
-        
     }
     public void Move()     //움직임 구현
     {
@@ -282,6 +286,21 @@ public class PlayerMoveControl : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 rasberry = false;
             }
+            if (EndTrigger.i.isTriggered && SceneManager.GetActiveScene().name == "Stage1")
+            {
+                GameObject cart = GameObject.Find("Cart");
+                transform.SetParent(cart.transform);  // 플레이어를 카트의 자식으로 설정
+
+                if (!isPlayerFixed)
+                {
+                    rb.velocity = Vector2.zero;
+                    Vector2 contactPoint = collision.GetContact(0).point;
+                    rb.transform.position = contactPoint;
+                    isPlayerFixed = true;
+                }
+                
+            }
+
             //PlayerManager.i.Animation("#1idel", true);
             PlayerManager.i.idleAnim();
         }

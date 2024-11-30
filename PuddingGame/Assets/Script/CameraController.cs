@@ -36,13 +36,12 @@ public class CameraController : MonoBehaviour
     {
         camera = GetComponent<Camera>();
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if(!isAnimation)
         {
             playerMoveControl = player.GetComponent<PlayerMoveControl>();
             Vector3 dir = player.transform.position - this.transform.position;
-
 
             if (!playerMoveControl.matcha)
             {
@@ -58,9 +57,12 @@ public class CameraController : MonoBehaviour
                 this.transform.Translate(matchaFollowVector * cameraSpeed * Time.deltaTime);
             }
 
+            
             CameraMove();
             LimitPositionPlayer();
+
         }
+
     }
     void CameraMove()
     {
@@ -76,13 +78,22 @@ public class CameraController : MonoBehaviour
     void LimitPositionPlayer()  //플레이어의 위치에 따라 카메라 이동 제한
     {
         Vector3 position = transform.position;
-
         GameObject p = GameObject.FindGameObjectWithTag("Player");
 
-        if(p != null)
+        if (p != null)
         {
             Vector2 playerPos = p.transform.position;
-
+            if (PlayerMoveControl.i.isPlayerFixed)
+            {
+                position = new Vector3(playerPos.x, playerPos.y + 5f, transform.position.z); // 카메라를 카트의 위치로 설정
+                cameraSpeed = EndTrigger.i.moveSpeed;
+            }
+            else
+            {
+                // 영역을 벗어나지 않도록 제한
+                position.x = Mathf.Clamp(position.x, playerPos.x - playerXPos, playerPos.x + playerXPos);
+                position.y = Mathf.Clamp(position.y, playerPos.y - playerYPos, playerPos.y + playerYPos);
+            }
             // 영역을 벗어나지 않도록 제한
             position.x = Mathf.Clamp(position.x, playerPos.x - playerXPos, playerPos.x + playerXPos);
             position.y = Mathf.Clamp(position.y, playerPos.y - playerYPos, playerPos.y + playerYPos);
@@ -186,5 +197,24 @@ public class CameraController : MonoBehaviour
 
         //연출이 끝남을 알림
         isAnimation = false;
+    }
+
+    public IEnumerator ZoomOutCoroutine()
+    {
+        float elapsedTime = 0f;
+        float currentSize = camera.orthographicSize;
+        float zoomOutTime = Mathf.Abs(zoomOut - currentSize) / zoomSpeed;
+
+        while (elapsedTime < zoomOutTime)
+        {
+            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, zoomOut, Time.deltaTime * zoomSpeed);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        camera.orthographicSize = zoomOut; // 최종적으로 정확히 줌아웃 크기로 설정
+    }
+    public void ZoomOut()
+    {
+        StartCoroutine(ZoomOutCoroutine());
     }
 }
