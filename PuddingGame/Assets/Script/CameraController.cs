@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
     {
         camera = GetComponent<Camera>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if(!isAnimation)
         {
@@ -64,6 +64,14 @@ public class CameraController : MonoBehaviour
         }
 
     }
+    private void Update()
+    {
+        if (PlayerMoveControl.i.isPlayerFixed)
+        {
+            CameraMove();
+            LimitPositionPlayer();
+        }
+    }
     void CameraMove()
     {
         
@@ -85,8 +93,8 @@ public class CameraController : MonoBehaviour
             Vector2 playerPos = p.transform.position;
             if (PlayerMoveControl.i.isPlayerFixed)
             {
-                position = new Vector3(playerPos.x, playerPos.y + 5f, transform.position.z); // 카메라를 카트의 위치로 설정
-                cameraSpeed = EndTrigger.i.moveSpeed;
+                position = Vector3.Lerp(transform.position, new Vector3(playerPos.x, playerPos.y + 5f, transform.position.z), cameraSpeed);
+
             }
             else
             {

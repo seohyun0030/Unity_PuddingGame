@@ -36,21 +36,11 @@ public class EndTrigger : MonoBehaviour
 
     IEnumerator MoveCart()
     {
-        float elapsedTime = 0f;
 
-        while (elapsedTime < 2f && Vector2.Distance(cart.transform.position, targetPosition) > 0.1f)
-        {
-            cart.transform.position = Vector2.MoveTowards(cart.transform.position, targetPosition, moveSpeed * Time.deltaTime);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        moveSpeed *= 2f; 
         while (Vector2.Distance(cart.transform.position, targetPosition) > 0.1f)
         {
             cart.transform.position = Vector2.MoveTowards(cart.transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            
+
             yield return null;
         }
 

@@ -23875,7 +23875,7 @@ MonoBehaviour:
   cart: {fileID: 831225071}
   background: {fileID: 1044926758}
   size: 1.5
-  moveSpeed: 7
+  moveSpeed: 10
   targetPosition: {x: -11.1, y: -0.6}
   isTriggered: 0
 --- !u!61 &1778361374
@@ -26134,11 +26134,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 95.5
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 25.8
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z
