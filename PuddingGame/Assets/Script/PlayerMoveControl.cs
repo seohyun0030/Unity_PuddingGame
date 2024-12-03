@@ -56,7 +56,7 @@ public class PlayerMoveControl : MonoBehaviour
     }
     private void Update()
     {
-        if (!DialogueUI.i.dialogueText.IsActive())
+        if (!DialogueUI.i.dialogueText.IsActive() && !GameManager.isPause)
         {
             Time.timeScale = 1f;
             jumpPower = PlayerManager.i.JumpPower;
