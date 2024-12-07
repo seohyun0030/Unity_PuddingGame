@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CursorController : MonoBehaviour
@@ -38,6 +39,14 @@ public class CursorController : MonoBehaviour
 
         if (!DialogueUI.i.dialogueText.IsActive() && !CameraController.i.isAnimation && !GameManager.isPause)
         {
+            if (SceneManager.GetActiveScene().name == "Stage2")
+            {
+                if (Stage2Camera.i.isEffectRunning)
+                {
+                    return; // effect가 실행 중이면 조기 반환
+                }
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 screenPosition = Camera.main.WorldToScreenPoint(Player.transform.position);

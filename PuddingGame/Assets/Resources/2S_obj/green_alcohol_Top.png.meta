@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      green_alcohol_Top_0: 7049406634541258341
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

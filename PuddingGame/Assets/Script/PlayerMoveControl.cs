@@ -58,23 +58,32 @@ public class PlayerMoveControl : MonoBehaviour
     {
         if (!DialogueUI.i.dialogueText.IsActive() && !GameManager.isPause)
         {
+            // 현재 씬이 "Stage2"일 때만 isEffectRunning 검사
+            if (SceneManager.GetActiveScene().name == "Stage2")
+            {
+                if (Stage2Camera.i.isEffectRunning)
+                {
+                    return;
+                }
+            }
+
             Time.timeScale = 1f;
             jumpPower = PlayerManager.i.JumpPower;
-
 
             RayCastControl();
 
             isLong = CursorController.i.isLong;
 
-            if (Input.GetMouseButtonUp(0) && canJump && isGrounded && isLong || (jumpPlatform && Input.GetMouseButtonUp(0)))     //마우스를 뗐을 때 점프가능 상태이고 땅에 있으면 점프 가능
+            if (Input.GetMouseButtonUp(0) && canJump && isGrounded && isLong || (jumpPlatform && Input.GetMouseButtonUp(0))) // 마우스를 뗐을 때 점프 가능 상태이고 땅에 있으면 점프 가능
             {
-                if (GameManager.isPause == false)
+                if (!GameManager.isPause)
                 {
                     Move();
-                    PlayerManager.i.JumpGauge = 0.2f;  //점프 게이지 초기화
+                    PlayerManager.i.JumpGauge = 0.2f; // 점프 게이지 초기화
                 }
             }
-            if (chocolate && Input.GetMouseButtonUp(0)) 
+
+            if (chocolate && Input.GetMouseButtonUp(0))
             {
                 if (!isCling) return;
                 chocolate = false;
@@ -84,13 +93,10 @@ public class PlayerMoveControl : MonoBehaviour
                 PlayerManager.i.JumpGauge = 0.2f;
                 chocolateSound = false;
                 isCling = false;
-
-
             }
-
         }
-        
     }
+
     void FixedUpdate()
     {
 
@@ -122,7 +128,7 @@ public class PlayerMoveControl : MonoBehaviour
             {
                 Chocolate();
             }
-        if(!EndTrigger.i.isTriggered && SceneManager.GetActiveScene().name == "Stage1")
+        if(SceneManager.GetActiveScene().name == "Stage1" && !EndTrigger.i.isTriggered)
             {
             transform.SetParent(null);
         }
@@ -286,7 +292,7 @@ public class PlayerMoveControl : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 rasberry = false;
             }
-            if (EndTrigger.i.isTriggered && SceneManager.GetActiveScene().name == "Stage1")
+            if (SceneManager.GetActiveScene().name == "Stage1" && EndTrigger.i.isTriggered)
             {
                 GameObject cart = GameObject.Find("Cart");
                 transform.SetParent(cart.transform);  // 플레이어를 카트의 자식으로 설정

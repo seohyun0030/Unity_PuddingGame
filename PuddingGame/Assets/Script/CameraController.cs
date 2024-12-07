@@ -38,14 +38,23 @@ public class CameraController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(!isAnimation)
+        // 씬이 "Stage2"일 때만 isEffectRunning을 검사
+        if (!isAnimation)
         {
+            if (SceneManager.GetActiveScene().name == "Stage2")
+            {
+                if (Stage2Camera.i.isEffectRunning)
+                {
+                    return; 
+                }
+            }
+
             playerMoveControl = player.GetComponent<PlayerMoveControl>();
             Vector3 dir = player.transform.position - this.transform.position;
 
             if (!playerMoveControl.matcha)
             {
-                //점프할 때도 카메라 따라감
+                // 점프할 때도 카메라 따라감
                 Vector3 moveVector = new Vector3(dir.x * cameraSpeed * Time.deltaTime, dir.y * cameraSpeed * Time.deltaTime, 0.0f);
 
                 if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
@@ -57,13 +66,11 @@ public class CameraController : MonoBehaviour
                 this.transform.Translate(matchaFollowVector * cameraSpeed * Time.deltaTime);
             }
 
-            
             CameraMove();
             LimitPositionPlayer();
-
         }
-
     }
+
     private void Update()
     {
         if (PlayerMoveControl.i.isPlayerFixed)
