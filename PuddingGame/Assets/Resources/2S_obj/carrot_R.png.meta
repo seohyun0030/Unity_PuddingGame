@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b49734137fde49d47aeb6332aa16fa6c
+guid: 7b599937e37a5574f8c236281c888766
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4674112920633094343
-    second: grape1_0
+      213: -4204526889575402964
+    second: carrot_R_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grape1_0
+      name: carrot_R_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 132
-        height: 130
+        width: 765
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 93fc99d2017322fb0800000000000000
-      internalID: -4674112920633094343
+      spriteID: c22b74a021586a5c0800000000000000
+      internalID: -4204526889575402964
       vertices: []
       indices: 
       edges: []
@@ -156,8 +156,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      grape1_0: -4674112920633094343
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
