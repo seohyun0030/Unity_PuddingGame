@@ -45434,7 +45434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomOut: 20.62295
   zoomSpeed: 10
-  targetY: 78
+  targetY: 76.5
   moveSpeed: 25
   fixedX: 32.8
   size: 1.6

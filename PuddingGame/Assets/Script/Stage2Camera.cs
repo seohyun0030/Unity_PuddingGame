@@ -42,7 +42,7 @@ public class Stage2Camera : MonoBehaviour
         scale.y *= size;
         background.transform.localScale = scale;
         isEffectRunning = true;
-        transform.position = new Vector3(fixedX, transform.position.y, transform.position.z); // XÁÂÇ¥ ¼³Á¤
+        transform.position = new Vector3(fixedX, 15.6f, transform.position.z); // XÁÂÇ¥ ¼³Á¤
         // ÁÜ ¾Æ¿ô
         float elapsedTime = 0f;
         float currentSize = camera.orthographicSize;
