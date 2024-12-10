@@ -1,19 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
+public enum EAudioMixerType { Master, BGM, SFX }
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource musicsource;
+    public static SoundManager Instance;
+    [SerializeField] private AudioMixer audioMixer;
 
-    public AudioSource sfxsource;
-
-    public void SetMusicVolume(float volume)
+    private float[] audioVolumes = new float[3];
+    private void Awake()
     {
-        musicsource.volume = volume;
+        Instance = this;
     }
-    public void SetSfxVolume(float volume)
+
+    public void SetAudioVolume(EAudioMixerType audioMixerType, float volume)
     {
-        sfxsource.volume = volume;
+        audioMixer.SetFloat(audioMixerType.ToString(), Mathf.Log10(volume) * 20);
+    }
+
+    public void ChangeBGM(float volume)
+    {
+        SoundManager.Instance.SetAudioVolume(EAudioMixerType.BGM, volume);
+    }
+
+    public void ChangeSFX(float volume)
+    {
+        SoundManager.Instance.SetAudioVolume(EAudioMixerType.SFX, volume);
     }
 }
+

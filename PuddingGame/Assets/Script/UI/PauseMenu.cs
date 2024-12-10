@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject go_BaseUI; // 일시 정지 UI 패널
-    [SerializeField] private GameObject OptionUI;
 
     void Update()
     {
@@ -34,7 +33,6 @@ public class PauseMenu : MonoBehaviour
     {
         GameManager.isPause = false;
         go_BaseUI.SetActive(false);
-        OptionUI.SetActive(false);
         Time.timeScale = 1f; // 1배속 (정상 속도)
     }
 
