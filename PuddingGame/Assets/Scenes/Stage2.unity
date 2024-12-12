@@ -5077,7 +5077,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_BaseUI: {fileID: 229640260}
-  OptionUI: {fileID: 729364052}
 --- !u!1001 &209134431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24474,7 +24473,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.03}
+  m_Offset: {x: 0, y: 0.015}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -25700,8 +25699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129079fa5df7acb40a65f65c92d8e0ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicsource: {fileID: 1188138993}
-  sfxsource: {fileID: 0}
+  audioMixer: {fileID: 0}
 --- !u!4 &1169855978
 Transform:
   m_ObjectHideFlags: 0
@@ -28397,7 +28395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_BaseUI: {fileID: 0}
-  OptionUI: {fileID: 0}
 --- !u!114 &1276399959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32385,7 +32382,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_BaseUI: {fileID: 0}
-  OptionUI: {fileID: 0}
 --- !u!114 &1438619705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42044,6 +42040,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1040676718303970892, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1772144944627207711, guid: 473cdf89feed5404db434eb0328b4146, type: 3}
+    - target: {fileID: 1040676718303970892, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -42056,12 +42056,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4698555711379230925, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698555711379230925, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698555711379230925, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698555711379230925, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.619583
       objectReference: {fileID: 0}
     - target: {fileID: 4698555711379230925, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.475932
+      value: 6.881116
       objectReference: {fileID: 0}
     - target: {fileID: 4698555711379230925, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_LocalPosition.z
@@ -42095,6 +42107,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4698555711379230925, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5596395942408152885, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: dialogueNo
       value: 1
@@ -42106,6 +42122,30 @@ PrefabInstance:
     - target: {fileID: 6321924522276564490, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Name
       value: NPC (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932489858339046295, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_Size.x
+      value: 7.6666636
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932489858339046295, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_Size.y
+      value: 7.666669
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932489858339046295, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.00000166893
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932489858339046295, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.0000014305115
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932489858339046295, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 7.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932489858339046295, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 7.69
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44970,7 +45010,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_BaseUI: {fileID: 229640260}
-  OptionUI: {fileID: 729364052}
 --- !u!114 &1949306361
 MonoBehaviour:
   m_ObjectHideFlags: 0
