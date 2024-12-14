@@ -88,6 +88,7 @@ public class SlotManager : MonoBehaviour
             {
                 slots.RemoveAt(i);
                 Destroy(Slot.GetChild(i).gameObject);
+                Debug.Log("dd");
             }
         }
     }

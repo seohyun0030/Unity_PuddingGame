@@ -8,8 +8,7 @@ using UnityEngine.UI;
 public class CursorController : MonoBehaviour
 {
     public static CursorController i;
-    public Texture2D originalCursor;    //원래 커서 이미지
-    Texture2D transparentCursor;        //투명화된 커서 이미지
+    Image cursor;
     [SerializeField] Transform currentCursor;   // 커서의 현재 위치
     [SerializeField] GameObject Player;
     [SerializeField] Image arrow;           //화살표
@@ -29,11 +28,12 @@ public class CursorController : MonoBehaviour
     }
     private void Start()
     {
-        Cursor.SetCursor(originalCursor, Vector2.zero, CursorMode.Auto);
-        transparentCursor = CreateTransparentTexture(originalCursor, 0.5f);
+        cursor = GetComponent<Image>();
     }
     void Update()
     {
+        CursorMoving();
+
         if (DialogueUI.i == null || CameraController.i == null)
             return;
 
@@ -187,30 +187,18 @@ public class CursorController : MonoBehaviour
     {
         return AngleInRad(vec1, vec2) * 180 / Mathf.PI;
     }
+    void CursorMoving()
+    {
+        currentCursor.position = Input.mousePosition;
 
+        Cursor.visible = false;
+    }
     void changeAlpha(bool isAlpha)
     {
-        if (!isAlpha)
-        {
-            Cursor.SetCursor(originalCursor, Vector2.zero, CursorMode.Auto);
-        }
-        else
-        {
-            Cursor.SetCursor(transparentCursor, Vector2.zero, CursorMode.Auto);
-        }
-    }
-    Texture2D CreateTransparentTexture(Texture2D original, float alpha)
-    {
-        Texture2D newTexture = new Texture2D(original.width, original.height);
-        Color[] pixels = original.GetPixels();
+        Color color = cursor.color;
 
-        for (int i = 0; i < pixels.Length; i++)
-        {
-            pixels[i].a *= alpha; // 알파 값을 조정
-        }
-
-        newTexture.SetPixels(pixels);
-        newTexture.Apply();
-        return newTexture;
+        color.a = isAlpha ? 0.5f : 1f;
+        //isAlpha가 참이면 0.5, 거짓이면 1
+        cursor.color = color;
     }
 }

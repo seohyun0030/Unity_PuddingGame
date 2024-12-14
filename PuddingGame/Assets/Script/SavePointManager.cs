@@ -18,9 +18,9 @@ public class SavePointManager : MonoBehaviour
             if(!Player.activeSelf)      //플레이어가 비활성화 상태라면
             {
                 Player.SetActive(true);
-                SlotManager.i.DeleteTopping();      //가지고 있는 토핑 삭제
             }
 
+            SlotManager.i.DeleteTopping();      //가지고 있는 토핑 삭제
             PlayerManager.i.GoToSavePoint();
 
         }
