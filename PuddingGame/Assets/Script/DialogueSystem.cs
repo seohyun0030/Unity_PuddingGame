@@ -81,7 +81,7 @@ public class DialogueSystem : MonoBehaviour
             currentDialogueIndex++;
             
         }
-
+        DialogueUI.i.background.gameObject.SetActive(false);
         return null;
     }
 }

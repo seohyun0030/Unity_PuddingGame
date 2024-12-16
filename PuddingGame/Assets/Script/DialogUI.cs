@@ -26,7 +26,7 @@ public class DialogueUI : MonoBehaviour
     private DialogueSystem dialogueSystem;
     private NPCManager npc;
     private int currentNo;
-
+    public Image background; //검은 화면
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "Stage1")
@@ -145,7 +145,7 @@ public class DialogueUI : MonoBehaviour
         }
         else
         {
-            Debug.Log($"다음 대화: {nextDialogue.Name}: {nextDialogue.Line}");
+            //Debug.Log($"다음 대화: {nextDialogue.Name}: {nextDialogue.Line}");
             nameText.text = nextDialogue.Name;
             dialogueText.text = nextDialogue.Line; // 대화 내용을 표시
             HandleImage(nextDialogue);
@@ -162,20 +162,28 @@ public class DialogueUI : MonoBehaviour
     }
     private void HandleImage(DialogueEntry next)
     {
+        background.gameObject.SetActive(true);
         int pc = next.PC;
         int npc = next.NPC;
+
+        Color activeColor = Color.white;
+        Color inactiveColor = new Color(0.7f, 0.7f, 0.7f, 1f);
+        
 
         //플레이어 이미지
         if (nameText.text == "푸딩")
         {
             playerImage.sprite = LoadPCImage(pc);
             playerImage.gameObject.SetActive(true);
+            Debug.Log(playerImage.color.ToString());
+            playerImage.color = activeColor;
+            npcImage.color = inactiveColor;
             RectTransform nameTextRect = nameText.GetComponent<RectTransform>();
             nameTextRect.anchoredPosition = new Vector2(nameX, nameY); // 위치 수정
         }
         else if (npcImage.IsActive())
         {
-            playerImage.gameObject.SetActive(false);
+            playerImage.color = inactiveColor;
         }
         else
         {
@@ -186,12 +194,14 @@ public class DialogueUI : MonoBehaviour
         {
             if (npc != 0) npcImage.sprite = LoadNPCImage(npc);
             npcImage.gameObject.SetActive(true);
+            npcImage.color = activeColor;
+            playerImage.color = inactiveColor;
             RectTransform nameTextRect = nameText.GetComponent<RectTransform>();
             nameTextRect.anchoredPosition = new Vector2(-nameX, nameY); // 위치 수정
         }
         else if (playerImage.IsActive())
         {
-            npcImage.gameObject.SetActive(false);
+            npcImage.color = inactiveColor;
         }
         else
         {
@@ -231,6 +241,21 @@ public class DialogueUI : MonoBehaviour
                 break;
             case 8:
                 imageName = "PC/8";
+                break;
+            case 9:
+                imageName = "PC/9";
+                break;
+            case 10:
+                imageName = "PC/10";
+                break;
+            case 11:
+                imageName = "PC/11";
+                break;
+            case 12:
+                imageName = "PC/12";
+                break;
+            case 13:
+                imageName = "PC/13";
                 break;
             default:
                 Debug.Log("PC x");
