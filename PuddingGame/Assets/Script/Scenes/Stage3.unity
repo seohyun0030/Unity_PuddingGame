@@ -4638,6 +4638,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cursor
       objectReference: {fileID: 0}
+    - target: {fileID: 5948919088362304856, guid: e2256a9bfbf2a9d42bbee7ecc1b1377f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4292911939982777642, guid: ddba901b2db92d04e9ec64c331557887, type: 3}
     - target: {fileID: 7161987314798638659, guid: e2256a9bfbf2a9d42bbee7ecc1b1377f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.19775644
@@ -29422,7 +29426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5791750163067028784, guid: 35f7b890fcb458b46a54de7794f318b9, type: 3}
+  m_Sprite: {fileID: 5515524443762552950, guid: cdf081d0c280b4845a29ec85aa03feee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

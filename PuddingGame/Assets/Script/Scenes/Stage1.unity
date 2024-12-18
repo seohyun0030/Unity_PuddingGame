@@ -27930,6 +27930,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cursor
       objectReference: {fileID: 0}
+    - target: {fileID: 5948919088362304856, guid: e2256a9bfbf2a9d42bbee7ecc1b1377f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4292911939982777642, guid: ddba901b2db92d04e9ec64c331557887, type: 3}
     - target: {fileID: 7161987314798638659, guid: e2256a9bfbf2a9d42bbee7ecc1b1377f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.19775644
