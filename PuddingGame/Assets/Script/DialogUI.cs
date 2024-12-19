@@ -17,7 +17,8 @@ public class DialogueUI : MonoBehaviour
     public Image playerImage;
     public Image npcImage;
     public Image dialogueBack; // 배경
-    public Image nameBack; // 이름 배경
+    public Image pcnameBack; // 플레이어 이름 배경
+    public Image npcnameBack; // npc 이름 배경
     public float nameX; // 이름UI 위치
     public float nameY;
     public Attachment cream;
@@ -158,7 +159,8 @@ public class DialogueUI : MonoBehaviour
         playerImage.gameObject.SetActive(no);
         npcImage.gameObject.SetActive(no);
         dialogueBack.gameObject.SetActive(no);
-        //nameBack.gameObject.SetActive(no);
+        npcnameBack.gameObject.SetActive(no);
+        pcnameBack.gameObject.SetActive(no);
     }
     private void HandleImage(DialogueEntry next)
     {
@@ -175,6 +177,7 @@ public class DialogueUI : MonoBehaviour
         {
             playerImage.sprite = LoadPCImage(pc);
             playerImage.gameObject.SetActive(true);
+            pcnameBack.gameObject.SetActive(true);
             Debug.Log(playerImage.color.ToString());
             playerImage.color = activeColor;
             npcImage.color = inactiveColor;
@@ -184,15 +187,18 @@ public class DialogueUI : MonoBehaviour
         else if (npcImage.IsActive())
         {
             playerImage.color = inactiveColor;
+            pcnameBack.gameObject.SetActive(false);
         }
         else
         {
             playerImage.gameObject.SetActive(false);
+            pcnameBack.gameObject.SetActive(false);
         }
         //NPC 이미지
         if (nameText.text != "푸딩")
         {
             if (npc != 0) npcImage.sprite = LoadNPCImage(npc);
+            npcnameBack.gameObject.SetActive(true);
             npcImage.gameObject.SetActive(true);
             npcImage.color = activeColor;
             playerImage.color = inactiveColor;
@@ -202,10 +208,12 @@ public class DialogueUI : MonoBehaviour
         else if (playerImage.IsActive())
         {
             npcImage.color = inactiveColor;
+            npcnameBack.gameObject.SetActive(false);
         }
         else
         {
             npcImage.gameObject.SetActive(false);
+            npcnameBack.gameObject.SetActive(false);
 
         }
 
