@@ -28,6 +28,8 @@ public class PlayerMoveControl : MonoBehaviour
     [SerializeField] float rayOffset = .1f;
     public GameObject particlePrefab;
 
+    public GameObject Particle;
+
 
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
@@ -269,6 +271,8 @@ public class PlayerMoveControl : MonoBehaviour
 
             if (canEmitParticles)
             {
+                SpawnParticleEffect(collision.contacts[0].point);
+
                 Vector2 contactPoint = collision.GetContact(0).point;
                 GameObject particle = Instantiate(particlePrefab, contactPoint, Quaternion.identity);
                 ParticleSystem ps = particle.GetComponent<ParticleSystem>();
@@ -311,6 +315,27 @@ public class PlayerMoveControl : MonoBehaviour
             PlayerManager.i.idleAnim();
         }
     }
+    void SpawnParticleEffect(Vector2 collisionPoint)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            // 충돌 지점에서 랜덤하게 퍼지도록 위치 설정
+            Vector2 randomPosition = collisionPoint + Random.insideUnitCircle * 0.5f;
+
+            // 파티클 오브젝트 생성
+            GameObject particle = Instantiate(Particle, randomPosition, Quaternion.identity);
+
+            // Rigidbody2D 컴포넌트 추가
+            Rigidbody2D rb = particle.AddComponent<Rigidbody2D>();
+
+            // 물리적 튕김 효과 추가 (위로 튕기게)
+            rb.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+
+            // 지정된 시간 후에 게임 오브젝트 제거
+            Destroy(particle, 0.5f);
+        }
+    }
+
     public bool playerActive = true;
     private void OnCollisionStay2D(Collision2D collision)
     {

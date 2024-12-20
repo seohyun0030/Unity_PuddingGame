@@ -25460,16 +25460,20 @@ PrefabInstance:
       value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 2073744750206138292, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: Particle
+      value: 
+      objectReference: {fileID: 1989687024897597584, guid: a5d6723f1aa956542aa0fd4be2979bff, type: 3}
+    - target: {fileID: 2073744750206138292, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: isGrounded
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 64.54
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.12
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z
