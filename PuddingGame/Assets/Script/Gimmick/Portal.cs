@@ -8,12 +8,12 @@ public class Portal : MonoBehaviour
     private bool isActive = true;
     public float cooldownTime = 1f;
     public GameObject outPortal;
-    private CircleCollider2D col;
+    private BoxCollider2D col;
     public float pauseDuration = .05f;
 
     private void Start()
     {
-        col = GetComponent<CircleCollider2D>();
+        col = GetComponent<BoxCollider2D>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -41,7 +41,7 @@ public class Portal : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        yield return new WaitForSeconds(pauseDuration);
+        //yield return new WaitForSeconds(pauseDuration);
 
         rb.transform.position = outPortal.transform.position;
         if(rb != null)
@@ -50,6 +50,6 @@ public class Portal : MonoBehaviour
         }
 
         StartCoroutine(Cooldown());
-
+        yield return null;
     }
 }

@@ -14,7 +14,8 @@ public class Ending : MonoBehaviour
     [SerializeField] float fadeDuration;
     [SerializeField] StartGame game;
     private bool endingTriggered = false;
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -22,6 +23,7 @@ public class Ending : MonoBehaviour
             StartCoroutine(PlayingEnding());
         }
     }
+
     IEnumerator PlayingEnding()
     {
         while(Vector3.Distance(hand.transform.position, player.transform.position) > 0.1f)
