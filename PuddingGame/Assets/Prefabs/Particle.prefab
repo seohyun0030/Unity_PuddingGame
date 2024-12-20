@@ -126,6 +126,6 @@ MonoBehaviour:
   physicsMovementRelativeTo: {fileID: 0}
   updateTiming: 1
   unscaledTime: 0
-  _animationName: 1_1_30
+  _animationName: 
   loop: 1
   timeScale: 1

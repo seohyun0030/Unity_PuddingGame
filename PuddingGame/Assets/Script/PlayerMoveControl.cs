@@ -271,7 +271,7 @@ public class PlayerMoveControl : MonoBehaviour
 
             if (canEmitParticles)
             {
-                SpawnParticleEffect(collision.contacts[0].point);
+                //SpawnParticleEffect(collision.contacts[0].point);
 
                 Vector2 contactPoint = collision.GetContact(0).point;
                 GameObject particle = Instantiate(particlePrefab, contactPoint, Quaternion.identity);
@@ -328,8 +328,12 @@ public class PlayerMoveControl : MonoBehaviour
             // Rigidbody2D 컴포넌트 추가
             Rigidbody2D rb = particle.AddComponent<Rigidbody2D>();
 
-            // 물리적 튕김 효과 추가 (위로 튕기게)
-            rb.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+            // 랜덤한 각도로 튕기게 하기 위한 방향 벡터 계산
+            float randomAngle = Random.Range(-45, 45); // 랜덤 각도
+            Vector2 direction = new Vector2(Mathf.Cos(randomAngle * Mathf.Deg2Rad), Mathf.Sin(randomAngle * Mathf.Deg2Rad)); // 각도를 방향 벡터로 변환
+
+            // 물리적 튕김 효과 추가 (랜덤 각도로 튕기게)
+            rb.AddForce(direction * 5, ForceMode2D.Impulse);
 
             // 지정된 시간 후에 게임 오브젝트 제거
             Destroy(particle, 0.5f);
