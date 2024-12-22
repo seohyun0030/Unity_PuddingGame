@@ -27094,7 +27094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 269281809363761589, guid: b81c7629eed7a3a418eabd626c37604f, type: 3}
       propertyPath: m_Color.a
-      value: 0.011764706
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2468876375163526937, guid: b81c7629eed7a3a418eabd626c37604f, type: 3}
       propertyPath: m_LocalScale.x
@@ -41163,11 +41163,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.1545944
+      value: 2.6648693
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 67.97362
+      value: -0.63655853
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41264,6 +41264,10 @@ PrefabInstance:
     - target: {fileID: 7486024907907391955, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: fallingSpeed
       value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093796777698078676, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8487472260730769595, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_Mesh
