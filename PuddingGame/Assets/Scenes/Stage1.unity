@@ -6124,6 +6124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129079fa5df7acb40a65f65c92d8e0ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BGMSlider: {fileID: 1366886328}
+  SFXSlider: {fileID: 438061302}
   audioMixer: {fileID: 24100000, guid: a88f53b60365223469295f75af61f2d4, type: 2}
 --- !u!4 &524585091
 Transform:
