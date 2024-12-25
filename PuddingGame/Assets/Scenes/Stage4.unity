@@ -617,6 +617,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SfxManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5292040065286434536, guid: 2cfb973813f81fe4299d974da7ea6d80, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1094160756338753546, guid: a88f53b60365223469295f75af61f2d4, type: 2}
     - target: {fileID: 5848135612163736214, guid: 2cfb973813f81fe4299d974da7ea6d80, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.3873103
