@@ -93,7 +93,8 @@ public class PlayerManager : MonoBehaviour
         else if (collision.CompareTag("EndPoint"))  //종료지점에 닿으면
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);  //다음 씬으로 이동
-            PlayerPrefs.DeleteAll();
+            PlayerPrefs.DeleteKey("SavePosX");
+            PlayerPrefs.DeleteKey("SavePosY");
         }
         else if (collision.CompareTag("Topping"))
         {
