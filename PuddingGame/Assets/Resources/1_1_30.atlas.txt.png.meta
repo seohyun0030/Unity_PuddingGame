@@ -1,0 +1,665 @@
+fileFormatVersion: 2
+guid: 4c6a4cac5800cdd4e8b948826ed73a58
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2081686448533630077
+    second: 1_1_30.atlas.txt_0
+  - first:
+      213: -2999546596479125353
+    second: 1_1_30.atlas.txt_1
+  - first:
+      213: -8985044615149969284
+    second: 1_1_30.atlas.txt_2
+  - first:
+      213: -8646544901958921967
+    second: 1_1_30.atlas.txt_3
+  - first:
+      213: 1438971068147699277
+    second: 1_1_30.atlas.txt_4
+  - first:
+      213: -8837786504306239305
+    second: 1_1_30.atlas.txt_5
+  - first:
+      213: -3793054562787541546
+    second: 1_1_30.atlas.txt_6
+  - first:
+      213: 6858233919761612749
+    second: 1_1_30.atlas.txt_7
+  - first:
+      213: -1037222444968353348
+    second: 1_1_30.atlas.txt_8
+  - first:
+      213: 6201245076120876304
+    second: 1_1_30.atlas.txt_9
+  - first:
+      213: -6066437503444937062
+    second: 1_1_30.atlas.txt_10
+  - first:
+      213: 6322626082694152416
+    second: 1_1_30.atlas.txt_11
+  - first:
+      213: 3252249106830269441
+    second: 1_1_30.atlas.txt_12
+  - first:
+      213: 833941879733618491
+    second: 1_1_30.atlas.txt_13
+  - first:
+      213: -4591005913503160509
+    second: 1_1_30.atlas.txt_14
+  - first:
+      213: 7834529077147658409
+    second: 1_1_30.atlas.txt_15
+  - first:
+      213: -6695822552894567260
+    second: 1_1_30.atlas.txt_16
+  - first:
+      213: -54681789258945903
+    second: 1_1_30.atlas.txt_17
+  - first:
+      213: -4381369675172657914
+    second: 1_1_30.atlas.txt_18
+  - first:
+      213: -4006415369651161724
+    second: 1_1_30.atlas.txt_19
+  - first:
+      213: -6613158188089362547
+    second: 1_1_30.atlas.txt_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 175
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7c6792bbc2a3ec10800000000000000
+      internalID: 2081686448533630077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_1
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 193
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79831a543487f56d0800000000000000
+      internalID: -2999546596479125353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_2
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 173
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7023fef685be4380800000000000000
+      internalID: -8985044615149969284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 155
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1111648193d410880800000000000000
+      internalID: -8646544901958921967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 139
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e020fff8048f310800000000000000
+      internalID: 1438971068147699277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_5
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 151
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b8d51abfffd95580800000000000000
+      internalID: -8837786504306239305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 121
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ddbf5bb8fc5c5bc0800000000000000
+      internalID: -3793054562787541546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_7
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 129
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcffcedd9675d2f50800000000000000
+      internalID: 6858233919761612749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_8
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 105
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb169968eab0b91f0800000000000000
+      internalID: -1037222444968353348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_9
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 107
+        width: 34
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01533578a8f3f0650800000000000000
+      internalID: 6201245076120876304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 91
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a969e036b3fafcba0800000000000000
+      internalID: -6066437503444937062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_11
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 75
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e0ca9a6cea7eb750800000000000000
+      internalID: 6322626082694152416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_12
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 85
+        width: 26
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10c13bdd45f422d20800000000000000
+      internalID: 3252249106830269441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_13
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 61
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3708d0a8b1c29b00800000000000000
+      internalID: 833941879733618491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_14
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 57
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3472de322787940c0800000000000000
+      internalID: -4591005913503160509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 43
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a8ead1cfa6d9bc60800000000000000
+      internalID: 7834529077147658409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_16
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 33
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ac8ba73dd8a313a0800000000000000
+      internalID: -6695822552894567260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_17
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 27
+        width: 36
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19aa98fc33bbd3ff0800000000000000
+      internalID: -54681789258945903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_18
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 13
+        width: 38
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6054aa17e7f3233c0800000000000000
+      internalID: -4381369675172657914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_19
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 485f64db27a5668c0800000000000000
+      internalID: -4006415369651161724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_1_30.atlas.txt_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 40
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d87b77b7aa75934a0800000000000000
+      internalID: -6613158188089362547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      1_1_30.atlas.txt_0: 2081686448533630077
+      1_1_30.atlas.txt_1: -2999546596479125353
+      1_1_30.atlas.txt_10: -6066437503444937062
+      1_1_30.atlas.txt_11: 6322626082694152416
+      1_1_30.atlas.txt_12: 3252249106830269441
+      1_1_30.atlas.txt_13: 833941879733618491
+      1_1_30.atlas.txt_14: -4591005913503160509
+      1_1_30.atlas.txt_15: 7834529077147658409
+      1_1_30.atlas.txt_16: -6695822552894567260
+      1_1_30.atlas.txt_17: -54681789258945903
+      1_1_30.atlas.txt_18: -4381369675172657914
+      1_1_30.atlas.txt_19: -4006415369651161724
+      1_1_30.atlas.txt_2: -8985044615149969284
+      1_1_30.atlas.txt_20: -6613158188089362547
+      1_1_30.atlas.txt_3: -8646544901958921967
+      1_1_30.atlas.txt_4: 1438971068147699277
+      1_1_30.atlas.txt_5: -8837786504306239305
+      1_1_30.atlas.txt_6: -3793054562787541546
+      1_1_30.atlas.txt_7: 6858233919761612749
+      1_1_30.atlas.txt_8: -1037222444968353348
+      1_1_30.atlas.txt_9: 6201245076120876304
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
