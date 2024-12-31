@@ -9,6 +9,7 @@ public class MovingPlatform : MonoBehaviour
     private Transform desPos;
     public float speed; //속도
     public float stopTime; //멈추는 시간
+    public Transform trans;
 
     private void OnEnable()
     {
@@ -22,15 +23,16 @@ public class MovingPlatform : MonoBehaviour
         if (col.transform.CompareTag("Player"))
         {
             if (transform.position.y < col.transform.position.y)
-                col.transform.SetParent(transform);
+                col.transform.SetParent(trans);
+
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other)
+    private void OnCollisionExit2D(Collision2D col)
     {
-        if (other.transform.CompareTag("Player"))
+        if (col.transform.CompareTag("Player"))
         {
-            other.transform.SetParent(null);
+            col.transform.SetParent(null);
         }
     }
 
