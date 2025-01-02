@@ -26,6 +26,8 @@ public class PlayerMoveControl : MonoBehaviour
     [SerializeField] float rayOffset = .1f;
     public GameObject particlePrefab;
 
+    public ParticleSystem particles;
+
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
     [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
@@ -266,6 +268,7 @@ public class PlayerMoveControl : MonoBehaviour
 
             if (canEmitParticles)
             {
+                particles.Play();
                 Vector2 contactPoint = collision.GetContact(0).point;
                 GameObject particle = Instantiate(particlePrefab, contactPoint, Quaternion.identity);
                 ParticleSystem ps = particle.GetComponent<ParticleSystem>();
