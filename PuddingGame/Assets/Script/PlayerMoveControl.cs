@@ -43,6 +43,7 @@ public class PlayerMoveControl : MonoBehaviour
     private bool canEmitParticles = true;
     public float particleCoolDownTime = 1f;
     public bool isPlayerFixed = false;
+
     private void Awake()
     {
         i = this;
@@ -548,6 +549,7 @@ public class PlayerMoveControl : MonoBehaviour
         RaycastHit2D left = Physics2D.Raycast(transform.position, Vector2.left, clingRay, LayerMask.GetMask("Platform"));
         RaycastHit2D right = Physics2D.Raycast(transform.position, Vector2.right, clingRay, LayerMask.GetMask("Platform"));
         RaycastHit2D down = Physics2D.Raycast(transform.position, Vector2.down, clingRay, LayerMask.GetMask("Platform"));
+        
 
         isCling = false;
         if (down.collider == null)

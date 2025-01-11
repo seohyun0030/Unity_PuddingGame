@@ -93,6 +93,10 @@ public class PlayerManager : MonoBehaviour
         else if (collision.CompareTag("EndPoint"))  //종료지점에 닿으면
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);  //다음 씬으로 이동
+            if(SceneManager.GetActiveScene().name == "Stage4")
+            {
+                SceneManager.LoadScene("Ending");
+            }
             PlayerPrefs.DeleteKey("SavePosX");
             PlayerPrefs.DeleteKey("SavePosY");
         }
