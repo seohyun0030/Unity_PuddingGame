@@ -24,7 +24,6 @@ public class PlayerMoveControl : MonoBehaviour
     [SerializeField] float clingJumpForce = .5f;
     [SerializeField] float clingRay = 1f;
     [SerializeField] float rayOffset = .1f;
-    public GameObject particlePrefab;
 
     public ParticleSystem particles;
 
@@ -270,14 +269,6 @@ public class PlayerMoveControl : MonoBehaviour
             if (canEmitParticles)
             {
                 particles.Play();
-                Vector2 contactPoint = collision.GetContact(0).point;
-                GameObject particle = Instantiate(particlePrefab, contactPoint, Quaternion.identity);
-                ParticleSystem ps = particle.GetComponent<ParticleSystem>();
-                if (ps != null)
-                {
-                    ps.Play();
-                    Destroy(particle, ps.main.duration);
-                }
                 StartCoroutine(ParticleCooldown());
 
                 SfxManager.i.PlaySound("Collision");   //충돌 효과음 재생
@@ -308,7 +299,6 @@ public class PlayerMoveControl : MonoBehaviour
                 
             }
 
-            //PlayerManager.i.Animation("#1idel", true);
             PlayerManager.i.idleAnim();
         }
     }
