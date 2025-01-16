@@ -14275,6 +14275,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SfxManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3689926058897994929, guid: 2cfb973813f81fe4299d974da7ea6d80, type: 3}
+      propertyPath: volume.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3689926058897994929, guid: 2cfb973813f81fe4299d974da7ea6d80, type: 3}
+      propertyPath: 'volume.Array.data[8]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3689926058897994929, guid: 2cfb973813f81fe4299d974da7ea6d80, type: 3}
+      propertyPath: 'volume.Array.data[9]'
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5292040065286434536, guid: 2cfb973813f81fe4299d974da7ea6d80, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -14581,11 +14593,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237992072924256407, guid: ccdbbc2e8102233469826a19ef193fab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.23511
+      value: -34.75
       objectReference: {fileID: 0}
     - target: {fileID: 2237992072924256407, guid: ccdbbc2e8102233469826a19ef193fab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.72049
+      value: -24.72
       objectReference: {fileID: 0}
     - target: {fileID: 2237992072924256407, guid: ccdbbc2e8102233469826a19ef193fab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -26305,11 +26317,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59.73
+      value: 5.26
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.57
+      value: -0.42
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z

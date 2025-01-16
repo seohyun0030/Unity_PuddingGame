@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      balcky1_0: -7533119612315884711
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

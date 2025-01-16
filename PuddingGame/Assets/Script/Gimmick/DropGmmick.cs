@@ -38,6 +38,7 @@ public class DropGmmick : MonoBehaviour, IResettable
         if (other.CompareTag("Player"))
         {
             rb.gravityScale = 1f;
+            SfxManager.i.PlaySound("IcicleFalling");
             if (trigger != null) trigger.enabled = false;
             if (physical != null) physical.enabled = true;
             isDropped = true;
@@ -55,6 +56,7 @@ public class DropGmmick : MonoBehaviour, IResettable
         }
         if (col.gameObject.CompareTag("Platform") && isDropped)
         {
+            SfxManager.i.PlaySound("IcicleDropped");
             isDropped = false;
         }
 

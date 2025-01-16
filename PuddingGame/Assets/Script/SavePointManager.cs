@@ -6,6 +6,7 @@ public class SavePointManager : MonoBehaviour
 {
     public static SavePointManager i;
     public GameObject Player;
+    public ParticleSystem particle;
 
     private void Awake()
     {
@@ -23,6 +24,13 @@ public class SavePointManager : MonoBehaviour
             SlotManager.i.DeleteTopping();      //가지고 있는 토핑 삭제
             PlayerManager.i.GoToSavePoint();
 
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            particle.Play();
         }
     }
 }

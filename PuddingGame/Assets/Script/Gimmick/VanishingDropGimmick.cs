@@ -36,6 +36,7 @@ public class VanishingDropGimmick : MonoBehaviour, IResettable
         if (other.CompareTag("Player"))
         {
             rb.gravityScale = 1f;
+            SfxManager.i.PlaySound("IcicleFalling");
             if (trigger != null) trigger.enabled = false;
             if (physical != null) physical.enabled = true;
         }
@@ -50,6 +51,7 @@ public class VanishingDropGimmick : MonoBehaviour, IResettable
         }
         if (col.gameObject.CompareTag("Platform") || col.gameObject.CompareTag("Player"))
         {
+            SfxManager.i.PlaySound("IcicleDropped");
             gameObject.SetActive(false);
             isActive = false;
         }
