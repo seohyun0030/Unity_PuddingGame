@@ -25,7 +25,8 @@ public class PlayerMoveControl : MonoBehaviour
     [SerializeField] float clingRay = 1f;
     [SerializeField] float rayOffset = .1f;
 
-    public ParticleSystem particles;
+    public ParticleSystem yellowParticle;        //노란 파티클 시스템
+    public ParticleSystem mintParticle;        //민트 파티클 시스템
 
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
@@ -55,6 +56,10 @@ public class PlayerMoveControl : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ChangeParticleColor("yellow");
+        }
         if (!DialogueUI.i.dialogueText.IsActive() && !GameManager.isPause)
         {
             // 현재 씬이 "Stage2"일 때만 isEffectRunning 검사
@@ -268,10 +273,15 @@ public class PlayerMoveControl : MonoBehaviour
 
             if (canEmitParticles)
             {
-                particles.Play();
+                PlayParticle();
                 StartCoroutine(ParticleCooldown());
 
-                SfxManager.i.PlaySound("Collision");   //충돌 효과음 재생
+                var script = collision.gameObject.GetComponent<MonoBehaviour>();
+
+                if (script == null || script.GetType().Name != "DeathPlatform")     //충돌한 플랫폼이 사망 플랫폼이 아니라면
+                {
+                    SfxManager.i.PlaySound("Collision");   //충돌 효과음 재생
+                }
             }
 
             if (matcha)
@@ -340,6 +350,30 @@ public class PlayerMoveControl : MonoBehaviour
         gameObject.SetActive(false);
 
         SfxManager.i.PlaySound("Death");        //죽음 효과음 재생
+    }
+    public void ChangeParticleColor(string color)
+    {
+        if (color == "yellow")
+        {
+            yellowParticle.gameObject.SetActive(true);
+            mintParticle.gameObject.SetActive(false);
+        }
+        else if (color == "mint")
+        {
+            mintParticle.gameObject.SetActive(true);
+            yellowParticle.gameObject.SetActive(false);
+        }
+    }
+    public void PlayParticle()
+    {
+        if (yellowParticle.gameObject.activeSelf)
+        {
+            yellowParticle.Play();
+        }
+        else if (mintParticle.gameObject.activeSelf)
+        {
+            mintParticle.Play();
+        }
     }
     /*
     private void HandleCannon()

@@ -26,6 +26,9 @@ public class PlayerManager : MonoBehaviour
     public int StageIndex;
     SkeletonAnimation anim;
     float originalBounce;
+
+    private SkeletonAnimation skeletonAnimation;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -38,6 +41,18 @@ public class PlayerManager : MonoBehaviour
         StageIndex = SceneManager.GetActiveScene().buildIndex;
 
         originalBounce = Physics.bounciness;
+
+        skeletonAnimation = GetComponent<SkeletonAnimation>();
+        if (skeletonAnimation != null)
+        {
+            // 현재 스킨의 이름을 확인
+            string currentSkinName = skeletonAnimation.Skeleton.Skin.Name;
+
+            if (currentSkinName == "2")     //시작했을 때 민트 스킨이면 파티클 민트로
+            {
+                PlayerMoveControl.i.ChangeParticleColor("mint");
+            }
+        }
     }
     private void Update()
     {
@@ -74,8 +89,8 @@ public class PlayerManager : MonoBehaviour
     {
         transform.position = SavePos;
         rigidbody.velocity = new Vector2(0, 0);
-        //상태 원상복귀 구현 해야함
-        Debug.Log(originalBounce);
+        //상태 원상복귀
+        transform.rotation = Quaternion.identity;
         Physics.bounciness = originalBounce;
     }
     private void OnTriggerEnter2D(Collider2D collision)

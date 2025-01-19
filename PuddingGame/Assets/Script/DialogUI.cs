@@ -319,6 +319,8 @@ public class DialogueUI : MonoBehaviour
                 skeleton.SetSkin(newSkin);
                 skeleton.SetSlotsToSetupPose();
                 playerSkeletonAnimation.AnimationState.Apply(skeleton);
+
+                PlayerMoveControl.i.ChangeParticleColor("mint");        //파티클 색상 민트로 변경
             }
             else
             {

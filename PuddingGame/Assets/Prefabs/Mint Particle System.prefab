@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9146166698562350572}
   - component: {fileID: 6231062018216427516}
   m_Layer: 7
-  m_Name: Particle System
+  m_Name: Mint Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1545,11 +1545,11 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 2081686448533630077, guid: 4c6a4cac5800cdd4e8b948826ed73a58, type: 3}
-    - sprite: {fileID: -2999546596479125353, guid: 4c6a4cac5800cdd4e8b948826ed73a58, type: 3}
-    - sprite: {fileID: -8985044615149969284, guid: 4c6a4cac5800cdd4e8b948826ed73a58, type: 3}
-    - sprite: {fileID: -8646544901958921967, guid: 4c6a4cac5800cdd4e8b948826ed73a58, type: 3}
-    - sprite: {fileID: 1438971068147699277, guid: 4c6a4cac5800cdd4e8b948826ed73a58, type: 3}
+    - sprite: {fileID: 2355248545005100614, guid: fbf6fc91838d2634b8634a4599d77ee0, type: 3}
+    - sprite: {fileID: -729864411179221277, guid: fbf6fc91838d2634b8634a4599d77ee0, type: 3}
+    - sprite: {fileID: 371099759485649650, guid: fbf6fc91838d2634b8634a4599d77ee0, type: 3}
+    - sprite: {fileID: -6153099571245960566, guid: fbf6fc91838d2634b8634a4599d77ee0, type: 3}
+    - sprite: {fileID: 4524346103276372343, guid: fbf6fc91838d2634b8634a4599d77ee0, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4841,7 +4841,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22dd584fdcb85e643b4cdf1e98fb5549, type: 2}
+  - {fileID: 2100000, guid: a350f609e09f7a541b828171f3b9a0bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -10,6 +10,8 @@ public class DeathPlatform : MonoBehaviour
         {
             Debug.Log(col.gameObject.name);
             col.gameObject.SetActive(false);
+
+            SfxManager.i.PlaySound("Death");
         }
     }
 }
