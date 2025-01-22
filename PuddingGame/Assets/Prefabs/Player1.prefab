@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: f1a9ac0e3ca7e06438a24545be7bfd87, type: 2}
-  initialSkinName: 0
+  initialSkinName: 1
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
   initialFlipY: 0
@@ -230,6 +230,8 @@ MonoBehaviour:
   rayOffset: -0.5
   yellowParticle: {fileID: 9146166698562350572, guid: a94b89e916402ae43b625c6e31b70f74, type: 3}
   mintParticle: {fileID: 9146166698562350572, guid: aa7c013bbfedf6f47beeacc434f8a18a, type: 3}
+  deathYellow: {fileID: 0}
+  deathMint: {fileID: 0}
   floorMaxRay: 0.6
   rightMaxRay: 0.6
   leftMaxRay: 0.6

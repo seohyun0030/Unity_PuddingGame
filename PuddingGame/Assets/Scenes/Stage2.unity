@@ -36964,7 +36964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6420187640016487988, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: initialSkinName
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6420187640016487988, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: skeletonDataAsset

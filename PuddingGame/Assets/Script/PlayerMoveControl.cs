@@ -360,7 +360,7 @@ public class PlayerMoveControl : MonoBehaviour
             // 현재 스킨의 이름을 확인
             string currentSkinName = skeletonAnimation.Skeleton.Skin.Name;
 
-            if (currentSkinName == "0")     
+            if (currentSkinName == "1")     
             {
                 deathYellow.SetActive(true);
                 deathYellow.transform.position = position;
