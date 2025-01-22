@@ -28,6 +28,9 @@ public class PlayerMoveControl : MonoBehaviour
     public ParticleSystem yellowParticle;        //노란 파티클 시스템
     public ParticleSystem mintParticle;        //민트 파티클 시스템
 
+    public GameObject deathYellow;           //노란 죽은 이미지
+    public GameObject deathMint;             //민트 죽은 이미지
+
     [SerializeField] public float floorMaxRay;  //바닥 감지용 RayCast
     [SerializeField] public float rightMaxRay;   //오른쪽 벽 감지용 RayCast
     [SerializeField] public float leftMaxRay;   //왼쪽 벽 감지용 RayCast
@@ -44,6 +47,8 @@ public class PlayerMoveControl : MonoBehaviour
     public float particleCoolDownTime = 1f;
     public bool isPlayerFixed = false;
 
+    SkeletonAnimation skeletonAnimation;
+
     private void Awake()
     {
         i = this;
@@ -56,10 +61,6 @@ public class PlayerMoveControl : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ChangeParticleColor("yellow");
-        }
         if (!DialogueUI.i.dialogueText.IsActive() && !GameManager.isPause)
         {
             // 현재 씬이 "Stage2"일 때만 isEffectRunning 검사
@@ -342,14 +343,44 @@ public class PlayerMoveControl : MonoBehaviour
         if (impactVelocity.y > PlayerManager.i.fallingSpeed)
         {
             playerActive = false;
-            Death();
+
+            gameObject.SetActive(false);
+
+            SfxManager.i.PlaySound("Death");        //죽음 효과음 재생
+
+            ShowDeath(gameObject.transform.position + new Vector3(0, 0.25f));
         }
     }
-    public void Death()
+    public void ShowDeath(Vector2 position)
     {
-        gameObject.SetActive(false);
+        skeletonAnimation = GetComponent<SkeletonAnimation>();
 
-        SfxManager.i.PlaySound("Death");        //죽음 효과음 재생
+        if (skeletonAnimation != null)
+        {
+            // 현재 스킨의 이름을 확인
+            string currentSkinName = skeletonAnimation.Skeleton.Skin.Name;
+
+            if (currentSkinName == "0")     
+            {
+                deathYellow.SetActive(true);
+                deathYellow.transform.position = position;
+            }
+            else if(currentSkinName == "2")
+            {
+                deathMint.SetActive(true);
+                deathMint.transform.position = position;
+            }
+        }
+    }
+    public void Rebirth()
+    {
+        //죽음 이미지 삭제
+        if (deathYellow != null)
+            deathYellow.SetActive(false);   
+        
+        if(deathMint != null)
+            deathMint.SetActive(false);
+
     }
     public void ChangeParticleColor(string color)
     {
