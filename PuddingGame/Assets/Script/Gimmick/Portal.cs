@@ -40,7 +40,7 @@ public class Portal : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.isKinematic = true;
         }
-
+        SfxManager.i.PlaySound("Portal");
         //yield return new WaitForSeconds(pauseDuration);
 
         rb.transform.position = outPortal.transform.position;

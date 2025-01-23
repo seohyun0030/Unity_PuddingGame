@@ -33,8 +33,9 @@ public class SfxManager : MonoBehaviour
             case "ButtonTouch": index = 5; break;
             case "SavePoint": index = 6; break;
             case "Chocolate": index = 7; break;
-            case "IcicleFalling": index = 8; Debug.Log("FallingSound"); break;
+            case "IcicleFalling": index = 8; break;
             case "IcicleDropped": index = 9; break;
+            case "Portal": index = 10; break;
         }
 
         audioSource.clip = clips[index];
