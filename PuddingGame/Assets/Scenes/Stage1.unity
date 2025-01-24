@@ -9739,6 +9739,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4797095050443365400, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6576729
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797095050443365400, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.022413552
+      objectReference: {fileID: 0}
     - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -25703,11 +25711,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5
+      value: 26.25
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1
+      value: 25.07
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25761,6 +25769,10 @@ PrefabInstance:
       propertyPath: fadeImage
       value: 
       objectReference: {fileID: 859099221}
+    - target: {fileID: 7486024907907391955, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: fallingSpeed
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 8093796777698078676, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_IsActive
       value: 0

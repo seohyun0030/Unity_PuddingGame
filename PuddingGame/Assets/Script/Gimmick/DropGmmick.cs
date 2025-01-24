@@ -51,6 +51,8 @@ public class DropGmmick : MonoBehaviour, IResettable
        
         if (col.gameObject.CompareTag("Player") && isDropped)
         {
+            PlayerMoveControl.i.ShowDeath(col.transform.position);      //죽음 이미지 생성
+
             col.gameObject.SetActive(false);
             SfxManager.i.PlaySound("Death");
         }

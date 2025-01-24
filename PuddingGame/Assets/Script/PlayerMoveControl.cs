@@ -348,7 +348,7 @@ public class PlayerMoveControl : MonoBehaviour
 
             SfxManager.i.PlaySound("Death");        //죽음 효과음 재생
 
-            ShowDeath(gameObject.transform.position + new Vector3(0, 0.25f));
+            ShowDeath(gameObject.transform.position);
         }
     }
     public void ShowDeath(Vector2 position)
