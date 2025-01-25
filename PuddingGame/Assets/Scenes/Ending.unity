@@ -347,6 +347,7 @@ MonoBehaviour:
   nameX: -570
   nameY: -200
   background: {fileID: 0}
+  mintChoco: 0
 --- !u!4 &35077199
 Transform:
   m_ObjectHideFlags: 0
@@ -4825,11 +4826,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.33
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.95
+      value: 1.84
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z
