@@ -23769,7 +23769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4698555711379230925, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.164
+      value: 8.86
       objectReference: {fileID: 0}
     - target: {fileID: 4698555711379230925, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_LocalPosition.y
@@ -23813,16 +23813,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5596395942408152885, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5596395942408152885, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: dialogueNo
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5596395942408152885, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: dialogueUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 35077198}
     - target: {fileID: 6321924522276564490, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Name
       value: NPC1
@@ -35164,7 +35164,7 @@ PrefabInstance:
     - target: {fileID: 1040676718303970892, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 56641567224368564, guid: dc545718f5449234abe2c6c0a80bf58a, type: 3}
+      objectReference: {fileID: 6937817954938267909, guid: da880bc8b46b8b94e810b1d7d12850ab, type: 3}
     - target: {fileID: 1040676718303970892, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -35239,16 +35239,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5596395942408152885, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5596395942408152885, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: dialogueNo
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5596395942408152885, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: dialogueUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 35077198}
     - target: {fileID: 6321924522276564490, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Name
       value: NPC1 (1)
@@ -35897,7 +35897,7 @@ PrefabInstance:
     - target: {fileID: 1040676718303970892, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -7533119612315884711, guid: bd48a95d9302db94c9c6027445c71a72, type: 3}
+      objectReference: {fileID: 56641567224368564, guid: dc545718f5449234abe2c6c0a80bf58a, type: 3}
     - target: {fileID: 1040676718303970892, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -35972,16 +35972,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5596395942408152885, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5596395942408152885, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: dialogueNo
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5596395942408152885, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: dialogueUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 35077198}
     - target: {fileID: 6321924522276564490, guid: 8850ffb77197ec14fa0b2f9263558633, type: 3}
       propertyPath: m_Name
       value: NPC1 (2)
@@ -36146,11 +36146,11 @@ PrefabInstance:
       objectReference: {fileID: 9146166698562350572, guid: a94b89e916402ae43b625c6e31b70f74, type: 3}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.98
+      value: 4.67
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.57
+      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 3085444399959996821, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: m_LocalPosition.z
