@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IResettable
 {
-    void Respawn();
+    IEnumerator coRespawn();
+  
 }

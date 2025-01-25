@@ -28,7 +28,7 @@ public class GimmickManager : MonoBehaviour
     {
         foreach (var resettable in resettableObjects)
         {
-            resettable.Respawn();
+            StartCoroutine(resettable.coRespawn());
         }
     }
     public void RegisterResettable(IResettable resettable)

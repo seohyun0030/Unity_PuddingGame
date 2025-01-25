@@ -79,15 +79,23 @@ public class DropGmmick : MonoBehaviour, IResettable
             gimmickManager.UnregisterResettable(this);
         }
     }
-    public void Respawn()
+    public IEnumerator coRespawn()
     {
+        rb.simulated = false;
+        rb.velocity = Vector2.zero;
+
         // 오브젝트 상태 리셋
         transform.position = initialPosition; // 위치 초기화
         rb.gravityScale = 0f; // 중력 초기화
-        isDropped = false; // 드롭 상태 초기화
+       
         if (trigger != null) trigger.enabled = true;
         if (physical != null) physical.enabled = false;
-        gameObject.SetActive(true); // 오브젝트 활성화
 
+        yield return null;
+   
+        rb.simulated = true;
+        isDropped = false; // 드롭 상태 초기화
+        gameObject.SetActive(true); // 오브젝트 활성화
     }
+
 }

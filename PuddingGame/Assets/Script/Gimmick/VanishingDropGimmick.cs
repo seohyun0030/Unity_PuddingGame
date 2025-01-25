@@ -59,14 +59,18 @@ public class VanishingDropGimmick : MonoBehaviour, IResettable
         }
 
     }
-    public void Respawn()
+    public IEnumerator coRespawn()
     {
+
         transform.position = initialPosition;
         rb.gravityScale = 0f;
         gameObject.SetActive(true);
         if (trigger != null) trigger.enabled = true;
         if (physical != null) physical.enabled = false;
+        yield return null;
+
         isActive = true;
+
     }
     
 }

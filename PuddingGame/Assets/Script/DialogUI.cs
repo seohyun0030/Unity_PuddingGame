@@ -28,6 +28,7 @@ public class DialogueUI : MonoBehaviour
     private NPCManager npc;
     private int currentNo;
     public Image background; //검은 화면
+    public bool mintChoco = false;
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "Stage1")
@@ -265,6 +266,9 @@ public class DialogueUI : MonoBehaviour
             case 13:
                 imageName = "PC/13";
                 break;
+            case 14:
+                imageName = "PC/14";
+                break;
             default:
                 Debug.Log("PC x");
                 return null;
@@ -292,6 +296,7 @@ public class DialogueUI : MonoBehaviour
                 break;
             case 4:
                 imageName = "NPC/4";
+                mintChoco = true;
                 break;
             case 5:
                 imageName = "NPC/5";
