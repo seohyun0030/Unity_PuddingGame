@@ -129,12 +129,12 @@ TextureImporter:
       name: C1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1004
-        height: 1080
+        x: 156
+        y: 147
+        width: 700
+        height: 837
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7a258dee457d0054782e587699419060
     internalID: 0
     vertices: []
     indices: 
