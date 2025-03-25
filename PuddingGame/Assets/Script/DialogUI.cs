@@ -278,6 +278,12 @@ public class DialogueUI : MonoBehaviour
         {
             Debug.Log("PC ÀÌ¹ÌÁöx");
         }
+        if (num >= 3)
+        {
+            playerImage.transform.localScale = new Vector2(4f, 6f);
+            playerImage.transform.localPosition = new Vector2(-671f, 157.36f);
+        }
+        else playerImage.transform.localPosition = new Vector2(-671f, 70f);
         return loadedSprite;
     }
     private Sprite LoadNPCImage(int num)
