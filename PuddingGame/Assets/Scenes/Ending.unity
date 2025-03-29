@@ -1753,6 +1753,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6227228668875437331, guid: 1bc99170c6485ff4ea5ab76476e87657, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227228668875437331, guid: 1bc99170c6485ff4ea5ab76476e87657, type: 3}
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
