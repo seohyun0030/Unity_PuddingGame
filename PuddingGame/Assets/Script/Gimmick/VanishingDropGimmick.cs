@@ -33,6 +33,7 @@ public class VanishingDropGimmick : MonoBehaviour, IResettable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!isActive) return;
         if (other.CompareTag("Player"))
         {
             rb.gravityScale = 1f;
@@ -64,6 +65,7 @@ public class VanishingDropGimmick : MonoBehaviour, IResettable
 
         transform.position = initialPosition;
         rb.gravityScale = 0f;
+        rb.velocity = Vector2.zero;
         gameObject.SetActive(true);
         if (trigger != null) trigger.enabled = true;
         if (physical != null) physical.enabled = false;
