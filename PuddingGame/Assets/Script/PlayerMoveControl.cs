@@ -141,6 +141,8 @@ public class PlayerMoveControl : MonoBehaviour
     }
     public void Move()     //움직임 구현
     {
+        if(isCling) ResetChocolate();
+
         rb.velocity = Vector2.zero;  // 현재의 수직 속도 초기화
 
         Vector2 MoveDirection = CursorController.i.GetDirection();
@@ -604,7 +606,7 @@ public class PlayerMoveControl : MonoBehaviour
         RaycastHit2D left = Physics2D.Raycast(transform.position, Vector2.left, clingRay, LayerMask.GetMask("Platform"));
         RaycastHit2D right = Physics2D.Raycast(transform.position, Vector2.right, clingRay, LayerMask.GetMask("Platform"));
         RaycastHit2D down = Physics2D.Raycast(transform.position, Vector2.down, clingRay, LayerMask.GetMask("Platform"));
-        
+        float originalBounce = PlayerManager.i.BouncePower;
 
         isCling = false;
         if (down.collider == null)
@@ -648,6 +650,13 @@ public class PlayerMoveControl : MonoBehaviour
             
         }
 
+    }
+
+    public void ResetChocolate()
+    {
+        rb.gravityScale = 1f;
+        isCling = false;
+        
     }
 }
 public static class Vector2Extensions
