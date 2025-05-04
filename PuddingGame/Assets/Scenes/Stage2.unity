@@ -12587,6 +12587,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &460682891
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.59882736
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.8876933
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868022032474428926, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327019590167937610, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_Name
+      value: DeathYellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327019590167937610, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
 --- !u!1 &482775806
 GameObject:
   m_ObjectHideFlags: 0
@@ -37091,13 +37152,17 @@ PrefabInstance:
       value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 2073744750206138292, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
+      propertyPath: deathMint
+      value: 
+      objectReference: {fileID: 8615706691093283315, guid: 278df060d8db6d24aaa11c79e482b2a3, type: 3}
+    - target: {fileID: 2073744750206138292, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: particles
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2073744750206138292, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: deathYellow
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1712821230}
     - target: {fileID: 2073744750206138292, guid: 3fd51788f624cce4f9428179187c21af, type: 3}
       propertyPath: yellowParticle
       value: 
@@ -47524,6 +47589,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1712821230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8327019590167937610, guid: 40db2d4d21aa3f145ad02a475502a963, type: 3}
+  m_PrefabInstance: {fileID: 460682891}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1715375681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3544537320404333119, guid: e6c7acd1134ee2742b741d50d469d567, type: 3}
@@ -59519,6 +59589,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1971294035}
   - {fileID: 1336757047}
+  - {fileID: 460682891}
   - {fileID: 867071959}
   - {fileID: 1441019946}
   - {fileID: 111723137}
